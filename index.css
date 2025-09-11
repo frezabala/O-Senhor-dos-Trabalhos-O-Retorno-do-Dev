@@ -2,61 +2,137 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  --tdw: calc(100% / 8);
+  --tdh: calc(100% / 4);
+  --sam-health: 100%;
+  --aragorn-health: 90%;
+  --legolas-health: 100%;
+  --gimli-health: 100%;
+  --gandalf-health: 100%;
+  --boromir-health: 100%;
+  --sam-health: 100%;
 }
 body {
   background-color: rgb(61, 83, 39);
+  position: relative;
 }
 
 #Container {
   width: 100%;
   height: 98vh;
   display: flex;
-
-  position: relative;
   justify-content: center;
 }
 
 #Mapa {
-  width: 85%;
-  height: 80vh;
+  height: 90vh;
+  aspect-ratio: 16/12;
   display: flex;
   align-self: center;
   justify-content: center;
   align-items: center;
   background-color: rgb(36, 199, 106);
+  background-image: url(middle-earth-map.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
-.Personagem {
-  display: flex;
-  flex-direction: column;
-  visibility: hidden;
-  align-self: flex-start;
-  transition: visibility 0.3s ease;
-  animation: slide-out 0.3s ease;
-}
-.Personagem .ativo {
-  visibility: inherit;
-  animation: slide-in 0.3s ease;
-}
-
-#frodo {
-  top: 0;
-  left: 0;
-  position: absolute;
-  align-self: flex-start;
-  cursor: pointer;
-}
-
 table {
   height: 100%;
   width: 100%;
+  overflow: hidden;
   border-collapse: collapse;
+  table-layout: fixed;
 }
-th,
 td {
-  border: 1px solid rgba(6, 48, 27, 0.151);
+  border: 1px solid rgba(0, 0, 0, 0.5);
   text-align: center;
   padding: 15px;
-  width: 12.5%;
+  width: var(--tdw);
+  height: var(--tdh);
   overflow: hidden;
+}
+
+#frodo > img {
+  cursor: pointer;
+  width: 100%;
+}
+
+#left_side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.125);
+  top: 0;
+  position: absolute;
+  width: 5%;
+}
+#Personagem {
+  display: none;
+  flex-direction: column;
+  top: 10%;
+  left: 0px;
+  width: 100%;
+  gap: 5px;
+}
+#Personagem > div > img {
+  width: 100%;
+}
+#Personagem.ativo {
+  display: flex;
+}
+#Personagem > div {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  height: 10%;
+}
+.health {
+  text-align: center;
+  font-size: small;
+  line-height: 0.9em;
+  width: 90%;
+}
+
+#sam_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--sam-health),
+    red var(--sam-health)
+  );
+}
+#aragorn_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--aragorn-health),
+    red var(--aragorn-health)
+  );
+}
+#legolas_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--legolas-health),
+    red var(--legolas-health)
+  );
+}
+#gimli_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--gimli-health),
+    red var(--gimli-health)
+  );
+}
+#Personagem > div.ativo {
+  display: flex;
+}
+
+#right_side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.125);
+  top: 0;
+  right: 0;
+  position: absolute;
+  width: 5%;
 }

@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import { Character } from './Character'
 import { Tile } from './Tile'
 import { Ranking } from './Ranking'
+import { Item } from './Item'
 
 @Entity('users')
 export class User{
@@ -37,6 +38,7 @@ export class User{
 interface Save{
     Savename:string
     characters:Character[]
+    items:Item[]
     tilesDefeated:Tile[]
     lastPlayed:Date
     ranking:Ranking

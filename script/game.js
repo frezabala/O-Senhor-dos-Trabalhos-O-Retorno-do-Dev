@@ -3,17 +3,26 @@ document.getElementById("frodo").addEventListener("click", () => {
 });
 
 window.addEventListener("keydown", (key) => {
-  if (key.key == "ArrowUp" || key.key == "w") {
-    console.log("up");
-  }
-  if (key.key == "ArrowDown" || key.key == "s") {
-    console.log("down");
-  }
-  if (key.key == "ArrowLeft" || key.key == "a") {
-    console.log("left");
-  }
-  if (key.key == "ArrowRight" || key.key == "d") {
-    console.log("right");
+  switch (key.key) {
+    case "ArrowUp":
+    case "w":
+      console.log("up");
+      break;
+    case "ArrowDown":
+    case "s":
+      console.log("down");
+      break;
+    case "ArrowLeft":
+    case "a":
+      console.log("left");
+      break;
+    case "ArrowRight":
+    case "d":
+      console.log("right");
+      break;
+
+    default:
+      break;
   }
 });
 

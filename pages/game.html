@@ -9,26 +9,24 @@
   </head>
   <body>
     <section id="Container">
-      <div id="Mapa">
+      <div id="map">
         <table>
           <tr>
             <td>
-              <span id="show_aragorn"
-                ><img src="../imagens/aragorn.png" alt=""
-              /></span>
+              <img id="show_aragorn" src="../imagens/aragorn.png" alt="" />
             </td>
             <td>
-              <span id="show_legolas"
-                ><img src="../imagens/legolas.png" alt=""
-              /></span>
+              <img id="show_legolas" src="../imagens/legolas.png" alt="" />
             </td>
             <td>
-              <span id="show_gimli"
-                ><img src="../imagens/gimli.png" alt=""
-              /></span>
+              <img id="show_gimli" src="../imagens/gimli.png" alt="" />
             </td>
-            <td>4</td>
-            <td>5</td>
+            <td>
+              <img id="show_boromir" src="../imagens/boromir.png" alt="" />
+            </td>
+            <td>
+              <img id="show_gandalf" src="../imagens/gandalf.png" alt="" />
+            </td>
             <td>6</td>
             <td>7</td>
             <td>8</td>
@@ -65,6 +63,7 @@
           </tr>
         </table>
       </div>
+      <div id="combat"></div>
     </section>
     <div id="left_side">
       <section id="btn">
@@ -72,29 +71,41 @@
           <img src="../imagens/frodo.png" alt="Frodo" />
         </div>
       </section>
-      <section id="Personagem" class="ativo">
+      <section id="characters" class="ativo">
         <div title="Samwise Gangee" id="sam" class="ativo">
           <div id="sam_health" class="health">5/5</div>
-          <img src="../imagens/samwise.png" alt="sam" />
+          <img src="../imagens/samwise.png" alt="Sam" />
+          <p class="description"></p>
         </div>
-        <div id="aragorn">
-          <div title="Aragorn" id="aragorn_health" class="health">9/10</div>
-          <img src="../imagens/aragorn.png" alt="aragorn" />
+        <div title="Aragorn" id="aragorn">
+          <div id="aragorn_health" class="health">9/10</div>
+          <img src="../imagens/aragorn.png" alt="Aragorn" />
+          <p class="description"></p>
         </div>
-        <div id="legolas">
-          <div title="Legolas" id="legolas_health" class="health">10/10</div>
-          <img src="../imagens/legolas.png" alt="legolas" />
+        <div title="Legolas" id="legolas">
+          <div id="legolas_health" class="health">10/10</div>
+          <img src="../imagens/legolas.png" alt="Legolas" />
+          <p class="description"></p>
         </div>
-        <div id="gimli">
-          <div title="Gimli" id="gimli_health" class="health">10/10</div>
-          <img src="../imagens/gimli.png" alt="gimli" />
+        <div title="Gimli" id="gimli">
+          <div id="gimli_health" class="health">10/10</div>
+          <img src="../imagens/gimli.png" alt="Gimli" />
+          <p class="description"></p>
+        </div>
+        <div title="Boromir" id="boromir">
+          <div id="boromir_health" class="health">10/10</div>
+          <img src="../imagens/boromir.png" alt="Boromir" />
+        </div>
+        <div title="Gandalf The Grey" id="gandalf">
+          <div id="gandalf_health" class="health">10/10</div>
+          <img src="../imagens/gandalf.png" alt="Gandalf" />
         </div>
       </section>
     </div>
     <div>
       <div id="right_side">
         <p>seus items</p>
-        <div id="bomba">
+        <div id="bomb">
           <img
             title="causa dano ao alvo"
             src="../imagens/Super_Bomb_LttP.png"

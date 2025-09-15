@@ -104,6 +104,12 @@ input:focus {
   transform: scale(1.05);
 }
 
+.haveAC a {
+  text-decoration: none;
+
+}
+
+
 
 
 

@@ -43,11 +43,22 @@
 
                 <div class="haveAc2">
                     <p class="switch">Don't have an account?
-                        <a href="/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/pages/register.html" id="toRegister">Create one</a>
+                        <a href="/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/pages/register.html" id="toRegister">Create
+                            one</a>
                     </p>
                 </div>
 
     </main>
+
+
 </body>
+<script>
+    window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('alert') === 'true') {
+            alert('Você não está logado!');
+        }
+    };
+</script>
 
 </html>

@@ -23,6 +23,16 @@ export class UserService{
         return clone
     }
 
+    async findbyEmail(email:string){
+        const user = await this.repo.findOne({where:{email:email}})
+        if(!user){
+            throw new Error("User not found")
+        }
+        const clone:any ={...user}
+        delete clone.password
+        return clone;
+    }
+
     async update(id:number, data:Partial<User>){
         const user = await this.repo.findOne({where:{ id: id}})
         if(!user){

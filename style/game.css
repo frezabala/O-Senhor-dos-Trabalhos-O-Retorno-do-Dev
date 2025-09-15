@@ -24,14 +24,13 @@ body {
   justify-content: center;
 }
 
-#Mapa {
+#map {
   height: 90vh;
   aspect-ratio: 16/12;
   display: flex;
   align-self: center;
   justify-content: center;
   align-items: center;
-  background-color: rgb(36, 199, 106);
   background-image: url("../imagens/middle-earth-map.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -49,6 +48,11 @@ td {
   text-align: center;
   padding: 15px;
   width: var(--tdw);
+}
+td > img {
+  width: 100%;
+}
+tr {
   height: var(--tdh);
   overflow: hidden;
 }
@@ -67,7 +71,7 @@ td {
   position: absolute;
   width: 5%;
 }
-#Personagem {
+#characters {
   display: none;
   flex-direction: column;
   top: 10%;
@@ -75,19 +79,20 @@ td {
   width: 100%;
   gap: 5px;
 }
-#Personagem > div > img {
+#characters > div > img {
   width: 100%;
 }
-#Personagem.ativo {
+#characters.ativo {
   display: flex;
 }
-#Personagem > div {
+#characters > div {
   display: none;
   flex-direction: column;
   align-items: center;
   height: 10%;
 }
 .health {
+  user-select: none;
   text-align: center;
   font-size: small;
   line-height: 0.9em;
@@ -122,7 +127,21 @@ td {
     red var(--gimli-health)
   );
 }
-#Personagem > div.ativo {
+#boromir_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--boromir-health),
+    red var(--boromir-health)
+  );
+}
+#gandalf_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--gandalf-health),
+    red var(--gandalf-health)
+  );
+}
+#characters > div.ativo {
   display: flex;
 }
 
@@ -139,4 +158,28 @@ td {
 }
 #right_side img {
   cursor: pointer;
+}
+
+.description {
+  display: none;
+}
+
+.hide_map {
+  display: none !important;
+}
+.show_combat {
+  display: block !important;
+}
+
+#combat {
+  display: none;
+  height: 90vh;
+  aspect-ratio: 16/12;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../imagens/combat.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }

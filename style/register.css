@@ -104,9 +104,13 @@ input:focus {
   transform: scale(1.05);
 }
 
-.haveAC a {
+.haveAc a {
   text-decoration: none;
 
+}
+
+.haveAc a {
+  color: #c9a635;
 }
 
 

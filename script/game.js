@@ -237,3 +237,6 @@ document.getElementById("bomb").addEventListener("click", () => {
   document.getElementById("map").classList.toggle("hide_map");
   document.getElementById("combat").classList.toggle("show_combat");
 });
+
+const table = document.getElementById("table");
+table.rows[1].cells[1].textContent = "ola";

@@ -1,8 +1,4 @@
 
-document.getElementById('btnStart').addEventListener('click', function() {
-    window.location.href = 'game.html'; // Redireciona para a página do jogo
-});
-
 
 rankingData = [
     { nome: 'ana', pontos: 100 },
@@ -22,24 +18,4 @@ function mostrarRanking() {
 }
 
 
-
-  const conquistas = [
-        { nome: 'Primeira Vitória', descricao: 'Complete sua primeira partida.' },
-        { nome: 'Colecionador', descricao: 'Colecione todos os Pokémon.' },
-        { nome: 'Desbravador', descricao: 'Explore todas as áreas do mapa.' }
-    ];
-
-function mostrarConquistas() {
-    const conquistasList = document.getElementById('conquistas-list');
-    conquistasList.innerHTML = ''; // Limpa a lista antes de adicionar novos itens
-
-    conquistas.forEach((conquista) => {
-        const li = document.createElement('li');
-        li.textContent = `${conquista.nome} - ${conquista.descricao}`;
-        conquistasList.appendChild(li);
-    });
-
-}
-
 mostrarRanking();
-mostrarConquistas();

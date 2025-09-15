@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+body{
+
+background-attachment: fixed;
+background-image: url(../imagens/aaaaaaa.png);
+background-repeat: no-repeat;
+background-size: cover;
+
+
+
+}
+
+header{
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+header h1{
+  color: rgb(145, 145, 145);
+  font-size: 50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#ranking{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lista{
+  width: 40%;
+  height: 95%;
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  padding: 20px;
+}
+.lista ul{
+color: white;
+  justify-content: start;
+    align-items: start;
+   margin: 15px;
+    font-size: 25px;
+
+
+  
+  
+
+ 
+
+}

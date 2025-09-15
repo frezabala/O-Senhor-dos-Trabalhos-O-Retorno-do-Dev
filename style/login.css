@@ -1,0 +1,147 @@
+:root {
+  --bg1: #0b0a08;
+  --parchment: #efe1c6;
+  --gold: #caa83b;
+  --muted: #7a6950;
+  --accent: #2b5a2b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html, body { height: 100% }
+
+body {
+
+  font-family: 'Cinzel', serif;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: url("/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/imagens/fundoFloresta.jpg") no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: -1;
+}
+
+.card2 {
+  width: 100%;
+  max-width: 900px;
+  background: linear-gradient(180deg, rgba(47, 67, 41, 0.662), rgba(255, 255, 255, 0.021));
+  border: 1px solid rgba(202,168,59,0.12);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(2,2,2,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  backdrop-filter: blur(2px);
+}
+
+
+
+.painel2 {
+  padding: 48px 36px;
+  background: linear-gradient(180deg, rgba(58, 70, 26, 0.6), rgba(16,14,13,0.5));
+  border-right: 1px solid rgba(202,168,59,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+
+
+h1 { font-size: 28px; color: var(--parchment); letter-spacing: 1px }
+p.text2 { color: var(--muted); max-width: 36vw; font-size: 14px }
+
+
+form {
+  padding: 36px 48px;
+  display: flex; flex-direction: column; gap: 14px;
+  background: linear-gradient(180deg, rgba(255,250,235,0.02), rgba(255,250,235,0.01));
+}
+
+label { font-size: 13px; color: var(--parchment); margin-bottom: 6px }
+
+.field { display: flex; flex-direction: column; gap: 6px }
+
+input[type="text"], input[type="email"], input[type="password"] {
+  padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(202,168,59,0.09);
+  background: rgba(255,255,255,0.02); color: var(--parchment); font-size: 14px;
+  outline: none; transition: box-shadow .18s, border-color .18s;
+}
+
+input::placeholder { color: rgba(255,255,255,0.25); font-family: inherit }
+
+input:focus {
+  border-color: rgba(202,168,59,0.35);
+  box-shadow: 0 6px 18px rgba(42,32,8,0.12) inset;
+}
+
+.register { display: flex; gap: 12px }
+.register .field { flex: 1 }
+
+.actions { display: flex; align-items: center; justify-content: space-between; margin-top: 6px }
+
+.btn1 {
+  background: linear-gradient(145deg, #c9a635, #ffd700);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn1:hover {
+  box-shadow: 0 0 15px #ffd700;
+  transform: scale(1.05);
+}
+
+.haveAC2 a {
+  text-decoration: none;
+}
+
+
+
+@media (max-width:480px) {
+  .card2 { grid-template-columns: 1fr; }
+  .panel2 { padding: 28px 20px }
+  form { padding: 24px }
+
+    p.text1 {
+    font-size: 12px;
+  }
+
+  .btn1 {
+    width: 100%; 
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .register {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

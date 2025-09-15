@@ -1,5 +1,8 @@
 body {
-  background-color: rgb(61, 83, 39);
+  font-family: 'Cinzel', serif;
+background-repeat: no-repeat;
+  background-size: cover;
+background-image: url(../imagens/fundo.jpg);
   margin: 0;
   padding: 0;
   color: white;
@@ -40,10 +43,10 @@ body {
   justify-content: center;
   align-items: center;
 
-  padding: 15px 30px;
+  padding: 25px 50px;
   font-size: 18px;
   border: none;
-  border-radius: 8px;
+  border-radius: 28px;
   background-color: rgba(32, 218, 112, 0.918);
 }
 #btnStart:hover {
@@ -65,3 +68,4 @@ body {
 #conquistas ul {
   padding-left: 20px;
 }
+

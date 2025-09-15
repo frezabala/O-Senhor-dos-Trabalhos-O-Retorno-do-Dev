@@ -107,11 +107,18 @@ input:focus {
   transform: scale(1.05);
 }
 
-.haveAC2 a {
+.haveAc2 a {
   text-decoration: none;
 }
 
+.haveAc2 a {
+color: #babd17;
+}
 
+.haveAc2 a:hover {
+    box-shadow: 0 0 15px #ffd700;
+  transform: scale(1.05);
+}
 
 @media (max-width:480px) {
   .card2 { grid-template-columns: 1fr; }

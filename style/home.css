@@ -1,12 +1,22 @@
+
+
 body {
   font-family: 'Cinzel', serif;
-background-repeat: no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
-background-image: url(../imagens/fundo.jpg);
+  background-image: url(../imagens/fundo.jpg);
   margin: 0;
   padding: 0;
   color: white;
 }
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: -1;
+}
+
 
 #container {
   width: 100%;
@@ -16,8 +26,9 @@ background-image: url(../imagens/fundo.jpg);
   justify-content: center;
   align-items: center;
 
- 
+
 }
+
 #ranking {
   width: 100%;
   max-width: 300px;
@@ -26,12 +37,15 @@ background-image: url(../imagens/fundo.jpg);
   border-radius: 8px;
   text-align: left;
 }
+
 #ranking h1 {
   margin-top: 0;
 }
+
 #ranking ul {
   padding-left: 20px;
 }
+
 #start-game {
   width: 100%;
   display: flex;
@@ -39,18 +53,18 @@ background-image: url(../imagens/fundo.jpg);
 }
 
 #btnStart {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 25px 50px;
-  font-size: 18px;
+  background: linear-gradient(145deg, #c9a635, #ffd700);
   border: none;
-  border-radius: 28px;
-  background-color: rgba(32, 218, 112, 0.918);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
+
 #btnStart:hover {
-  background-color: #08d812b9;
+  box-shadow: 0 0 15px #ffd700;
+  transform: scale(1.05);
 }
 
 #conquistas {
@@ -61,6 +75,7 @@ background-image: url(../imagens/fundo.jpg);
   border-radius: 8px;
   text-align: left;
 }
+
 #conquistas h1 {
   margin-top: 0;
 }
@@ -68,4 +83,3 @@ background-image: url(../imagens/fundo.jpg);
 #conquistas ul {
   padding-left: 20px;
 }
-

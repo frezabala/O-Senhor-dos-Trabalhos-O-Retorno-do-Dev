@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany} from 'typeorm'
 import { Character } from './Character'
 import { Item } from './Item'
 
@@ -10,13 +10,13 @@ export class Tile{
     @Column()
     level:number
 
-    @Column()
+    @ManyToMany(() => Character)
     enemies: Character[]
 
-    @Column({nullable: true})
+    @ManyToOne(() => Character)
     character: Character
 
-    @Column()
+    @ManyToOne(() => Item)
     reward:Item
 
     @Column()

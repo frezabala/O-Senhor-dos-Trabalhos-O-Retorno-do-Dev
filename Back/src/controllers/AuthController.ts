@@ -16,7 +16,19 @@ export class AuthController{
     }
     async login(req: Request, res: Response){
         try{
-            
+            const { email, password} = req.body
+            const user = await service.findbyEmail(email)
+            if(!user){
+                return res.status(404).json({message: "User not found"})
+            }
+            const valid = await user.validatePassword(password)
+            if(!valid){
+                return res.status(401).json({message: "Wrong Password"})
+            }
+            const clone = {...user}
+            delete clone.password
+            const token = generateToken({id: user.id, email: email})
+            res.json({user:clone, token})
         }catch(err:any){
             res.status(400).json({ message: err.message })
         }

@@ -12,8 +12,8 @@ export class Effect{
     strenght:number //define o quão forte o efeito vai ser, como cura: 20 ou dano:10 variando dependendo do efeito definido
 
     @Column()
-    duration:number //amount of rounds it will last for, once it goes to 0 effect goes out
+    duration:number //amount of rounds it will last for, once it reaches 0 effect goes out
 
     @Column()
-    special:string //decide algo especial como extra dano em orcs ou uma espada especial q mata em 1 hit se usada contra o boss final mas so da 1 dano em todo o resto
+    special:string //decide algo especial como extra dano em orcs
 }

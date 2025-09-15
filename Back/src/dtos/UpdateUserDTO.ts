@@ -1,13 +1,15 @@
-import { IsEmail, IsNotEmpty, Matches, MinLength } from "class-validator";
+import { IsEmail, Matches, MinLength, IsOptional } from "class-validator";
 
-export class CreateUserDTO{
-    @IsNotEmpty({message: "Name cannot be null"})
+export class UpdateUserDTO{
+    @IsOptional()
     @Matches(/^[A-Za-zÀ-ÿ\s]+$/, { message: "Name must only have letters and spaces" })
     name:string;
-    @IsNotEmpty({message: "Email cannot be null"})
+
+    @IsOptional()
     @IsEmail({},{message:"Invalid Email"})
     email:string;
-    @IsNotEmpty({message: "Password cannot be null"})
+
+    @IsOptional()
     @MinLength(6, { message: "Password must be at least 6 letters long" })
     password:string;
 }

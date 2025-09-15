@@ -1,9 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate} from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany} from 'typeorm'
 import bcrypt from 'bcrypt'
-import { Character } from './Character'
-import { Tile } from './Tile'
-import { Ranking } from './Ranking'
-import { Item } from './Item'
+import { Save } from './Save'
 
 @Entity('users')
 export class User{
@@ -19,8 +16,9 @@ export class User{
     @Column()
     password: string
 
-    @Column({nullable: true})
-    save: Save[]
+    
+    @OneToMany(() => Save, (save) => save.user)
+    saves: Save[]
 
     @BeforeInsert()
     @BeforeUpdate()
@@ -33,14 +31,4 @@ export class User{
     async validatePassword(plain: string): Promise<boolean>{
         return bcrypt.compare(plain,this.password);
     }
-}
-
-interface Save{
-    Savename:string
-    characters:Character[]
-    items:Item[]
-    tilesDefeated:Tile[]
-    lastPlayed:Date
-    ranking:Ranking
-    won:boolean
 }

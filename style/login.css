@@ -18,7 +18,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background: url("/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/imagens/fundoFloresta.jpg") no-repeat center center fixed;
+  background: url("/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/imagens/fundo.jpg") no-repeat center center fixed;
   background-size: cover;
   position: relative;
 }
@@ -36,10 +36,10 @@ body::before {
 .card2 {
   width: 100%;
   max-width: 900px;
-  background: linear-gradient(180deg, rgba(47, 67, 41, 0.662), rgba(255, 255, 255, 0.021));
-  border: 1px solid rgba(202,168,59,0.12);
+  background: linear-gradient(170deg, rgba(47, 67, 41, 0.993), rgba(255, 255, 255, 0.062));
+  border: 1px solid rgba(202, 169, 59, 0.315);
   border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(2,2,2,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  box-shadow: 0 10px 40px rgba(2,2,2,0.6), inset 0 1px 0 rgba(255, 255, 255, 0.144);
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 420px;
@@ -50,8 +50,8 @@ body::before {
 
 .painel2 {
   padding: 48px 36px;
-  background: linear-gradient(180deg, rgba(58, 70, 26, 0.6), rgba(16,14,13,0.5));
-  border-right: 1px solid rgba(202,168,59,0.04);
+  background: linear-gradient(170deg, rgb(58, 70, 26), rgba(16, 14, 13, 0.705));
+  border-right: 1px solid rgba(202, 169, 59, 0.26);
   display: flex;
   flex-direction: column;
   gap: 18px;

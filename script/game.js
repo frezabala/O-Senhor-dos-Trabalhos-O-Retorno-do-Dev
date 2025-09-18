@@ -1,11 +1,12 @@
 async function fetchUserProfile() {
   const token = localStorage.getItem("token");
-  if (token || typeof token == undefined) {
+  if (token) {
     window.location.href = "login.html?alert=true";
     return;
   } else {
     console.log(token);
-  } /*
+  }
+  /*
   try {
     const resposta = await fetch("http://localhost:3000/users/me", {
       method: "GET",
@@ -27,7 +28,7 @@ async function fetchUserProfile() {
       "Erro ao carregar perfil: " + erro.message;
     document.getElementById("mensagem").style.color = "red";
   }
-    */
+  */
 }
 
 window.addEventListener("DOMContentLoaded", fetchUserProfile);
@@ -38,6 +39,8 @@ const legolas_health = document.getElementById("legolas_health");
 const gimli_health = document.getElementById("gimli_health");
 const boromir_health = document.getElementById("boromir_health");
 const gandalf_health = document.getElementById("gandalf_health");
+const enemy_health = document.getElementById("enemy_health");
+const table = document.getElementById("table");
 
 const style = document.documentElement.style;
 
@@ -48,9 +51,14 @@ function sam_reduce_health() {
   let [healthx, healthy] = sam_health.innerHTML.split("/");
   check = current_enemy.baseDamage - sam.defense;
   if (check > 0) {
-    healthx -= check;
-    sam_health.innerHTML = `${healthx}/${healthy}`;
-    sam_percentage(`${(healthx / healthy) * 100}%`);
+    if (healthx > 0 && healthx - check > 0) {
+      healthx -= check;
+      sam_health.innerHTML = `${healthx}/${healthy}`;
+      sam_percentage(`${(healthx / healthy) * 100}%`);
+    } else if (healthx - check <= 0) {
+      sam_health.innerHTML = `0/${healthy}`;
+      sam_percentage("0%");
+    }
   }
 }
 
@@ -61,9 +69,14 @@ function aragorn_reduce_health() {
   let [healthx, healthy] = aragorn_health.innerHTML.split("/");
   check = current_enemy.baseDamage - aragorn.defense;
   if (check > 0) {
-    healthx -= check;
-    aragorn_health.innerHTML = `${healthx}/${healthy}`;
-    aragorn_percentage(`${(healthx / healthy) * 100}%`);
+    if (healthx > 0 && healthx - check > 0) {
+      healthx -= check;
+      aragorn_health.innerHTML = `${healthx}/${healthy}`;
+      aragorn_percentage(`${(healthx / healthy) * 100}%`);
+    } else if (healthx - check <= 0) {
+      aragorn_health.innerHTML = `0/${healthy}`;
+      aragorn_percentage("0%");
+    }
   }
 }
 
@@ -74,9 +87,14 @@ function legolas_reduce_health() {
   let [healthx, healthy] = legolas_health.innerHTML.split("/");
   check = current_enemy.baseDamage - legolas.defense;
   if (check > 0) {
-    healthx -= check;
-    legolas_health.innerHTML = `${healthx}/${healthy}`;
-    legolas_percentage(`${(healthx / healthy) * 100}%`);
+    if (healthx > 0 && healthx - check > 0) {
+      healthx -= check;
+      legolas_health.innerHTML = `${healthx}/${healthy}`;
+      legolas_percentage(`${(healthx / healthy) * 100}%`);
+    } else if (healthx - check <= 0) {
+      legolas_health.innerHTML = `0/${healthy}`;
+      legolas_percentage("0%");
+    }
   }
 }
 
@@ -87,9 +105,14 @@ function gimli_reduce_health() {
   let [healthx, healthy] = gimli_health.innerHTML.split("/");
   check = current_enemy.baseDamage - gimli.defense;
   if (check > 0) {
-    healthx -= check;
-    gimli_health.innerHTML = `${healthx}/${healthy}`;
-    gimli_percentage(`${(healthx / healthy) * 100}%`);
+    if (healthx > 0 && healthx - check > 0) {
+      healthx -= check;
+      gimli_health.innerHTML = `${healthx}/${healthy}`;
+      gimli_percentage(`${(healthx / healthy) * 100}%`);
+    } else if (healthx - check <= 0) {
+      gimli_health.innerHTML = `0/${healthy}`;
+      gimli_percentage("0%");
+    }
   }
 }
 
@@ -100,9 +123,14 @@ function boromir_reduce_health() {
   let [healthx, healthy] = boromir_health.innerHTML.split("/");
   check = current_enemy.baseDamage - boromir.defense;
   if (check > 0) {
-    healthx -= check;
-    boromir_health.innerHTML = `${healthx}/${healthy}`;
-    boromir_percentage(`${(healthx / healthy) * 100}%`);
+    if (healthx > 0 && healthx - check > 0) {
+      healthx -= check;
+      boromir_health.innerHTML = `${healthx}/${healthy}`;
+      boromir_percentage(`${(healthx / healthy) * 100}%`);
+    } else if (healthx - check <= 0) {
+      boromir_health.innerHTML = `0/${healthy}`;
+      boromir_percentage("0%");
+    }
   }
 }
 
@@ -113,9 +141,32 @@ function gandalf_reduce_health() {
   let [healthx, healthy] = gandalf_health.innerHTML.split("/");
   check = current_enemy.baseDamage - gandalf.defense;
   if (check > 0) {
-    healthx -= check;
-    gandalf_health.innerHTML = `${healthx}/${healthy}`;
-    gandalf_percentage(`${(healthx / healthy) * 100}%`);
+    if (healthx > 0 && healthx - check > 0) {
+      healthx -= check;
+      gandalf_health.innerHTML = `${healthx}/${healthy}`;
+      gandalf_percentage(`${(healthx / healthy) * 100}%`);
+    } else if (healthx - check <= 0) {
+      gandalf_health.innerHTML = `0/${healthy}`;
+      gandalf_percentage("0%");
+    }
+  }
+}
+
+function enemy_percentage(x) {
+  style.setProperty("--enemy-health", x);
+}
+function enemy_reduce_health(attacker) {
+  let [healthx, healthy] = enemy_health.innerHTML.split("/");
+  check = attacker.baseDamage - current_enemy.defense;
+  if (check > 0) {
+    if (healthx - check > 0) {
+      healthx -= check;
+      enemy_health.innerHTML = `${healthx}/${healthy}`;
+      enemy_percentage(`${(healthx / healthy) * 100}%`);
+    } else if (healthx - check <= 0) {
+      enemy_health.innerHTML = `0/${healthy}`;
+      enemy_percentage("0%");
+    }
   }
 }
 
@@ -184,51 +235,46 @@ const gandalf = {
 };
 
 document.getElementById("frodo").addEventListener("click", () => {
-  document.getElementById("Personagem").classList.toggle("ativo");
+  document.getElementById("characters").classList.toggle("active");
 });
 
-window.addEventListener("keydown", (key) => {
-  switch (key.key) {
-    case "ArrowUp":
-    case "w":
-      console.log("up");
-      break;
-    case "ArrowDown":
-    case "s":
-      console.log("down");
-      break;
-    case "ArrowLeft":
-    case "a":
-      console.log("left");
-      break;
-    case "ArrowRight":
-    case "d":
-      console.log("right");
-      break;
-
-    default:
-      break;
-  }
+document.getElementById("sam").addEventListener("click", () => {
+  document.getElementById("character_combat").className = "combat_sam";
 });
 
 document.getElementById("show_aragorn").addEventListener("click", () => {
-  document.getElementById("aragorn").classList.toggle("ativo");
+  document.getElementById("aragorn").classList.toggle("active");
+});
+document.getElementById("aragorn").addEventListener("click", () => {
+  document.getElementById("character_combat").className = "combat_aragorn";
 });
 
 document.getElementById("show_legolas").addEventListener("click", () => {
-  document.getElementById("legolas").classList.toggle("ativo");
+  document.getElementById("legolas").classList.toggle("active");
+});
+document.getElementById("legolas").addEventListener("click", () => {
+  document.getElementById("character_combat").className = "combat_legolas";
 });
 
 document.getElementById("show_gimli").addEventListener("click", () => {
-  document.getElementById("gimli").classList.toggle("ativo");
+  document.getElementById("gimli").classList.toggle("active");
+});
+document.getElementById("gimli").addEventListener("click", () => {
+  document.getElementById("character_combat").className = "combat_gimli";
 });
 
 document.getElementById("show_boromir").addEventListener("click", () => {
-  document.getElementById("boromir").classList.toggle("ativo");
+  document.getElementById("boromir").classList.toggle("active");
+});
+document.getElementById("boromir").addEventListener("click", () => {
+  document.getElementById("character_combat").className = "combat_boromir";
 });
 
 document.getElementById("show_gandalf").addEventListener("click", () => {
-  document.getElementById("gandalf").classList.toggle("ativo");
+  document.getElementById("gandalf").classList.toggle("active");
+});
+document.getElementById("gandalf").addEventListener("click", () => {
+  document.getElementById("character_combat").className = "combat_gandalf";
 });
 
 document.getElementById("bomb").addEventListener("click", () => {
@@ -236,17 +282,126 @@ document.getElementById("bomb").addEventListener("click", () => {
   document.getElementById("combat").classList.toggle("show_combat");
 });
 
-const table = document.getElementById("table");
-table.rows[1].cells[1].textContent = "ola";
+pos = [2, 0];
+positions = [
+  [
+    () => {
+      document.getElementById("aragorn").classList.toggle("active");
+    },
+    () => {
+      document.getElementById("legolas").classList.toggle("active");
+    },
+    () => {
+      document.getElementById("gimli").classList.toggle("active");
+    },
+    () => {
+      document.getElementById("boromir").classList.toggle("active");
+    },
+    () => {
+      document.getElementById("gandalf").classList.toggle("active");
+    },
+    () => {},
+    () => {},
+    () => {},
+  ],
+  [
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+  ],
+  [
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+  ],
+  [
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+    () => {},
+  ],
+];
+function check_pos() {
+  positions[pos[0]][pos[1]]();
+  positions[pos[0]][pos[1]] = () => {};
+}
+function placeOnMap() {
+  table.rows[pos[0]].cells[pos[1]].id = "current_position";
+}
 
-document.getElementById("sam").addEventListener("click", () => {
-  document.getElementById("character_combat").className = "combat_sam";
+window.addEventListener("keydown", (key) => {
+  switch (key.key) {
+    case "ArrowUp":
+    case "w":
+      if (
+        pos[0] > 0 &&
+        !document.getElementById("map").classList.contains("hide_map")
+      ) {
+        table.rows[pos[0]].cells[pos[1]].id = "";
+        pos[0] -= 1;
+        table.rows[pos[0]].cells[pos[1]].id = "current_position";
+        check_pos();
+      }
+      break;
+    case "ArrowDown":
+    case "s":
+      if (
+        pos[0] < 3 &&
+        !document.getElementById("map").classList.contains("hide_map")
+      ) {
+        table.rows[pos[0]].cells[pos[1]].id = "";
+        pos[0] += 1;
+        table.rows[pos[0]].cells[pos[1]].id = "current_position";
+        check_pos();
+      }
+      break;
+    case "ArrowLeft":
+    case "a":
+      if (
+        pos[1] > 0 &&
+        !document.getElementById("map").classList.contains("hide_map")
+      ) {
+        table.rows[pos[0]].cells[pos[1]].id = "";
+        pos[1] -= 1;
+        table.rows[pos[0]].cells[pos[1]].id = "current_position";
+        check_pos();
+      }
+      break;
+    case "ArrowRight":
+    case "d":
+      if (
+        pos[1] < 7 &&
+        !document.getElementById("map").classList.contains("hide_map")
+      ) {
+        table.rows[pos[0]].cells[pos[1]].id = "";
+        pos[1] += 1;
+        table.rows[pos[0]].cells[pos[1]].id = "current_position";
+        check_pos();
+      }
+      break;
+
+    default:
+      break;
+  }
 });
 
 function enemy(x) {
   document.getElementById("enemy_combat").className = x;
 }
-
 //seta valor de vida dos personagens
 function loadHealth() {
   sam_health.innerHTML = `${sam.health}/${sam.totalHealth}`;
@@ -267,3 +422,4 @@ function loadHealth() {
   gandalf_health.innerHTML = `${gandalf.health}/${gandalf.totalHealth}`;
   gandalf_percentage(`${(gandalf.health / gandalf.totalHealth) * 100}%`);
 }
+placeOnMap();

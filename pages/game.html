@@ -12,60 +12,64 @@
       <div id="map">
         <table id="table">
           <tr>
-            <td>
-              <img id="show_aragorn" src="../imagens/aragorn.png" alt="" />
-            </td>
-            <td>
-              <img id="show_legolas" src="../imagens/legolas.png" alt="" />
-            </td>
-            <td>
-              <img id="show_gimli" src="../imagens/gimli.png" alt="" />
-            </td>
-            <td>
-              <img id="show_boromir" src="../imagens/boromir.png" alt="" />
-            </td>
-            <td>
-              <img id="show_gandalf" src="../imagens/gandalf.png" alt="" />
-            </td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
+            <td id="show_aragorn"></td>
+            <td id="show_legolas"></td>
+            <td id="show_gimli"></td>
+            <td id="show_boromir"></td>
+            <td id="show_gandalf"></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td><img src="../imagens/frodo.png" alt="" /></td>
-            <td>10</td>
-            <td>11</td>
-            <td>12</td>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-            <td>16</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td>17</td>
-            <td>18</td>
-            <td>19</td>
-            <td>20</td>
-            <td>21</td>
-            <td>22</td>
-            <td>23</td>
-            <td>24</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td>25</td>
-            <td>26</td>
-            <td>27</td>
-            <td>28</td>
-            <td>29</td>
-            <td>30</td>
-            <td>31</td>
-            <td>32</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </table>
       </div>
       <div id="combat">
-        <div id="character_combat" class="combat_aragorn"></div>
-        <div id="enemy_combat" class=""></div>
+        <div id="character_combat" class="combat_sam"></div>
+        <div id="character_status" class="status">
+          <div class="info">
+            <div class="name">Sauron</div>
+            <div class="level">LVL 1</div>
+          </div>
+          <div class="health">10/10</div>
+        </div>
+        <div id="enemy_combat" class="combat_aragorn"></div>
+        <div id="enemy_status" class="status">
+          <div class="info">
+            <div class="name">Aragorn</div>
+            <div id="level">LVL 1</div>
+          </div>
+          <div class="health">10/10</div>
+        </div>
       </div>
     </section>
     <div id="left_side">
@@ -74,8 +78,8 @@
           <img src="../imagens/frodo.png" alt="Frodo" />
         </div>
       </section>
-      <section id="characters" class="ativo">
-        <div title="Samwise Gangee" id="sam" class="ativo">
+      <section id="characters" class="active">
+        <div title="Samwise Gangee" id="sam" class="active">
           <div id="sam_health" class="health">5/5</div>
           <img src="../imagens/samwise.png" alt="Sam" />
           <p class="description"></p>

@@ -1,57 +1,63 @@
 :root {
-  --bg1: #0b0a08;
-  --parchment: #efe1c6;
-  --gold: #caa83b;
-  --muted: #7a6950;
-  --accent: #2b5a2b;
+  --bg1: #0b0a08;          /* Cor de fundo base, escura */
+  --parchment: #efe1c6;    /* Cor clara tipo pergaminho, para textos */
+  --gold: #caa83b;         /* Dourado, para destaque */
+  --muted: #7a6950;        /* Cor apagada para textos secundários */
+  --accent: #2b5a2b;       /* Verde escuro para elementos de destaque */
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0 }
-html, body { height: 100% }
+
+* {
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura/altura */
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%; /* Garante que o body preencha toda a altura da tela */
+}
 
 body {
-
-  font-family: 'Cinzel', serif;
-  color: #fff;
+  font-family: 'Cinzel', serif; /* Fonte com aparência medieval */
+  color: #fff;                  /* Texto branco */
   min-height: 100vh;
-  display: flex;
+  display: flex;               /* Centralização com flexbox */
   justify-content: center;
   align-items: center;
-
   background: url("/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/imagens/fundoFloresta.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background-size: cover;     /* Faz a imagem de fundo cobrir a tela */
   position: relative;
 }
 
 
 
+
 body::before {
-  content: "";
+  content: "";                 /* Necessário para pseudo-elementos */
   position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: -1;
+  inset: 0;                    /* Preenche todo o body */
+  background: rgba(0,0,0,0.5); /* Fundo preto semi-transparente */
+  z-index: -1;                 /* Fica atrás do conteúdo principal */
 }
 
 .card2 {
   width: 100%;
   max-width: 900px;
   background: linear-gradient(180deg, rgba(47, 67, 41, 0.662), rgba(255, 255, 255, 0.021));
-  border: 1px solid rgba(202,168,59,0.12);
+  border: 1px solid rgba(202,168,59,0.12);     /* Borda dourada suave */
   border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(2,2,2,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  box-shadow: 0 10px 40px rgba(2,2,2,0.6), inset 0 1px 0 rgba(255,255,255,0.02); /* Sombra externa + interna */
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  backdrop-filter: blur(2px);
+  display: grid;                    /* Layout em grade */
+  grid-template-columns: 1fr 420px;/* Duas colunas: formulário e painel */
+  backdrop-filter: blur(2px);      /* Efeito "vidro fosco" */
 }
 
 
 
 .painel2 {
   padding: 48px 36px;
-  background: linear-gradient(180deg, rgba(58, 70, 26, 0.6), rgba(16,14,13,0.5));
-  border-right: 1px solid rgba(202,168,59,0.04);
+  background: linear-gradient(180deg, rgba(58, 70, 26, 0.6), rgba(16,14,13,0.5)); /* Degradê escuro */
+  border-right: 1px solid rgba(202,168,59,0.04); /* Linha divisória sutil */
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -59,42 +65,74 @@ body::before {
   justify-content: center;
 }
 
+h1 {
+  font-size: 28px;
+  color: var(--parchment); /* Cor tipo pergaminho */
+  letter-spacing: 1px;
+}
 
-
-h1 { font-size: 28px; color: var(--parchment); letter-spacing: 1px }
-p.text2 { color: var(--muted); max-width: 36vw; font-size: 14px }
-
+p.text2 {
+  color: var(--muted);     /* Texto secundário apagado */
+  max-width: 36vw;
+  font-size: 14px;
+}
 
 form {
   padding: 36px 48px;
-  display: flex; flex-direction: column; gap: 14px;
-  background: linear-gradient(180deg, rgba(255,250,235,0.02), rgba(255,250,235,0.01));
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: linear-gradient(180deg, rgba(255,250,235,0.02), rgba(255,250,235,0.01)); /* Fundo sutil */
 }
 
-label { font-size: 13px; color: var(--parchment); margin-bottom: 6px }
 
-.field { display: flex; flex-direction: column; gap: 6px }
-
-input[type="text"], input[type="email"], input[type="password"] {
-  padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(202,168,59,0.09);
-  background: rgba(255,255,255,0.02); color: var(--parchment); font-size: 14px;
-  outline: none; transition: box-shadow .18s, border-color .18s;
+label {
+  font-size: 13px;
+  color: var(--parchment); /* Cor clara */
+  margin-bottom: 6px;
 }
 
-input::placeholder { color: rgba(255,255,255,0.25); font-family: inherit }
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(202,168,59,0.09);
+  background: rgba(255,255,255,0.02); /* Fundo levemente transparente */
+  color: var(--parchment);
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow .18s, border-color .18s;
+}
+
+input::placeholder {
+  color: rgba(255,255,255,0.25); /* Texto do placeholder mais apagado */
+  font-family: inherit;
+}
 
 input:focus {
-  border-color: rgba(202,168,59,0.35);
+  border-color: rgba(202,168,59,0.35); /* Destaque ao focar no campo */
   box-shadow: 0 6px 18px rgba(42,32,8,0.12) inset;
 }
 
-.register { display: flex; gap: 12px }
-.register .field { flex: 1 }
+.register {
+  display: flex;
+  gap: 12px;
+}
+.register .field {
+  flex: 1; /* Ocupa a metade disponível */
+}
+
 
 .actions { display: flex; align-items: center; justify-content: space-between; margin-top: 6px }
 
 .btn1 {
-  background: linear-gradient(145deg, #c9a635, #ffd700);
+  background: linear-gradient(145deg, #c9a635, #ffd700); /* Dourado brilhante */
   border: none;
   padding: 12px 20px;
   border-radius: 8px;
@@ -102,10 +140,12 @@ input:focus {
   cursor: pointer;
   transition: 0.3s;
 }
+
 .btn1:hover {
-  box-shadow: 0 0 15px #ffd700;
-  transform: scale(1.05);
+  box-shadow: 0 0 15px #ffd700; /* Efeito de brilho */
+  transform: scale(1.05);       /* Aumenta levemente */
 }
+
 
 .haveAc2 a {
   text-decoration: none;
@@ -118,16 +158,24 @@ color:#c9a635;
 
 
 @media (max-width:480px) {
-  .card2 { grid-template-columns: 1fr; }
-  .panel2 { padding: 28px 20px }
-  form { padding: 24px }
+  .card2 {
+    grid-template-columns: 1fr; /* Uma única coluna (empilha o painel e o formulário) */
+  }
 
-    p.text1 {
-    font-size: 12px;
+  .panel2 {
+    padding: 28px 20px; /* Menos padding no painel */
+  }
+
+  form {
+    padding: 24px;
+  }
+
+  p.text1 {
+    font-size: 12px; /* Texto menor (⚠️ text1 não existe nesse CSS — deve ser text2) */
   }
 
   .btn1 {
-    width: 100%; 
+    width: 100%;       /* Botão ocupa largura total */
     padding: 14px;
     font-size: 15px;
   }
@@ -140,7 +188,7 @@ color:#c9a635;
   }
 
   .register {
-    flex-direction: column;
+    flex-direction: column; /* Empilha os campos */
     gap: 10px;
   }
 

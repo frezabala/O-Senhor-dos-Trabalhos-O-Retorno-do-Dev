@@ -1,109 +1,157 @@
+/* =======================
+   Variáveis e Reset Global
+========================== */
 :root {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  --tdw: calc(100% / 8);
-  --tdh: calc(100% / 4);
+
+  /* Largura e altura padrão das células do mapa */
+  --tdw: calc(100% / 8);  /* 8 colunas */
+  --tdh: calc(100% / 4);  /* 4 linhas */
+
+  /* Porcentagem de vida dos personagens (barra de vida) */
   --sam-health: 100%;
   --aragorn-health: 90%;
   --legolas-health: 100%;
   --gimli-health: 100%;
   --gandalf-health: 100%;
   --boromir-health: 100%;
-  --sam-health: 100%;
-}
-body {
-  background-color: rgb(61, 83, 39);
-  position: relative;
 }
 
+/* =======================
+   Estilo do Corpo da Página
+========================== */
+body {
+  background-color: rgb(61, 83, 39);  /* Verde escuro como fundo */
+  position: relative;                /* Necessário para posicionar elementos absolutos dentro */
+}
+
+/* =======================
+   Container Geral do Jogo
+========================== */
 #Container {
   width: 100%;
-  height: 98vh;
-  display: flex;
-  justify-content: center;
+  height: 98vh;                            /* Quase toda a altura da tela */
+  display: flex;                           /* Flexbox para centralização */
+  justify-content: center;                /* Centraliza horizontalmente */
 }
 
+/* =======================
+   Área do Mapa
+========================== */
 #map {
-  height: 90vh;
-  aspect-ratio: 16/12;
+  height: 90vh;                            /* Altura da área do mapa */
+  aspect-ratio: 16/12;                     /* Mantém proporção (ajuda na responsividade) */
   display: flex;
-  align-self: center;
+  align-self: center;                     /* Centraliza verticalmente */
   justify-content: center;
   align-items: center;
-  background-image: url("../imagens/middle-earth-map.jpg");
+  background-image: url("../imagens/middle-earth-map.jpg"); /* Imagem do mapa da Terra Média */
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover;                 /* Preenche toda a área */
 }
+
+/* =======================
+   Tabela (Grade do mapa)
+========================== */
 table {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  border-collapse: collapse;
-  table-layout: fixed;
+  border-collapse: collapse;             /* Remove espaços entre bordas */
+  table-layout: fixed;                   /* Todas as células terão o mesmo tamanho */
 }
+
+/* Células do mapa */
 td {
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.5);   /* Borda semi-transparente */
+  text-align: center;                    /* Centraliza conteúdo */
   padding: 15px;
-  width: var(--tdw);
+  width: var(--tdw);                     /* Usa variável para largura */
 }
+
+/* Imagens dentro das células */
 td > img {
-  width: 100%;
+  width: 100%;                           /* Imagem ocupa toda a célula */
 }
+
+/* Linhas da tabela */
 tr {
-  height: var(--tdh);
+  height: var(--tdh);                    /* Usa variável para altura */
   overflow: hidden;
 }
 
+/* Estilo específico para imagem do Frodo */
 #frodo > img {
-  cursor: pointer;
+  cursor: pointer;                       /* Cursor tipo botão */
   width: 100%;
 }
 
+/* =======================
+   Lado Esquerdo (Personagens)
+========================== */
 #left_side {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.125);
+  background-color: rgba(0, 0, 0, 0.125);  /* Leve transparência */
   top: 0;
   position: absolute;
-  width: 5%;
+  width: 5%;                              /* Largura lateral */
 }
+
+/* Container que lista os personagens */
 #characters {
-  display: none;
+  display: none;                          /* Começa escondido */
   flex-direction: column;
   top: 10%;
   left: 0px;
   width: 100%;
-  gap: 5px;
+  gap: 5px;                               /* Espaço entre personagens */
 }
+
+/* Imagens dos personagens */
 #characters > div > img {
   width: 100%;
 }
+
+/* Quando a lista de personagens está ativa */
 #characters.ativo {
   display: flex;
 }
+
+/* Cada personagem (div) */
 #characters > div {
   display: none;
   flex-direction: column;
   align-items: center;
   height: 10%;
 }
+
+/* Quando personagem está ativo (visível) */
+#characters > div.ativo {
+  display: flex;
+}
+
+/* =======================
+   Barra de Vida dos Personagens
+========================== */
 .health {
-  user-select: none;
+  user-select: none;                     /* Não permite selecionar o texto */
   text-align: center;
   font-size: small;
   line-height: 0.9em;
   width: 90%;
 }
 
+/* Barra de vida dinâmica por personagem */
 #sam_health {
   background-image: linear-gradient(
     to right,
-    green 0 var(--sam-health),
-    red var(--sam-health)
+    green 0 var(--sam-health),           /* Parte verde */
+    red var(--sam-health)                /* Parte vermelha (vida perdida) */
   );
 }
 #aragorn_health {
@@ -141,10 +189,10 @@ tr {
     red var(--gandalf-health)
   );
 }
-#characters > div.ativo {
-  display: flex;
-}
 
+/* =======================
+   Lado Direito (Botões ou Funções)
+========================== */
 #right_side {
   display: flex;
   flex-direction: column;
@@ -156,26 +204,39 @@ tr {
   position: absolute;
   width: 5%;
 }
+
+/* Imagens no lado direito interativas */
 #right_side img {
   cursor: pointer;
 }
 
+/* =======================
+   Classes Utilitárias
+========================== */
+
+/* Oculta descrições ou elementos */
 .description {
   display: none;
 }
 
+/* Força o mapa a desaparecer */
 .hide_map {
   display: none !important;
 }
+
+/* Força o combate a aparecer */
 .show_combat {
   display: block !important;
 }
 
+/* =======================
+   Tela de Combate
+========================== */
 #combat {
   position: relative;
   display: none;
   height: 90vh;
-  aspect-ratio: 16/12;
+  aspect-ratio: 16/12; /* Para cada 16 unidades de largura, o elemento terá 12 unidades de altura */
   align-self: center;
   justify-content: center;
   align-items: center;

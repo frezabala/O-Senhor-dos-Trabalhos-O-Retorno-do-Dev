@@ -1,6 +1,6 @@
 async function fetchUserProfile() {
   const token = localStorage.getItem("token");
-  if (!token || typeof token == undefined) {
+  if (token || typeof token == undefined) {
     window.location.href = "login.html?alert=true";
     return;
   } else {
@@ -211,8 +211,6 @@ window.addEventListener("keydown", (key) => {
   }
 });
 
-aragorn_health.addEventListener("click", aragorn_reduce_health);
-
 document.getElementById("show_aragorn").addEventListener("click", () => {
   document.getElementById("aragorn").classList.toggle("ativo");
 });
@@ -240,3 +238,32 @@ document.getElementById("bomb").addEventListener("click", () => {
 
 const table = document.getElementById("table");
 table.rows[1].cells[1].textContent = "ola";
+
+document.getElementById("sam").addEventListener("click", () => {
+  document.getElementById("character_combat").className = "combat_sam";
+});
+
+function enemy(x) {
+  document.getElementById("enemy_combat").className = x;
+}
+
+//seta valor de vida dos personagens
+function loadHealth() {
+  sam_health.innerHTML = `${sam.health}/${sam.totalHealth}`;
+  sam_percentage(`${(sam.health / sam.totalHealth) * 100}%`);
+
+  aragorn_health.innerHTML = `${aragorn.health}/${aragorn.totalHealth}`;
+  aragorn_percentage(`${(aragorn.health / aragorn.totalHealth) * 100}%`);
+
+  gimli_health.innerHTML = `${gimli.health}/${gimli.totalHealth}`;
+  gimli_percentage(`${(gimli.health / gimli.totalHealth) * 100}%`);
+
+  legolas_health.innerHTML = `${legolas.health}/${legolas.totalHealth}`;
+  legolas_percentage(`${(legolas.health / legolas.totalHealth) * 100}%`);
+
+  boromir_health.innerHTML = `${boromir.health}/${boromir.totalHealth}`;
+  boromir_percentage(`${(boromir.health / boromir.totalHealth) * 100}%`);
+
+  gandalf_health.innerHTML = `${gandalf.health}/${gandalf.totalHealth}`;
+  gandalf_percentage(`${(gandalf.health / gandalf.totalHealth) * 100}%`);
+}

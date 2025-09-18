@@ -37,7 +37,7 @@ body::before {
   font-size: 18px;                           /* Tamanho da fonte */
   border: none;                              /* Remove a borda padrão */
   border-radius: 28px;                       /* Arredonda as bordas */
-  background-color: rgba(31, 116, 45, 0.918);/* Verde escuro com transparência */
+  background-color: rgba(47, 192, 71, 0.918);/* Verde escuro com transparência */
   transition: 0.3s;                          /* Transições suaves para hover */
 }
 
@@ -57,7 +57,7 @@ body::before {
   font-size: 18px;                           /* Tamanho da fonte */
   border: none;                              /* Sem borda */
   border-radius: 28px;                       /* Bordas arredondadas */
-  background-color: rgba(165, 103, 21, 0.918);/* Laranja escuro com transparência */
+  background-color: rgba(235, 147, 33, 0.918);
   transition: 0.3s;                          /* Transição suave */
 }
 
@@ -77,7 +77,7 @@ body::before {
   font-size: 18px;                           /* Tamanho da fonte */
   border: none;                              /* Remove borda */
   border-radius: 28px;                       /* Bordas arredondadas */
-  background-color: rgba(167, 108, 60, 0.918);/* Marrom claro com transparência */
+  background-color: rgba(224, 148, 86, 0.918);/* Marrom claro com transparência */
   transition: 0.3s;                          /* Transição para hover */
 }
 

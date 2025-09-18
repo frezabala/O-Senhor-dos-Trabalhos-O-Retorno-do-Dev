@@ -18,7 +18,4 @@ export class Tile{
 
     @ManyToOne(() => Item)
     reward:Item
-
-    @Column()
-    defeated:boolean
 }   

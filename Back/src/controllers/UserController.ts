@@ -7,7 +7,7 @@ export class UserController {
     async getById(req: Request, res: Response){
         try{
             const user = await service.findbyId((req as any).user.id)
-            res.json(res)
+            res.json(user)
         }catch(err:any){
             res.status(404).json({message: err.mensagem})
         }

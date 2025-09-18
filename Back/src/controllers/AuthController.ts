@@ -25,10 +25,10 @@ export class AuthController{
             if(!valid){
                 return res.status(401).json({message: "Wrong Password"})
             }
-            const clone = {...user}
-            delete clone.password
+            const safe:any = {...user}
+            delete safe.password
             const token = generateToken({id: user.id, email: email})
-            res.json({user:clone, token})
+            res.json({user: safe, token})
         }catch(err:any){
             res.status(400).json({ message: err.message })
         }

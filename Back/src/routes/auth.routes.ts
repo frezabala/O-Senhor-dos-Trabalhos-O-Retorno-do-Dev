@@ -3,6 +3,7 @@ import { AuthController } from '../controllers/AuthController'
 import { validateDTO } from '../middlewares/validateDTO'
 import { CreateUserDTO } from '../dtos/CreateUserDTO'
 import { LoginUserDTO } from '../dtos/LoginUserDTO'
+import { authMiddleware } from '../middlewares/authMiddleware'
 
 const router = Router()
 const controller = new AuthController()

@@ -10,7 +10,9 @@ export class UserService{
             throw new Error("Email already in use")
         }
         const user = this.repo.create(data)
-        return await this.repo.save(user)
+        const user2:any = await this.repo.save(user)
+        delete user2.password
+        return user2
     }
 
     async findbyId(id:number){
@@ -28,9 +30,7 @@ export class UserService{
         if(!user){
             throw new Error("User not found")
         }
-        const clone:any ={...user}
-        delete clone.password
-        return clone;
+        return user;
     }
 
     async update(id:number, data:Partial<User>){
@@ -43,7 +43,9 @@ export class UserService{
         }
         const {password, ...rest} = data
         Object.assign(user,rest)
-        return await this.repo.save(user)
+        const user2:any = await this.repo.save(user)
+        delete user2.password
+        return user2
     }
 
     async remove(id:number){

@@ -11,4 +11,12 @@ export class CharacterService{
         }
         return char
     }
+    async getByName(name:string){
+        const char = await this.repo.findOne({where:{name:name}})
+        if(!char){
+            throw new Error("Character not found")
+        }
+        return char
+    }
+
 }

@@ -189,7 +189,7 @@ input:focus {
     grid-template-columns: 1fr; /* Layout em uma única coluna */
   }
 
-  .panel { /* ⚠️ Erro aqui: o seletor correto seria .painel */
+  .painel { /* Corrigido: agora corresponde ao nome da classe no HTML */
     padding: 28px 28px;
   }
 

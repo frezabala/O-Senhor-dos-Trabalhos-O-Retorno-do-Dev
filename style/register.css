@@ -26,7 +26,7 @@ body {
   display: flex;                 /* Usa flexbox para centralizar conteúdo */
   justify-content: center;      /* Centraliza horizontalmente */
   align-items: center;          /* Centraliza verticalmente */
-  background: url("/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/imagens/fundoFloresta.jpg") no-repeat center center fixed;
+  background: url("../imagens/fundo.jpg") no-repeat center center fixed;
   background-size: cover;       /* Imagem de fundo cobre toda a tela */
   position: relative;           /* Necessário para o pseudo-elemento ::before */
 

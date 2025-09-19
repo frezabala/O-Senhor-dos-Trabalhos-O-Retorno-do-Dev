@@ -4,11 +4,14 @@ import { CharacterService } from './CharacterService'
 import { Item } from '../entities/Item'
 import { Tile } from '../entities/Tile'
 import { User } from '../entities/User'
+import { ItemService } from './ItemService'
 
 export class SaveService{
     private charser = new CharacterService()
     private repo = AppDataSource.getRepository(Save)
     private userRepo = AppDataSource.getRepository(User)
+    private tileRepo = AppDataSource.getRepository(Tile)
+    private itemser = new ItemService()
 
     async create(userId:number,name:string){
         const won:boolean =false
@@ -23,8 +26,12 @@ export class SaveService{
         const save = this.repo.create(data)
         return await this.repo.save(save)
     }
-    async getbyid(id:number){
-        const save = await this.repo.findOne({where:{id: id}})
+    async getbyid(id:number,userId:number){
+        const user = await this.userRepo.findOne({where:{id:userId}})
+        if(!user){
+            throw new Error("User not Found")
+        }
+        const save = await this.repo.findOne({where:{id: id, user:user}})
         if(!save){
             throw new Error("Save not found")
         }
@@ -38,8 +45,12 @@ export class SaveService{
         const saves: Save[] = await this.repo.find({where:{user:user}})
         return saves
     }
-    async update(id:number, data:Partial<Save>){
-        const save = await this.repo.findOne({where:{id:id}})
+    async update(id:number, idUser:number, data:Partial<Save>){
+        const user = await this.userRepo.findOne({where:{id:idUser}})
+        if(!user){
+            throw new Error("User not Found")
+        }
+        const save = await this.repo.findOne({where:{id:id,user:user}})
         if(!save){
             throw new Error("Save not found")
         }
@@ -47,8 +58,12 @@ export class SaveService{
         return await this.repo.save(save)
     }
     //função especifica para adicionar personagem tecnicamente pode ser feito no update mas eu fiz isso pra impedir adição de personagens invalidos (id = 1 ou id > 6)
-    async addCharacter(id:number,charId:number){ 
-        const save = await this.repo.findOne({where:{id:id}})
+    async addCharacter(id:number, idUser:number,charId:number){ 
+        const user = await this.userRepo.findOne({where:{id:idUser}})
+        if(!user){
+            throw new Error("User not Found")
+        }
+        const save = await this.repo.findOne({where:{id:id,user:user}})
         if(!save){
             throw new Error("Save not found")
         }else
@@ -81,26 +96,46 @@ export class SaveService{
         }
         return await this.repo.save(save)
     }   
-    async addItem(id:number,item:Item){
-        const save = await this.repo.findOne({where:{id:id}})
+    async addItem(id:number, idUser:number,itemId:number){
+        const user = await this.userRepo.findOne({where:{id:idUser}})
+        if(!user){
+            throw new Error("User not Found")
+        }
+        const save = await this.repo.findOne({where:{id:id, user:user}})
         if(!save){
             throw new Error("Save not found")
+        }
+        const item = await this.itemser.getbyId(itemId)
+        if(!item){
+            throw new Error("Item not found")
         }
         save.items.push(item)
         return await this.repo.save(save)
     }
-    async tilesPassed(id:number,tile:Tile){
-        const save = await this.repo.findOne({where:{id:id}})
+    async tilesPassed(id:number,tileId:number,idUser:number){
+        const user = await this.userRepo.findOne({where:{id:idUser}})
+        if(!user){
+            throw new Error("User not Found")
+        }
+        const save = await this.repo.findOne({where:{id:id, user:user}})
         if(!save){
             throw new Error("Save not found")
+        }
+        const tile = await this.tileRepo.findOne({where:{id: tileId}})
+        if(!tile){
+            throw new Error("Tile not found")
         }
         save.tilesPassed.push(tile)
         return await this.repo.save(save)
     }
-    async won(id:number){
+    async won(id:number, idUser:number){
         //deixa won = true
         //da o ranking dependendo nas tiles passadas
-        const save = await this.repo.findOne({where:{id:id}})
+        const user = await this.userRepo.findOne({where:{id:idUser}})
+        if(!user){
+            throw new Error("User not Found")
+        }
+        const save = await this.repo.findOne({where:{id:id, user:user}})
         if(!save){
             throw new Error("Save not found")
         }
@@ -114,8 +149,12 @@ export class SaveService{
         }
         return await this.repo.save(save)
     }
-    async remove(id:number){
-        const save = await this.repo.findOne({where:{id:id}})
+    async remove(id:number, idUser:number){
+        const user = await this.userRepo.findOne({where:{id:idUser}})
+        if(!user){
+            throw new Error("User not Found")
+        }
+        const save = await this.repo.findOne({where:{id:id, user:user}})
         if(!save){
             throw new Error("Save not found")
         }

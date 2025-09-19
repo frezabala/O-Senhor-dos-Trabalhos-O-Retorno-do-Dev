@@ -37,6 +37,9 @@ export class CharacterService{
             }
         }
         damage -= data.defense
+        if(damage < 0){
+            damage = 0
+        }
         return damage;
     }
 

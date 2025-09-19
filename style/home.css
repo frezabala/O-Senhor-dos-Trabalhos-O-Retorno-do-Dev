@@ -38,7 +38,8 @@ body::before {
   border: none;                              /* Remove a borda padrão */
   border-radius: 28px;                       /* Arredonda as bordas */
   background-color: rgba(47, 192, 71, 0.918);/* Verde escuro com transparência */
-  transition: 0.3s;                          /* Transições suaves para hover */
+  transition: 0.3s;  
+  z-index: 10000;                        /* Transições suaves para hover */
 }
 
 /* Efeito hover para botão "Iniciar" */
@@ -97,3 +98,53 @@ body::before {
   left: 30px;                               /* Distância da esquerda */
   transform: rotate(-25deg);                /* Inclinação da imagem para dar estilo */
 }
+
+
+
+/* bolinha do vagalume */
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: yellow;
+  box-shadow: 0 0 10px 2px yellow;
+  animation: flicker 2s infinite alternate, move 10s infinite linear;
+  z-index: 10;
+}
+
+/* piscar */
+@keyframes flicker {
+  0%   { opacity: 0.2; box-shadow: 0 0 5px 1px rgb(255, 0, 0); }
+  50%  { opacity: 1;   box-shadow: 0 0 15px 4px rgb(238, 255, 0); }
+  100% { opacity: 0.3; box-shadow: 0 0 5px 1px rgba(255, 255, 0, 0.459); }
+}
+
+/* movimento suave */
+@keyframes move {
+  0%   { transform: translate(0,0); }
+  25%  { transform: translate(20vw,10vh); }
+  50%  { transform: translate(-20vw,20vh); }
+  75%  { transform: translate(15vw,-20vh); }
+  100% { transform: translate(0,0); }
+}
+
+/* posições iniciais diferentes para cada vagalume */
+
+.firefly:nth-child(1)  { top:5%;  left:10%; animation-delay:.2s,.4s; }
+.firefly:nth-child(2)  { top:15%; left:80%; animation-delay:.5s,1.2s; }
+.firefly:nth-child(3)  { top:25%; left:30%; animation-delay:.8s,.9s; }
+.firefly:nth-child(4)  { top:70%; left:70%; animation-delay:1.5s,1.5235s; }
+.firefly:nth-child(5)  { top:40%; left:60%; animation-delay:.2s,.44s; }
+.firefly:nth-child(6)  { top:50%; left:20%; animation-delay:.57s,.23s; }
+.firefly:nth-child(7)  { top:75%; left:50%; animation-delay:1.3s,1.6s; }
+.firefly:nth-child(8)  { top:10%; left:55%; animation-delay:.5s,1.7s; }
+.firefly:nth-child(9)  { top:75%; left:15%; animation-delay:1.4s,.8s; }
+.firefly:nth-child(10) { top:35%; left:75%; animation-delay:1.5s,.9s; }
+.firefly:nth-child(11) { top:60%; left:5%;  animation-delay:1.5s,1.5s; }
+.firefly:nth-child(12) { top:5%;  left:70%; animation-delay:.2s,.44s; }
+.firefly:nth-child(13) { top:60%; left:40%; animation-delay:.57s,.23s; }
+.firefly:nth-child(14) { top:45%; left:10%; animation-delay:1.3s,1.6s; }
+.firefly:nth-child(15) { top:55%; left:75%; animation-delay:.5s,1.7s; }
+.firefly:nth-child(16) { top:20%; left:15%; animation-delay:1.4s,.8s; }
+.firefly:nth-child(17) { top:70%; left:75%; animation-delay:1.5s,.9s; }

@@ -12,7 +12,10 @@ export class TileService{
         return tile;
     }
     async list(){
-        const tiles =  await this.repo.find()
+        const tiles = await this.repo.find()
+        if(!tiles){
+            throw new Error("Tiles not Found")
+        }
         return tiles
     }
 }

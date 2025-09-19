@@ -26,7 +26,7 @@ body {
   display: flex;                 /* Usa flexbox para centralizar conteúdo */
   justify-content: center;      /* Centraliza horizontalmente */
   align-items: center;          /* Centraliza verticalmente */
-  background: url("/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/imagens/fundoFloresta.jpg") no-repeat center center fixed;
+  background: url("../imagens/fundo.jpg") no-repeat center center fixed;
   background-size: cover;       /* Imagem de fundo cobre toda a tela */
   position: relative;           /* Necessário para o pseudo-elemento ::before */
 
@@ -189,7 +189,7 @@ input:focus {
     grid-template-columns: 1fr; /* Layout em uma única coluna */
   }
 
-  .panel { /* ⚠️ Erro aqui: o seletor correto seria .painel */
+  .painel { /* Corrigido: agora corresponde ao nome da classe no HTML */
     padding: 28px 28px;
   }
 

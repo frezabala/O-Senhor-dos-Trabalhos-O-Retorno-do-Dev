@@ -24,7 +24,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background: url("/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/imagens/fundoFloresta.jpg") no-repeat center center fixed;
+  background: url("../imagens/fundo.jpg") no-repeat center center fixed;
   background-size: cover;     /* Faz a imagem de fundo cobrir a tela */
 
   position: relative;

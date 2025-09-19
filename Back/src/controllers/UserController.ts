@@ -3,6 +3,9 @@ import { UserService } from '../services/UserService'
 
 const service = new UserService()
 
+//Todas funções pegam Id do usuario para impedir que um usuario acesse ou modifique outro usuario
+// não ha necessidade de um metodo list ja que usuario n vai ver outros usuarios
+
 export class UserController {
     async getById(req: Request, res: Response){
         try{

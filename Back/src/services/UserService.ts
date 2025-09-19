@@ -4,14 +4,14 @@ import { User } from '../entities/User'
 export class UserService{
     private repo = AppDataSource.getRepository(User)
 
-    async create(data: { name: string; email: string; password: string }){
-        const exists = await this.repo.findOne({where: { email: data.email}})
+    async create(data: { name: string; email: string; password: string }){ //informações são entregues como um objeto data ao em vez de variaveis separadas, isso facilita pois assim no controller eu posso entregar o req.body ao em vez de ter que buscar por cada variavel separadamente
+        const exists = await this.repo.findOne({where: { email: data.email}})//verifica se o email ja esta cadastrado
         if(exists){
-            throw new Error("Email already in use")
+            throw new Error("Email already in use")//impede a continuação do codigo se email existe no banco
         }
-        const user = this.repo.create(data)
-        const user2:any = await this.repo.save(user)
-        delete user2.password
+        const user = this.repo.create(data) //cria usuario com as informações dadas
+        const user2:any = await this.repo.save(user) //salca usuario no repositorio ao mesmo tempo q cria uma variavel com as informações para retornar depois
+        delete user2.password //deleta senha antes de retornar por segurança
         return user2
     }
 
@@ -34,18 +34,18 @@ export class UserService{
     }
 
     async update(id:number, data:Partial<User>){
-        const user = await this.repo.findOne({where:{ id: id}})
+        const user = await this.repo.findOne({where:{ id: id}}) //procura usuario por id
         if(!user){
             throw new Error("User not found")
         }
-        if(data.password){
+        if(data.password){//se tem senha já adiciona ela
             user.password = data.password
         }
-        const {password, ...rest} = data
-        Object.assign(user,rest)
-        const user2:any = await this.repo.save(user)
-        delete user2.password
-        return user2
+        const {password, ...rest} = data //separa senha do resto
+        Object.assign(user,rest) //atribui o resto ao usuario
+        const user2:any = await this.repo.save(user) //salva no banco e cria variavel para retorno
+        delete user2.password //remove senha por segurança
+        return user2 //retorna usuario
     }
 
     async remove(id:number){

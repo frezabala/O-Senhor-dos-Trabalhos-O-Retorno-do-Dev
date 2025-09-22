@@ -8,7 +8,7 @@
 
   /* Largura e altura padrão das células do mapa */
   --tdw: calc(100% / 8); /* 8 colunas */
-  --tdh: calc(100% / 4); /* 4 linhas */
+  --tdh: calc(100% / 5); /* 4 linhas */
 
   /* Porcentagem de vida dos personagens (barra de vida) */
   --sam-health: 100%;
@@ -73,7 +73,7 @@ td {
   width: var(--tdw); /* Usa variável para largura */
   background-position: center;
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: contain;
 }
 
 /* Imagens dentro das células */
@@ -151,42 +151,42 @@ tr {
 }
 
 /* Barra de vida dinâmica por personagem */
-#sam_health {
+.sam_health {
   background-image: linear-gradient(
     to right,
     green 0 var(--sam-health),
     red var(--sam-health)
   );
 }
-#aragorn_health {
+.aragorn_health {
   background-image: linear-gradient(
     to right,
     green 0 var(--aragorn-health),
     red var(--aragorn-health)
   );
 }
-#legolas_health {
+.legolas_health {
   background-image: linear-gradient(
     to right,
     green 0 var(--legolas-health),
     red var(--legolas-health)
   );
 }
-#gimli_health {
+.gimli_health {
   background-image: linear-gradient(
     to right,
     green 0 var(--gimli-health),
     red var(--gimli-health)
   );
 }
-#boromir_health {
+.boromir_health {
   background-image: linear-gradient(
     to right,
     green 0 var(--boromir-health),
     red var(--boromir-health)
   );
 }
-#gandalf_health {
+.gandalf_health {
   background-image: linear-gradient(
     to right,
     green 0 var(--gandalf-health),
@@ -276,10 +276,9 @@ tr {
   justify-content: space-around;
   padding: 2px;
   gap: 2px;
-
+  user-select: none;
   height: 10%;
   width: 30%;
-
   background-color: beige;
 }
 .info {
@@ -290,17 +289,17 @@ tr {
 
 #enemy_status {
   position: absolute;
-  bottom: 35%;
-  right: 0%;
-  border-radius: 25px 0px 0px 25px;
-}
-#character_status {
-  position: absolute;
   top: 20%;
   left: 0%;
   border-radius: 0px 25px 25px 0px;
 }
-#combat .health {
+#character_status {
+  position: absolute;
+  bottom: 35%;
+  right: 0%;
+  border-radius: 25px 0px 0px 25px;
+}
+#enemy_health {
   background-image: linear-gradient(
     to right,
     green 0 var(--enemy-health),
@@ -308,6 +307,31 @@ tr {
   );
 }
 
+#combat_choises {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  bottom: 9.6%;
+  right: 3.4%;
+  border: rgba(0, 0, 0, 0.5) 2px solid;
+  border-radius: 15px;
+  width: 35%;
+  height: 19%;
+  background-color: beige;
+}
+#combat_choises > button {
+  width: 45%;
+  height: 45%;
+  border: 3px rgba(0, 0, 0, 0.5) solid;
+  border-radius: 15px;
+  transition: border 0.5s;
+}
+#combat_choises > button:hover {
+  border-color: rgba(255, 0, 0, 0.5);
+  cursor: pointer;
+}
 .combat_sam {
   background-image: url("../imagens/samwise.png");
 }
@@ -344,4 +368,33 @@ tr {
 
 #current_position {
   background-image: url("../imagens/frodo.png");
+}
+
+#show_uruk {
+  background-image: url("../imagens/uruk-hai.png");
+}
+#show_saruman {
+  background-image: url("../imagens/saruman.png");
+}
+#show_sauron {
+  background-image: url("../imagens/sauron.png");
+}
+#show_smeagol {
+  background-image: url("../imagens/smigol.png");
+}
+#show_shelob {
+  background-image: url("../imagens/shelob.png");
+  background-size: cover;
+}
+#show_nazgul {
+  background-image: url("../imagens/nazgul.png");
+}
+#show_balrog {
+  background-image: url("../imagens/balrog.png");
+}
+#show_pot1 {
+  background-image: url("../imagens/Super_Bomb_LttP.png");
+}
+#show_pot2 {
+  background-image: url("../imagens/Super_Bomb_LttP.png");
 }

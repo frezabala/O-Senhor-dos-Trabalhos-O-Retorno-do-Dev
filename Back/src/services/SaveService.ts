@@ -22,22 +22,22 @@ export class SaveService{
         const save = this.repo.create(data)
         return await this.repo.save(save)
     }
-    async getbyid(id:number,userId:number){
+    async getbyid(userId:number){
         const user = await this.userser.findbyId(userId)
-        const save = await this.repo.findOne({where:{id: id, user:user}})
+        const save = await this.repo.findOne({where:{user:user}})
         if(!save){
             throw new Error("Save not found")
         }
         return save;
     }
-    async listbyUser(userId:number){ //para listar todos os saves de um usuario especifico, utilizado para visualização em uma tela de saves
-        const user:any = await this.userser.findbyId(userId)
-        const saves: Save[] = await this.repo.find({where:{user:user}})
-        return saves
-    }
-    async update(id:number, idUser:number, data:Partial<Save>){ //update das informações feito para modificações pequenas como (nome, data, vida restante do personagem)
+    //async listbyUser(userId:number){ //para listar todos os saves de um usuario especifico, utilizado para visualização em uma tela de saves
+    //    const user:any = await this.userser.findbyId(userId)
+    //    const saves: Save[] = await this.repo.find({where:{user:user}})
+    //    return saves
+    //}
+    async update(idUser:number, data:Partial<Save>){ //update das informações feito para modificações pequenas como (nome, data, vida restante do personagem)
         const user = await this.userser.findbyId(idUser)
-        const save = await this.repo.findOne({where:{id:id,user:user}})
+        const save = await this.repo.findOne({where:{user:user}})
         if(!save){
             throw new Error("Save not found")
         }
@@ -45,9 +45,9 @@ export class SaveService{
         return await this.repo.save(save)
     }
     //função especifica para adicionar personagem tecnicamente pode ser feito no update mas eu fiz isso pra impedir adição de personagens invalidos (id = 1 ou id > 6)
-    async addCharacter(id:number, idUser:number,charId:number){ 
+    async addCharacter(idUser:number,charId:number){ 
         const user = await this.userser.findbyId(idUser)
-        const save = await this.repo.findOne({where:{id:id,user:user}})
+        const save = await this.repo.findOne({where:{user:user}})
         if(!save){
             throw new Error("Save not found")
         }else
@@ -81,9 +81,9 @@ export class SaveService{
         return await this.repo.save(save)
     }   
     //função para adicionar item
-    async addItem(id:number, idUser:number,itemId:number){
+    async addItem(idUser:number,itemId:number){
         const user:any = await this.userser.findbyId(idUser)
-        const save = await this.repo.findOne({where:{id:id, user:user}})
+        const save = await this.repo.findOne({where:{user:user}})
         if(!save){
             throw new Error("Save not found")
         }
@@ -95,9 +95,9 @@ export class SaveService{
         return await this.repo.save(save)
     }
     //função adicionar tiles (quadrados) que foram passadas
-    async tilesPassed(id:number,tileId:number,idUser:number){
+    async tilesPassed(tileId:number,idUser:number){
         const user = await this.userser.findbyId(idUser)
-        const save = await this.repo.findOne({where:{id:id, user:user}})
+        const save = await this.repo.findOne({where:{user:user}})
         if(!save){
             throw new Error("Save not found")
         }
@@ -105,9 +105,9 @@ export class SaveService{
         save.tilesPassed.push(tile) //adiciona no array de tiles do save
         return await this.repo.save(save)
     }
-    async won(id:number, idUser:number){
+    async won(idUser:number){
         const user = await this.userser.findbyId(idUser)
-        const save = await this.repo.findOne({where:{id:id, user:user}})
+        const save = await this.repo.findOne({where:{user:user}})
         if(!save){
             throw new Error("Save not found")
         }
@@ -121,13 +121,13 @@ export class SaveService{
         //}
         return await this.repo.save(save)
     }
-    async remove(id:number, idUser:number){
+    async remove(idUser:number){
         const user = await this.userser.findbyId(idUser)
-        const save = await this.repo.findOne({where:{id:id, user:user}})
+        const save = await this.repo.findOne({where:{user:user}})
         if(!save){
             throw new Error("Save not found")
         }
-        await this.repo.delete(id) // por algum motivo a função remove n funcionou então eu usei a delete e dei o ID, por isso é essencial verificar se o usuario é o mesmo do save para n haver riscos de um usuario deletar um save de outro
+        await this.repo.remove(save) // por algum motivo a função remove n funcionou então eu usei a delete e dei o ID, por isso é essencial verificar se o usuario é o mesmo do save para n haver riscos de um usuario deletar um save de outro
         return {message: 'Save Removed'} //retorna mensagem de sucesso
     }
 }

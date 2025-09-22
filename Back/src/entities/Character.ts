@@ -15,8 +15,8 @@ export class Character{
     @Column()
     defense:number //Defesa contra ataques fisicos
 
-    @Column()
-    magicRes:number //Defesa contra ataques magicos
+    //@Column()
+    //magicRes:number //Defesa contra ataques magicos
 
     @Column()
     health:number

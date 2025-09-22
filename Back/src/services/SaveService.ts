@@ -112,13 +112,13 @@ export class SaveService{
             throw new Error("Save not found")
         }
         save.won =true //modifica variavel won(venceu) para true
-        if(save.tilesPassed.length < 6){ //da o ranking de acordo com a quantidade de tiles passadas, quanto menos melhor!
-            save.ranking = "Lendario"
-        }else if(save.tilesPassed.length <= 10){
-            save.ranking = "Aceitavel"
-        }else{
-            save.ranking = "RUIN!"
-        }
+        //if(save.tilesPassed.length < 6){ //da o ranking de acordo com a quantidade de tiles passadas, quanto menos melhor!
+        //    save.ranking = "Lendario"
+        //}else if(save.tilesPassed.length <= 10){
+        //    save.ranking = "Aceitavel"
+        //}else{
+        //    save.ranking = "RUIN!"
+        //}
         return await this.repo.save(save)
     }
     async remove(id:number, idUser:number){

@@ -11,4 +11,9 @@ export class ItemService{
         }
         return item
     }
+
+    async findAll(){
+        const items = await this.repo.find()
+        return items
+    }
 }

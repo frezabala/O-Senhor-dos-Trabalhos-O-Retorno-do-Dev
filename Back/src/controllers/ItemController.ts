@@ -12,4 +12,13 @@ export class ItemController{
             res.status(404).json({message: e.mensagem})
         }
     }
+
+    async findAll(req:Request, res:Response){
+        try{
+            const items = await service.findAll()
+            res.json(items)
+        }catch(e:any){
+            res.status(404).json({message: e.mensagem})
+        }
+    }
 }

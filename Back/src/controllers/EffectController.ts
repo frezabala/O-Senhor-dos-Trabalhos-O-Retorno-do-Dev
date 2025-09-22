@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import { EffectService } from '../services/EffectService'
-
 const service = new EffectService()
 
 export class EffectController{
@@ -12,4 +11,5 @@ export class EffectController{
             res.status(404).json({message: e.mensagem})
         }
     }
+
 }

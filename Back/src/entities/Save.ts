@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany} from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany, OneToOne} from 'typeorm'
 import { Tile } from './Tile'
 import { Item } from './Item'
 import { User } from './User'
@@ -71,10 +71,10 @@ export class Save{
     @Column()
     won:boolean
 
-    @Column({nullable: true})
-    ranking:string
+    //@Column({nullable: true})
+    //ranking:string
 
-    @ManyToOne(() => User, user => user.saves)
+    @OneToOne(() => User, user => user.save)
     user:User
 
     @CreateDateColumn()

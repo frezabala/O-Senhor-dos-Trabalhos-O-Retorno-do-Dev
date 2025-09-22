@@ -7,6 +7,7 @@ const router = Router()
 const control = new CharacterController()
 
 router.get('/',control.get.bind(control))
+router.get('/all', control.findAll.bind(control))
 router.post('/dam',validateDTO(calculateDamageDTO),control.calculateDamage.bind(control))
 
 export default router

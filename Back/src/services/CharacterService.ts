@@ -20,6 +20,11 @@ export class CharacterService{
         }
         return char
     }
+
+    async getAll(){
+        const chars = await this.repo.find()
+        return chars
+    }
     //função simples de calculo de dano
     async calcDamage(data:{baseDamage:number, defense:number, statusEffect?:string, statusEffectTarget?:string}){
         let damage = Math.floor(Math.random() * data.baseDamage) + 1 // numero aleatorio entre 1 e baseDamage

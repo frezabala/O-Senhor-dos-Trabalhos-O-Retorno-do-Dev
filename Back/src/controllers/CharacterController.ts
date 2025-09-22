@@ -20,6 +20,16 @@ export class CharacterController{
             res.status(404).json({message: e.mensagem})
         }
     }
+
+    async findAll(req:Request,res:Response){
+        try{
+            const chars = await service.getAll()
+            res.json(chars)
+        }catch(e:any){
+            res.status(404).json({message: e.mensagem}) 
+        }
+    }
+    
     async calculateDamage(req:Request,res:Response){
         try{
             const dam = await service.calcDamage(req.body)

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany} from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToOne} from 'typeorm'
 import bcrypt from 'bcrypt'
 import { Save } from './Save'
 
@@ -17,8 +17,8 @@ export class User{
     password: string
 
     
-    @OneToMany(() => Save, (save) => save.user)
-    saves: Save[]
+    @OneToOne(() => Save, (save) => save.user)
+    save: Save
 
     @BeforeInsert()
     @BeforeUpdate()

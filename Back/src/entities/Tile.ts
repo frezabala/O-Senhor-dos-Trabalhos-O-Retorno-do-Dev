@@ -10,9 +10,6 @@ export class Tile{
     @Column()
     level:number
 
-    @ManyToMany(() => Character)
-    enemies: Character[]
-
     @ManyToOne(() => Character)
     character: Character
 

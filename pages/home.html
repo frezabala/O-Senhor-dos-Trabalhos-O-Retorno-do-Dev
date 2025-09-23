@@ -25,22 +25,38 @@
 </div>
 
 
+<!-- =================== CONTAINER PRINCIPAL =================== -->
 <div class="toplayer">
+  
+  <!-- Botão principal que provavelmente abre a camada de edição de conta -->
   <button id="hi">Click Here</button>
+  
+  <!-- Camada que aparece sobre a tela (tipo modal/pop-up) -->
   <div class="layer">
+    
+    <!-- Ícone de fechar (X) usando Font Awesome -->
     <i id="remove" class="fa fa-remove" aria-hidden="true"></i>
     
-   <label for="Nome">Nome</label>
-   <input type="text" id="Nome" name="Nome" required>
+    <!-- =================== FORMULÁRIO =================== -->
+    <!-- Label e input para o nome do usuário -->
+    <label for="Nome">Nome</label>
+    <input type="text" id="Nome" name="Nome" required>
+    
+    <!-- Label e input para o email do usuário -->
     <label for="Email">Email</label>
     <input type="email" id="Email" name="Email" required>
+    
+    <!-- Label e input para a senha do usuário -->
     <label for="Senha">Senha</label>
     <input type="password" id="Senha" name="Senha" required>
-    <input type="button" value="editar">
-    <input type="button" value="excluir conta">
+    
+    <!-- Botões para ações sobre a conta -->
+    <input type="button" value="editar"> <!-- Edita os dados preenchidos -->
+    <input type="button" value="excluir conta"> <!-- Exclui a conta do usuário -->
+    
+  </div> <!-- Fim da camada "layer" -->
+</div> <!-- Fim do container principal "toplayer" -->
 
-  </div>
-</div>
 
 
 <!-- Container genérico (você pode colocar conteúdo aqui se quiser) -->

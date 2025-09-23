@@ -7,8 +7,8 @@
   box-sizing: border-box;
 
   /* Largura e altura padrão das células do mapa */
-  --tdw: calc(100% / 8); /* 8 colunas */
-  --tdh: calc(100% / 5); /* 4 linhas */
+  --tdw: calc(100% / 5); /* 5 colunas */
+  --tdh: calc(100% / 3); /* 3 linhas */
 
   /* Porcentagem de vida dos personagens (barra de vida) */
   --sam-health: 100%;
@@ -88,8 +88,7 @@ tr {
 }
 
 /* Estilo específico para imagem do Frodo */
-#frodo > img {
-  cursor: pointer; /* Cursor tipo botão */
+#left_side img {
   width: 100%;
 }
 
@@ -108,22 +107,12 @@ tr {
 
 /* Container que lista os personagens */
 #characters {
-  display: none; /* Começa escondido */
+  display: flex;
   flex-direction: column;
   top: 10%;
   left: 0px;
   width: 100%;
   gap: 5px; /* Espaço entre personagens */
-}
-
-/* Imagens dos personagens */
-#characters > div > img {
-  width: 100%;
-}
-
-/* Quando a lista de personagens está ativa */
-#characters.active {
-  display: flex;
 }
 
 /* Cada personagem (div) */
@@ -332,6 +321,25 @@ tr {
   border-color: rgba(255, 0, 0, 0.5);
   cursor: pointer;
 }
+#combat_log {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow: hidden;
+  position: absolute;
+  left: 3.4%;
+  bottom: 9.6%;
+  height: 19%;
+  width: 50%;
+  border: rgba(0, 0, 0, 0.5) 2px solid;
+  border-radius: 15px;
+  background-color: beige;
+}
+#combat_log pre {
+  padding-left: 15px;
+  margin: 3px;
+}
+
 .combat_sam {
   background-image: url("../imagens/samwise.png");
 }
@@ -373,28 +381,50 @@ tr {
 #show_uruk {
   background-image: url("../imagens/uruk-hai.png");
 }
+.combat_uruk {
+  background-image: url("../imagens/uruk-hai.png");
+}
 #show_saruman {
+  background-image: url("../imagens/saruman.png");
+}
+.combat_saruman {
   background-image: url("../imagens/saruman.png");
 }
 #show_sauron {
   background-image: url("../imagens/sauron.png");
 }
+.combat_sauron {
+  background-image: url("../imagens/sauron.png");
+}
 #show_smeagol {
+  background-image: url("../imagens/smigol.png");
+}
+.combat_smeagol {
   background-image: url("../imagens/smigol.png");
 }
 #show_shelob {
   background-image: url("../imagens/shelob.png");
   background-size: cover;
 }
+.combat_shelob {
+  background-image: url("../imagens/shelob.png");
+  background-size: cover;
+}
 #show_nazgul {
+  background-image: url("../imagens/nazgul.png");
+}
+.combat_nazgul {
   background-image: url("../imagens/nazgul.png");
 }
 #show_balrog {
   background-image: url("../imagens/balrog.png");
 }
+.combat_balrog {
+  background-image: url("../imagens/balrog.png");
+}
 #show_pot1 {
-  background-image: url("../imagens/Super_Bomb_LttP.png");
+  background-image: url("../imagens/lembas.png");
 }
 #show_pot2 {
-  background-image: url("../imagens/Super_Bomb_LttP.png");
+  background-image: url("../imagens/lembas.png");
 }

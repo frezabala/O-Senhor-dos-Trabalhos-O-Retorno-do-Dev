@@ -35,65 +35,74 @@
         </table>
       </div>
       <div id="combat">
-        <div id="character_combat" class="combat_frodo"></div>
+        <div id="character_combat" class="combat_sam"></div>
         <div id="character_status" class="status">
           <div class="info">
-            <div id="character_name" class="name">Frodo</div>
-            <div id="character_level" class="level"></div>
+            <div id="character_name" class="name">sam</div>
+            <div id="character_level" class="level">LVL 1</div>
           </div>
-          <div id="character_health" class="health">10/10</div>
+          <div id="character_health" class="health sam_health">10 / 10</div>
         </div>
-        <div id="enemy_combat" class="combat_aragorn"></div>
+        <div id="enemy_combat" class="combat_uruk"></div>
         <div id="enemy_status" class="status">
           <div class="info">
-            <div id="enemy_name" class="name">Sauron</div>
+            <div id="enemy_name" class="name">Uruk-hai</div>
             <div id="enemy_level" class="level">LVL 1</div>
           </div>
-          <div id="enemy_health" class="health">10/10</div>
+          <div id="enemy_health" class="health">10 / 10</div>
+        </div>
+        <div id="combat_log">
+          <pre id="line1">a</pre>
+          <pre id="line2">b</pre>
+          <pre id="line3">c</pre>
+          <pre id="line4">d</pre>
+          <pre id="line5">e</pre>
+          <pre id="line6">f</pre>
+          <pre id="line7">g</pre>
         </div>
         <div id="combat_choises">
           <button id="fight">FIGHT</button>
-          <button id="bag">BAG</button>
+          <button id="bag">POTION</button>
           <button id="member">MEMBER</button>
           <button id="run">RUN</button>
         </div>
       </div>
     </section>
     <div id="left_side">
-      <section id="btn">
-        <div id="frodo">
+      <section>
+        <div>
           <img src="../imagens/frodo.png" alt="Frodo" />
         </div>
       </section>
-      <section id="characters" class="active">
-        <div title="Samwise Gangee" id="sam" class="active">
-          <div id="sam_health" class="health sam_health">5/5</div>
+      <section id="characters">
+        <div title="Samwise Gangee" id="sam" class="active character">
           <img src="../imagens/samwise.png" alt="Sam" />
+          <div id="sam_health" class="health sam_health">5/5</div>
           <p class="description"></p>
         </div>
-        <div title="Aragorn" id="aragorn">
-          <div id="aragorn_health" class="health aragorn_health">9/10</div>
+        <div title="Aragorn" id="aragorn" class="character">
           <img src="../imagens/aragorn.png" alt="Aragorn" />
+          <div id="aragorn_health" class="health aragorn_health">9/10</div>
           <p class="description"></p>
         </div>
-        <div title="Legolas" id="legolas">
-          <div id="legolas_health" class="health legolas_health">10/10</div>
+        <div title="Legolas" id="legolas" class="character">
           <img src="../imagens/legolas.png" alt="Legolas" />
+          <div id="legolas_health" class="health legolas_health">10/10</div>
           <p class="description"></p>
         </div>
-        <div title="Gimli" id="gimli">
-          <div id="gimli_health" class="health gimli_health">10/10</div>
+        <div title="Gimli" id="gimli" class="character">
           <img src="../imagens/gimli.png" alt="Gimli" />
+          <div id="gimli_health" class="health gimli_health">10/10</div>
           <p class="description"></p>
         </div>
-        <div title="Boromir" id="boromir">
-          <div id="boromir_health" class="health boromir_health">10/10</div>
+        <div title="Boromir" id="boromir" class="character">
           <img src="../imagens/boromir.png" alt="Boromir" />
+          <div id="boromir_health" class="health boromir_health">10/10</div>
           <p class="description"></p>
         </div>
-        <div title="Gandalf The Grey" id="gandalf">
-          <div id="gandalf_health" class="health gandalf_health">10/10</div>
+        <div title="Gandalf The Grey" id="gandalf" class="character">
           <img src="../imagens/gandalf.png" alt="Gandalf" />
+          <div id="gandalf_health" class="health gandalf_health">10/10</div>
           <p class="description"></p>
         </div>
       </section>
@@ -101,14 +110,17 @@
     <div>
       <div id="right_side">
         <p>seus items</p>
-        <div id="bomb">
+        <div id="potion">
           <img
-            title="causa dano ao alvo"
-            src="../imagens/Super_Bomb_LttP.png"
+            title="cura o personagem"
+            src="../imagens/lembas.png"
             alt=""
             width="100%"
           />
-          <p>Bomba</p>
+          <p>
+            Lambas <br />
+            <span id="potion_number">1</span>
+          </p>
         </div>
       </div>
     </div>

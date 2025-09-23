@@ -1,0 +1,225 @@
+:root {
+  /* Definição de variáveis CSS para reutilização no código */
+  --bg1: #0b0a08;          /* Cor de fundo principal, bem escura */
+  --parchment: #efe1c6;    /* Cor tipo pergaminho, usada em textos */
+  --gold: #caa83b;         /* Dourado, usado em bordas e botões */
+  --muted: #7a6950;        /* Cor apagada, usada em textos secundários */
+  --accent: #2b5a2b;       /* Verde escuro, para elementos de destaque */
+}
+
+/* Reset básico e definição de box-sizing */
+* {
+  box-sizing: border-box; /* Inclui padding e border no cálculo do tamanho */
+  margin: 0;              /* Remove margens padrão */
+  padding: 0;             /* Remove espaçamentos internos padrão */
+}
+
+html, body {
+  height: 100%; /* Garante que o corpo ocupe toda a altura da janela */
+}
+
+body {
+
+  font-family: 'Cinzel', serif;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/imagens/fundo.jpg") no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+/* Camada escura por cima da imagem de fundo */
+body::before {
+  content: "";                  /* Requerido para pseudo-elementos */
+  position: absolute;
+  inset: 0;                     /* Ocupa todo o espaço do body */
+  background: rgba(0,0,0,0.5);  /* Fundo preto semi-transparente */
+  z-index: -1;                  /* Fica atrás do conteúdo principal */
+}
+
+/* Container principal do conteúdo */
+.card {
+  width: 100%;
+  max-width: 900px;
+  background: linear-gradient(170deg, rgba(47, 67, 41, 0.662), rgba(255, 255, 255, 0.021));
+  border: 1px solid rgba(202,168,59,0.12);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(2,2,2,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  backdrop-filter: blur(2px);
+}
+
+/* Painel lateral (lado direito da .card) */
+.painel {
+  padding: 48px 36px;
+  background: linear-gradient(170deg, rgb(58, 70, 26), rgba(16, 14, 13, 0.705));
+  border-right: 1px solid rgba(202, 169, 59, 0.384);
+  display: flex;
+  flex-direction: column; /* Elementos em coluna */
+  gap: 18px;               /* Espaço entre os itens */
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Título */
+h1 {
+  font-size: 28px;
+  color: var(--parchment);       /* Cor de pergaminho */
+  letter-spacing: 1px;           /* Espaçamento entre letras */
+}
+
+/* Parágrafo informativo */
+p.text1 {
+  color: var(--muted);           /* Cor apagada */
+  max-width: 36vw;               /* Limita largura para melhor leitura */
+  font-size: 14px;
+}
+
+/* Estilização do formulário */
+form {
+  padding: 36px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;                     /* Espaço entre campos */
+  background: linear-gradient(180deg, rgba(255,250,235,0.02), rgba(255,250,235,0.01)); /* Fundo quase transparente */
+}
+
+label { font-size: 13px; color: var(--parchment); margin-bottom: 6px }
+
+.field { display: flex; flex-direction: column; gap: 6px }
+
+input[type="text"], input[type="email"], input[type="password"] {
+  padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(202,168,59,0.09);
+  background: rgba(255, 255, 255, 0.068); color: var(--parchment); font-size: 14px;
+  outline: none; transition: box-shadow .18s, border-color .18s;
+}
+
+/* Campo agrupado com label e input */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Campos de texto, email e senha */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(202,168,59,0.09);     /* Borda dourada suave */
+  background: rgba(255,255,255,0.02);          /* Fundo quase transparente */
+  color: var(--parchment);
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow .18s, border-color .18s; /* Suaviza animações */
+}
+
+/* Placeholder dos inputs */
+input::placeholder {
+  color: rgba(255,255,255,0.25);  /* Branco apagado */
+  font-family: inherit;
+}
+
+/* Estilo quando o input está em foco */
+input:focus {
+  border-color: rgba(202, 169, 59, 0.534);
+  box-shadow: 0 6px 18px rgba(42,32,8,0.12) inset;
+}
+
+/* Seção de registro (nome e sobrenome lado a lado) */
+.register {
+  display: flex;
+  gap: 12px;
+}
+.register .field {
+  flex: 1; /* Cada campo ocupa 50% */
+}
+
+/* Área de ações (ex: botão e link) */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+/* Botão estilizado */
+.btn {
+  background: linear-gradient(145deg, #c9a635, #ffd700); /* Degradê dourado */
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.btn:hover {
+  box-shadow: 0 0 15px #ffd700; /* Brilho dourado */
+  transform: scale(1.05);       /* Aumenta ligeiramente o botão */
+}
+
+/* Links da seção "Já tem conta?" */
+.haveAc a {
+  text-decoration: none;
+  color: #c9a635; /* Dourado */
+}
+
+.haveAc a {
+  color: #c9a635;
+}
+
+
+@media (max-width:480px) {
+  /* Para telas pequenas (celulares) */
+
+  .card {
+    grid-template-columns: 1fr; /* Layout em uma única coluna */
+  }
+
+  .panel { /* ⚠️ Erro aqui: o seletor correto seria .painel */
+    padding: 28px 28px;
+  }
+
+  form {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  p.text {
+    font-size: 12px;
+  }
+
+  .btn {
+    width: 100%;        /* Ocupa toda a largura */
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .register {
+    flex-direction: column; /* Coloca os campos em linha vertical */
+    gap: 10px;
+  }
+
+  .actions {
+    flex-direction: column; /* Coloca botão e link um em cima do outro */
+    gap: 12px;
+  }
+}

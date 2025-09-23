@@ -1,0 +1,270 @@
+/* =======================
+   Variáveis e Reset Global
+========================== */
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  /* Largura e altura padrão das células do mapa */
+  --tdw: calc(100% / 8);  /* 8 colunas */
+  --tdh: calc(100% / 4);  /* 4 linhas */
+
+  /* Porcentagem de vida dos personagens (barra de vida) */
+  --sam-health: 100%;
+  --aragorn-health: 90%;
+  --legolas-health: 100%;
+  --gimli-health: 100%;
+  --gandalf-health: 100%;
+  --boromir-health: 100%;
+}
+
+/* =======================
+   Estilo do Corpo da Página
+========================== */
+body {
+  background-color: rgb(61, 83, 39);  /* Verde escuro como fundo */
+  position: relative;                /* Necessário para posicionar elementos absolutos dentro */
+}
+
+/* =======================
+   Container Geral do Jogo
+========================== */
+#Container {
+  width: 100%;
+  height: 98vh;                            /* Quase toda a altura da tela */
+  display: flex;                           /* Flexbox para centralização */
+  justify-content: center;                /* Centraliza horizontalmente */
+}
+
+/* =======================
+   Área do Mapa
+========================== */
+#map {
+  height: 90vh;                            /* Altura da área do mapa */
+  aspect-ratio: 16/12;                     /* Mantém proporção (ajuda na responsividade) */
+  display: flex;
+  align-self: center;                     /* Centraliza verticalmente */
+  justify-content: center;
+  align-items: center;
+  background-image: url("../imagens/middle-earth-map.jpg"); /* Imagem do mapa da Terra Média */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;                 /* Preenche toda a área */
+}
+
+/* =======================
+   Tabela (Grade do mapa)
+========================== */
+table {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-collapse: collapse;             /* Remove espaços entre bordas */
+  table-layout: fixed;                   /* Todas as células terão o mesmo tamanho */
+}
+
+/* Células do mapa */
+td {
+  border: 1px solid rgba(0, 0, 0, 0.5);   /* Borda semi-transparente */
+  text-align: center;                    /* Centraliza conteúdo */
+  padding: 15px;
+  width: var(--tdw);                     /* Usa variável para largura */
+}
+
+/* Imagens dentro das células */
+td > img {
+  width: 100%;                           /* Imagem ocupa toda a célula */
+}
+
+/* Linhas da tabela */
+tr {
+  height: var(--tdh);                    /* Usa variável para altura */
+  overflow: hidden;
+}
+
+/* Estilo específico para imagem do Frodo */
+#frodo > img {
+  cursor: pointer;                       /* Cursor tipo botão */
+  width: 100%;
+}
+
+/* =======================
+   Lado Esquerdo (Personagens)
+========================== */
+#left_side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.125);  /* Leve transparência */
+  top: 0;
+  position: absolute;
+  width: 5%;                              /* Largura lateral */
+}
+
+/* Container que lista os personagens */
+#characters {
+  display: none;                          /* Começa escondido */
+  flex-direction: column;
+  top: 10%;
+  left: 0px;
+  width: 100%;
+  gap: 5px;                               /* Espaço entre personagens */
+}
+
+/* Imagens dos personagens */
+#characters > div > img {
+  width: 100%;
+}
+
+/* Quando a lista de personagens está ativa */
+#characters.ativo {
+  display: flex;
+}
+
+/* Cada personagem (div) */
+#characters > div {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  height: 10%;
+}
+
+/* Quando personagem está ativo (visível) */
+#characters > div.ativo {
+  display: flex;
+}
+
+/* =======================
+   Barra de Vida dos Personagens
+========================== */
+.health {
+  user-select: none;                     /* Não permite selecionar o texto */
+  text-align: center;
+  font-size: small;
+  line-height: 0.9em;
+  width: 90%;
+}
+
+/* Barra de vida dinâmica por personagem */
+#sam_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--sam-health),           /* Parte verde */
+    red var(--sam-health)                /* Parte vermelha (vida perdida) */
+  );
+}
+#aragorn_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--aragorn-health),
+    red var(--aragorn-health)
+  );
+}
+#legolas_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--legolas-health),
+    red var(--legolas-health)
+  );
+}
+#gimli_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--gimli-health),
+    red var(--gimli-health)
+  );
+}
+#boromir_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--boromir-health),
+    red var(--boromir-health)
+  );
+}
+#gandalf_health {
+  background-image: linear-gradient(
+    to right,
+    green 0 var(--gandalf-health),
+    red var(--gandalf-health)
+  );
+}
+
+/* =======================
+   Lado Direito (Botões ou Funções)
+========================== */
+#right_side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.125);
+  top: 0;
+  right: 0;
+  position: absolute;
+  width: 5%;
+}
+
+/* Imagens no lado direito interativas */
+#right_side img {
+  cursor: pointer;
+}
+
+/* =======================
+   Classes Utilitárias
+========================== */
+
+/* Oculta descrições ou elementos */
+.description {
+  display: none;
+}
+
+/* Força o mapa a desaparecer */
+.hide_map {
+  display: none !important;
+}
+
+/* Força o combate a aparecer */
+.show_combat {
+  display: block !important;
+}
+
+/* =======================
+   Tela de Combate
+========================== */
+#combat {
+  position: relative;
+  display: none;
+  height: 90vh;
+  aspect-ratio: 16/12; /* Para cada 16 unidades de largura, o elemento terá 12 unidades de altura */
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../imagens/combat.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+#character_combat {
+  position: absolute;
+  bottom: 31%;
+  left: 22%;
+  height: 20%;
+  width: 10%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+#enemy_combat {
+  position: absolute;
+  top: 26%;
+  right: 22%;
+  height: 20%;
+  width: 10%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.combat_aragorn {
+  background-image: url("../imagens/aragorn.png");
+}

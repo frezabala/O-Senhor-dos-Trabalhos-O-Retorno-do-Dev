@@ -11,6 +11,6 @@
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false
   },
-  "include": ["src"],
+  "include": ["src", "../script/register.js", "../script/login.js"],
   "exclude": ["node_modules"]
 }

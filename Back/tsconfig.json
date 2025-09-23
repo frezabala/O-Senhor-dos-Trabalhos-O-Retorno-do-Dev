@@ -12,6 +12,6 @@
     "strictPropertyInitialization": false,
     "ignoreDeprecations": "6.0"
   },
-  "include": ["src"],
+  "include": ["src", "../script/register.js", "../script/login.js"],
   "exclude": ["node_modules"]
 }

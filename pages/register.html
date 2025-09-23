@@ -18,55 +18,63 @@
     <header>
 
     </header>
-    <main>
+   <main>
+  <!-- Card central da página (normalmente estilizado com sombra, borda etc.) -->
+  <div class="card">
 
+    <!-- Painel com título e subtítulo -->
+    <div class="painel">
+      <h1>Seja bem-vindo ao Middle Earth</h1>
+      <p class="text1">
+        Crie sua conta e prepare-se para a jornada. Proteja suas chaves — nem tudo que reluz é ouro.
+      </p>
+    </div>
 
-        <div class="card">
-            <div class="painel">
-
-                <h1> Seja bem-vindo ao Middle Earth</h1>
-                <p class="text1">Crie sua conta e prepare-se para a jornada. Proteja suas chaves — nem tudo que
-                    reluz é ouro.</p>
-
-            </div>
-
-            <form onsubmit="event.preventDefault(); alert('Conta criada — seja bem-vindo!');">
-                <div style="position:relative">
-                    <label for="name">Nome</label>
-                    <div class="field"><input id="name" name="name" type="text" placeholder="" required></div>
-                </div>
-
-                <div class="register">
-                    <div class="field">
-                        <label for="email">E-mail</label>
-                        <input id="email" name="email" type="email" placeholder="seu@exemplo.com" required>
-                    </div>
-
-                </div>
-
-                <div class="register">
-                    <div class="field">
-                        <label for="password">Senha</label>
-                        <input id="password" name="password" type="password" placeholder="••••••••" required>
-                    </div>
-
-                </div>
-
-                <div class="actions">
-                    <button class="btn" type="submit">CRIE SUA CONTA</button>
-
-                </div>
-
-                <div class="haveAc">
-                    <p class="switch">Já tem uma conta?
-                        <a href="../pages/login.html" id="toLogin">Entrar</a>
-                    </p>
-                </div>
-
-
+    <!-- Formulário de cadastro -->
+    <!-- onsubmit="event.preventDefault(); ..." impede envio real e mostra um alerta de boas-vindas -->
+    <form onsubmit="event.preventDefault(); alert('Conta criada — seja bem-vindo!');">
+      
+      <!-- Campo de nome -->
+      <!-- style="position:relative" para poder posicionar ícones ou labels internamente, se precisar -->
+      <div style="position:relative">
+        <label for="name">Nome</label>
+        <div class="field">
+          <input id="name" name="name" type="text" placeholder="" required>
         </div>
-    </main>
+      </div>
 
-</body>
+      <!-- Campo de e-mail -->
+      <div class="register">
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" placeholder="seu@exemplo.com" required>
+        </div>
+      </div>
+
+      <!-- Campo de senha -->
+      <div class="register">
+        <div class="field">
+          <label for="password">Senha</label>
+          <input id="password" name="password" type="password" placeholder="••••••••" required>
+        </div>
+      </div>
+
+      <!-- Botão de ação -->
+      <div class="actions">
+        <button class="btn" type="submit">CRIE SUA CONTA</button>
+      </div>
+
+      <!-- Link para quem já tem conta -->
+      <div class="haveAc">
+        <p class="switch">
+          Já tem uma conta?
+          <!-- Link para a página de login -->
+          <a href="../pages/login.html" id="toLogin">Entrar</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</main>
+
 
 </html>

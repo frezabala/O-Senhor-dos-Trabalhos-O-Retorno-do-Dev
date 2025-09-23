@@ -148,3 +148,256 @@ body::before {
 .firefly:nth-child(15) { top:55%; left:75%; animation-delay:.5s,1.7s; }
 .firefly:nth-child(16) { top:20%; left:15%; animation-delay:1.4s,.8s; }
 .firefly:nth-child(17) { top:70%; left:75%; animation-delay:1.5s,.9s; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Container que centraliza os botões */
+.buttons {
+  margin-top: 50px;           /* Espaço acima do container */
+  text-align: center;         /* Centraliza os botões horizontalmente */
+  border-radius: 30px;        /* Bordas arredondadas do container */
+}
+
+/* ==================== BOTÃO BLOB ==================== */
+
+/* Estilo base do botão */
+.blob-btn {
+  position: relative;         /* Necessário para posicionar os pseudo-elementos (::before e ::after) */
+  padding: 35px 56px;         /* Tamanho interno do botão */
+  margin-bottom: 30px;        /* Espaço abaixo do botão */
+  text-align: center;         /* Centraliza o texto */
+  text-transform: uppercase;  /* Coloca o texto em maiúsculas */
+  color: #ffee00;             /* Cor do texto */
+  font-size: 16px;            /* Tamanho da fonte */
+  font-weight: bold;          /* Texto em negrito */
+  background-color: transparent; /* Fundo transparente */
+  border: none;               /* Sem borda padrão */
+  outline: none;              /* Remove contorno de foco padrão */
+  cursor: pointer;            /* Cursor de mãozinha ao passar por cima */
+  border-radius: 30px;        /* Bordas arredondadas */
+  transition: color 0.5s;     /* Animação suave da cor do texto no hover */
+  z-index: 1;                 /* Garante que o botão fique acima do fundo */
+}
+
+/* Cria a borda do botão com um pseudo-elemento */
+.blob-btn::before {
+  content: "";                /* Obrigatório para pseudo-elemento */
+  position: absolute;         /* Fica sobre o botão */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #fbff00;  /* Borda amarela */
+  border-radius: 30px;        /* Bordas arredondadas iguais ao botão */
+  z-index: 1;                 /* Fica acima do ::after */
+}
+
+/* Camada de fundo animada (preto) que desliza ao hover */
+.blob-btn::after {
+  content: "";
+  position: absolute;
+  left: 3px;                  /* Começa um pouco deslocado */
+  top: 3px;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  z-index: -2;                /* Atrás de tudo */
+  transition: all 0.3s 0.2s;  /* Anima deslocamento e raio no hover */
+}
+
+/* Hover do botão: muda a cor do texto */
+.blob-btn:hover {
+  color: #000000;             /* Texto preto no hover */
+}
+
+/* Hover do botão: anima a camada ::after para cobrir toda a área */
+.blob-btn:hover::after {
+  left: 0;
+  top: 0;
+  transition: all 0.3s;
+  border-radius: 30px;
+}
+
+/* Camada preta interna onde os blobs vão aparecer */
+.blob-btn__inner {
+  position: absolute;         /* Preenche todo o botão */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background: #000000;        /* Fundo preto */
+  z-index: -1;                /* Atrás do texto do botão */
+  overflow: hidden;           /* Esconde partes dos blobs fora do botão */
+}
+
+/* Container dos blobs, aplica efeito gooey via filtro SVG */
+.blob-btn__blobs {
+  position: relative;
+  display: block;
+  height: 100%;
+  filter: url('#goo');        /* Filtro para dar efeito “gelatinoso” */
+}
+
+/* Cada bolha amarela animada (blob) */
+.blob-btn__blob {
+  position: absolute;         /* Posicionamento livre dentro do container */
+  top: 2px;                   /* Alinha verticalmente */
+  width: 29%;                 /* Largura de cada blob (4 blobs cabem em 100%) */
+  height: 100%;
+  background: #fbff00;        /* Cor amarela dos blobs */
+  border-radius: 100%;        /* Formato circular */
+  transform: translate3d(0,150%,0) scale(2.0); /* Começa fora da área do botão e maior */
+  transition: transform 0.45s;/* Animação suave para subir ao hover */
+}
+
+/* Posições horizontais e delays individuais para cada blob */
+.blob-btn__blob:nth-child(1) { left: 0;  transition-delay: 0s;    }
+.blob-btn__blob:nth-child(2) { left: 30%; transition-delay: 0.08s; }
+.blob-btn__blob:nth-child(3) { left: 60%; transition-delay: 0.16s; }
+.blob-btn__blob:nth-child(4) { left: 90%; transition-delay: 0.24s; }
+
+/* Quando passa o mouse no botão, os blobs sobem e encolhem um pouco */
+.blob-btn:hover .blob-btn__blob {
+  transform: translateZ(0) scale(1.4); /* Volta para dentro e fica menor */
+}
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
+
+
+
+.toplayer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+button#hi {
+  background: #fbff00;
+  width: 150px;
+  height: 40px;
+  border: none;
+  color: #000000;
+  border-radius: 6px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.layer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: -1;
+  position: absolute;
+  top: 50px; /* abaixo do botão */
+  right: 0;
+  width: 300px;
+  max-width: 90vw; /* responsivo para telas pequenas */
+  background: #424B54;
+  padding: 20px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: scale(0.1);
+  font-size: 16px;
+  transition: all 0.5s ease;
+}
+
+.layer > * {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.layer i#remove {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.layer input[type="text"],
+.layer input[type="email"],
+.layer input[type="password"] {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.layer input[type="button"] {
+  background: #fbff00;
+  color: #000000;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.layer input[type="button"]:hover {
+  background: #e5ff00;
+}
+
+
+i {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  color: #FFF;
+  cursor: pointer;
+}
+
+p {
+  color: #FFF;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: 300;
+  opacity: 0;
+  transition: all 3s ease;
+}
+
+a {
+  opacity: 0;
+  font-size: 13px;
+  color: #e5ff00; /* $pink */
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.clicked {
+  transform: scale(1);
+  opacity: 1;
+  z-index: 100;
+}
+
+.clicked p,
+.clicked a {
+  opacity: 1;
+}
+
+

@@ -28,7 +28,7 @@ const password = document.getElementById("password");
       const token = dados.token();
 
       localStorage.setItem("token", token);
-
+    
 
       document.getElementById("mensagem").textContent = "Login realizado com sucesso!"
       document.getElementById("mensagem").style.color = "green";

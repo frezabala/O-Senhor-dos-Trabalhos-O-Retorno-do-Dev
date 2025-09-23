@@ -14,42 +14,54 @@
 </head>
 
 <body>
-    <main>
-        <div class="card2">
+   <main>
+  <!-- Card central (segunda variação do card, por isso card2) -->
+  <div class="card2">
 
-            <div class="painel2">
+    <!-- Painel com título e frase motivacional -->
+    <div class="painel2">
+      <h1>ACESSE SUA CONTA!</h1>
+      <p class="text2">
+        Cada passo, por menor que pareça, faz parte de uma jornada muito maior.
+      </p>
+    </div>
 
-                <h1>ACESSE SUA CONTA!</h1>
-                <p class="text2">Cada passo, por menor que pareça, faz parte de uma jornada muito maior.</p>
+    <!-- Formulário de login -->
+    <!-- onsubmit impede envio real e mostra um alerta (útil para teste) -->
+    <form onsubmit="event.preventDefault(); alert('Conta acessada com sucesso!');">
+      
+      <!-- Campo de nome/usuário -->
+      <div style="position:relative">
+        <label for="name">Nome</label>
+        <div class="field">
+          <input id="name" name="name" type="text" placeholder="" required>
+        </div>
+      </div>
 
-            </div>
+      <!-- Campo de senha -->
+      <div class="login">
+        <div class="field">
+          <label for="password">Senha</label>
+          <input id="password" name="password" type="password" placeholder="••••••••" required>
+        </div>
+      </div>
 
-            <form onsubmit="event.preventDefault(); alert('Conta acessada com sucesso!');">
-                <div style="position:relative">
-                    <label for="name">Nome</label>
-                    <div class="field"><input id="name" name="name" type="text" placeholder="" required></div>
-                </div>
+      <!-- Botão de ação para entrar -->
+      <div class="action-btn">
+        <button class="btn1">ENTRAR</button>
+      </div>
 
-
-
-                <div class="login">
-                    <div class="field">
-                        <label for="password">Senha</label>
-                        <input id="password" name="password" type="password" placeholder="••••••••" required>
-                    </div>
-                </div>
-
-                <div class="action-btn">
-                    <button class="btn1">ENTRAR</button>
-                </div>
-
-                <div class="haveAc2">
-                    <p class="switch">Não tem uma conta?
-                        <a href="../pages/register.html" id="toRegister">Crie uma!</a>
-                    </p>
-                </div>
-
-    </main>
+      <!-- Link para criar conta, caso o usuário não tenha -->
+      <div class="haveAc2">
+        <p class="switch">
+          Não tem uma conta?
+          <!-- Link para a página de registro -->
+          <a href="../pages/register.html" id="toRegister">Crie uma!</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</main>
 
 
 </body>

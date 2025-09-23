@@ -162,62 +162,66 @@ body::before {
 
 
 
+/* Container que centraliza os botões */
 .buttons {
-  margin-top: 50px;
-  text-align: center;
-  border-radius: 30px;
+  margin-top: 50px;           /* Espaço acima do container */
+  text-align: center;         /* Centraliza os botões horizontalmente */
+  border-radius: 30px;        /* Bordas arredondadas do container */
 }
 
-/* Botão Blob */
+/* ==================== BOTÃO BLOB ==================== */
+
+/* Estilo base do botão */
 .blob-btn {
-  position: relative;
-  padding: 35px 56px;
-  margin-bottom: 30px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #ffee00; /* cyan */
-  font-size: 16px;
-  font-weight: bold;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  border-radius: 30px;
-  transition: color 0.5s;
-  z-index: 1;
+  position: relative;         /* Necessário para posicionar os pseudo-elementos (::before e ::after) */
+  padding: 35px 56px;         /* Tamanho interno do botão */
+  margin-bottom: 30px;        /* Espaço abaixo do botão */
+  text-align: center;         /* Centraliza o texto */
+  text-transform: uppercase;  /* Coloca o texto em maiúsculas */
+  color: #ffee00;             /* Cor do texto */
+  font-size: 16px;            /* Tamanho da fonte */
+  font-weight: bold;          /* Texto em negrito */
+  background-color: transparent; /* Fundo transparente */
+  border: none;               /* Sem borda padrão */
+  outline: none;              /* Remove contorno de foco padrão */
+  cursor: pointer;            /* Cursor de mãozinha ao passar por cima */
+  border-radius: 30px;        /* Bordas arredondadas */
+  transition: color 0.5s;     /* Animação suave da cor do texto no hover */
+  z-index: 1;                 /* Garante que o botão fique acima do fundo */
 }
 
-/* Borda do botão */
+/* Cria a borda do botão com um pseudo-elemento */
 .blob-btn::before {
-  content: "";
-  position: absolute;
+  content: "";                /* Obrigatório para pseudo-elemento */
+  position: absolute;         /* Fica sobre o botão */
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  border: 2px solid #fbff00;
-  border-radius: 30px;
-  z-index: 1;
+  border: 2px solid #fbff00;  /* Borda amarela */
+  border-radius: 30px;        /* Bordas arredondadas iguais ao botão */
+  z-index: 1;                 /* Fica acima do ::after */
 }
 
-/* Fundo animado do botão */
+/* Camada de fundo animada (preto) que desliza ao hover */
 .blob-btn::after {
   content: "";
   position: absolute;
-  left: 3px;
+  left: 3px;                  /* Começa um pouco deslocado */
   top: 3px;
   width: 100%;
   height: 100%;
   border-radius: 30px;
-  z-index: -2;
-  transition: all 0.3s 0.2s;
+  z-index: -2;                /* Atrás de tudo */
+  transition: all 0.3s 0.2s;  /* Anima deslocamento e raio no hover */
 }
 
-/* Hover */
+/* Hover do botão: muda a cor do texto */
 .blob-btn:hover {
-  color: #000000;
+  color: #000000;             /* Texto preto no hover */
 }
 
+/* Hover do botão: anima a camada ::after para cobrir toda a área */
 .blob-btn:hover::after {
   left: 0;
   top: 0;
@@ -225,46 +229,46 @@ body::before {
   border-radius: 30px;
 }
 
-/* Inner layer */
+/* Camada preta interna onde os blobs vão aparecer */
 .blob-btn__inner {
-  position: absolute;
+  position: absolute;         /* Preenche todo o botão */
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   border-radius: 30px;
-  background: #000000;
-  z-index: -1;
-  overflow: hidden;
+  background: #000000;        /* Fundo preto */
+  z-index: -1;                /* Atrás do texto do botão */
+  overflow: hidden;           /* Esconde partes dos blobs fora do botão */
 }
 
-/* Container dos blobs */
+/* Container dos blobs, aplica efeito gooey via filtro SVG */
 .blob-btn__blobs {
   position: relative;
   display: block;
   height: 100%;
-  filter: url('#goo');
+  filter: url('#goo');        /* Filtro para dar efeito “gelatinoso” */
 }
 
-/* Cada blob */
+/* Cada bolha amarela animada (blob) */
 .blob-btn__blob {
-  position: absolute;
-  top: 2px;
-  width: 29%; /* 4 blobs */
+  position: absolute;         /* Posicionamento livre dentro do container */
+  top: 2px;                   /* Alinha verticalmente */
+  width: 29%;                 /* Largura de cada blob (4 blobs cabem em 100%) */
   height: 100%;
-  background: #fbff00;
-  border-radius: 100%;
-  transform: translate3d(0,150%,0) scale(2.0);
-  transition: transform 0.45s;
+  background: #fbff00;        /* Cor amarela dos blobs */
+  border-radius: 100%;        /* Formato circular */
+  transform: translate3d(0,150%,0) scale(2.0); /* Começa fora da área do botão e maior */
+  transition: transform 0.45s;/* Animação suave para subir ao hover */
 }
 
-/* Posicionamento individual dos blobs */
-.blob-btn__blob:nth-child(1) { left: 0; transition-delay: 0s; }
+/* Posições horizontais e delays individuais para cada blob */
+.blob-btn__blob:nth-child(1) { left: 0;  transition-delay: 0s;    }
 .blob-btn__blob:nth-child(2) { left: 30%; transition-delay: 0.08s; }
 .blob-btn__blob:nth-child(3) { left: 60%; transition-delay: 0.16s; }
 .blob-btn__blob:nth-child(4) { left: 90%; transition-delay: 0.24s; }
 
-/* Hover nos blobs */
+/* Quando passa o mouse no botão, os blobs sobem e encolhem um pouco */
 .blob-btn:hover .blob-btn__blob {
-  transform: translateZ(0) scale(1.4);
+  transform: translateZ(0) scale(1.4); /* Volta para dentro e fica menor */
 }

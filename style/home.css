@@ -272,3 +272,132 @@ body::before {
 .blob-btn:hover .blob-btn__blob {
   transform: translateZ(0) scale(1.4); /* Volta para dentro e fica menor */
 }
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
+
+
+
+.toplayer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+button#hi {
+  background: #fbff00;
+  width: 150px;
+  height: 40px;
+  border: none;
+  color: #000000;
+  border-radius: 6px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.layer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: -1;
+  position: absolute;
+  top: 50px; /* abaixo do botão */
+  right: 0;
+  width: 300px;
+  max-width: 90vw; /* responsivo para telas pequenas */
+  background: #424B54;
+  padding: 20px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: scale(0.1);
+  font-size: 16px;
+  transition: all 0.5s ease;
+}
+
+.layer > * {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.layer i#remove {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.layer input[type="text"],
+.layer input[type="email"],
+.layer input[type="password"] {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.layer input[type="button"] {
+  background: #fbff00;
+  color: #000000;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.layer input[type="button"]:hover {
+  background: #e5ff00;
+}
+
+
+i {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  color: #FFF;
+  cursor: pointer;
+}
+
+p {
+  color: #FFF;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: 300;
+  opacity: 0;
+  transition: all 3s ease;
+}
+
+a {
+  opacity: 0;
+  font-size: 13px;
+  color: #e5ff00; /* $pink */
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.clicked {
+  transform: scale(1);
+  opacity: 1;
+  z-index: 100;
+}
+
+.clicked p,
+.clicked a {
+  opacity: 1;
+}
+
+

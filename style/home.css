@@ -95,7 +95,8 @@ body::before {
   height: auto;                             /* Mantém a proporção da imagem */
   position: absolute;                       /* Posiciona na tela */
   top: 20px;                                /* Distância do topo */
-  left: 30px;                               /* Distância da esquerda */
+  left: 30px; 
+                             /* Distância da esquerda */
                 /* Inclinação da imagem para dar estilo */
 }
 
@@ -391,7 +392,7 @@ p {
 
 /* ======================= LINKS ======================= */
 a {
-  opacity: 0;                  /* Invisível inicialmente */
+  opacity: 1;                  /* Invisível inicialmente */
   font-size: 13px;
   color: #e5ff00;              /* Amarelo */
   letter-spacing: 1px;

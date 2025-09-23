@@ -276,128 +276,136 @@ body::before {
 
 
 
+/* ======================= FONTES ======================= */
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
+/* Importa a fonte 'Source Sans Pro' com pesos leves (200, 300, 400) */
 
-
-
+/* ======================= CONTAINER PRINCIPAL ======================= */
 .toplayer {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 99;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-family: 'Source Sans Pro', sans-serif;
+  position: fixed;             /* Fixa o container na tela, mesmo ao rolar */
+  top: 20px;                   /* Distância do topo */
+  right: 20px;                 /* Distância da direita */
+  z-index: 99;                 /* Sobrepõe quase tudo na tela */
+  display: flex;               /* Flexbox para organizar elementos internamente */
+  flex-direction: column;      /* Empilha verticalmente */
+  align-items: flex-end;       /* Alinha à direita */
+  font-family: 'Source Sans Pro', sans-serif; /* Fonte importada */
 }
 
-
+/* ======================= BOTÃO PRINCIPAL ======================= */
 button#hi {
-  background: #fbff00;
-  width: 150px;
-  height: 40px;
-  border: none;
-  color: #000000;
-  border-radius: 6px;
-  font-size: 15px;
-  letter-spacing: 1px;
-  cursor: pointer;
+  background: #fbff00;         /* Cor de fundo amarelo */
+  width: 150px;                /* Largura do botão */
+  height: 40px;                /* Altura do botão */
+  border: none;                /* Sem borda */
+  color: #000000;              /* Cor do texto */
+  border-radius: 6px;          /* Bordas arredondadas */
+  font-size: 15px;             /* Tamanho da fonte */
+  letter-spacing: 1px;         /* Espaçamento entre letras */
+  cursor: pointer;             /* Cursor de mão ao passar */
 }
 
+/* ======================= LAYER (CAMADA OCULTA) ======================= */
 .layer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  z-index: -1;
-  position: absolute;
-  top: 50px; /* abaixo do botão */
-  right: 0;
-  width: 300px;
-  max-width: 90vw; /* responsivo para telas pequenas */
-  background: #424B54;
-  padding: 20px;
-  border-radius: 8px;
-  opacity: 0;
-  transform: scale(0.1);
-  font-size: 16px;
-  transition: all 0.5s ease;
+  display: flex;               /* Flexbox para inputs e botões */
+  flex-direction: column;      /* Empilha verticalmente */
+  align-items: flex-start;     /* Alinha à esquerda */
+  z-index: -1;                 /* Inicialmente atrás da tela */
+  position: absolute;          /* Posiciona relativo ao top/right do .toplayer */
+  top: 50px;                   /* Abaixo do botão */
+  right: 0;                    /* Alinhado à direita */
+  width: 300px;                /* Largura fixa */
+  max-width: 90vw;             /* Responsivo para telas pequenas */
+  background: #424B54;         /* Fundo cinza escuro */
+  padding: 20px;               /* Espaçamento interno */
+  border-radius: 8px;          /* Bordas arredondadas */
+  opacity: 0;                  /* Invisível inicialmente */
+  transform: scale(0.1);       /* Muito pequeno inicialmente */
+  font-size: 16px;             /* Fonte padrão */
+  transition: all 0.5s ease;   /* Animação suave para aparecer/desaparecer */
 }
 
+/* ======================= ESPAÇAMENTO INTERNO DOS ELEMENTOS ======================= */
 .layer > * {
-  margin-bottom: 10px;
-  width: 100%;
+  margin-bottom: 10px;         /* Espaço entre inputs/botões */
+  width: 100%;                 /* Largura máxima da camada */
 }
 
+/* ======================= ÍCONE DE FECHAR ======================= */
 .layer i#remove {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  color: #000000;
-  cursor: pointer;
+  position: absolute;          /* Posicionado dentro da layer */
+  right: 10px;                 /* Distância da direita */
+  top: 10px;                   /* Distância do topo */
+  color: #000000;              /* Cor preta */
+  cursor: pointer;             /* Cursor de mão ao passar */
 }
 
+/* ======================= INPUTS DE TEXTO ======================= */
 .layer input[type="text"],
 .layer input[type="email"],
 .layer input[type="password"] {
-  padding: 8px;
-  border-radius: 6px;
-  border: none;
-  font-size: 14px;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 8px;                /* Espaço interno */
+  border-radius: 6px;          /* Bordas arredondadas */
+  border: none;                /* Sem borda */
+  font-size: 14px;             /* Fonte menor */
+  width: 100%;                 /* Ocupa toda a largura da layer */
+  box-sizing: border-box;      /* Inclui padding na largura total */
 }
 
+/* ======================= BOTOES DA LAYER ======================= */
 .layer input[type="button"] {
-  background: #fbff00;
-  color: #000000;
-  border: none;
-  border-radius: 6px;
-  padding: 8px;
-  cursor: pointer;
-  width: 100%;
-  font-size: 14px;
-  transition: background 0.3s;
+  background: #fbff00;         /* Amarelo */
+  color: #000000;              /* Texto preto */
+  border: none;                /* Sem borda */
+  border-radius: 6px;          /* Bordas arredondadas */
+  padding: 8px;                /* Espaço interno */
+  cursor: pointer;             /* Cursor mão */
+  width: 100%;                 /* Largura total */
+  font-size: 14px;             /* Fonte menor */
+  transition: background 0.3s; /* Suaviza mudança de cor no hover */
 }
 
+/* ======================= HOVER BOTOES ======================= */
 .layer input[type="button"]:hover {
-  background: #e5ff00;
+  background: #e5ff00;         /* Amarelo mais claro ao passar o mouse */
 }
 
-
+/* ======================= ÍCONES GERAIS ======================= */
 i {
   position: absolute;
   right: 15px;
   top: 10px;
-  color: #FFF;
+  color: #FFF;                 /* Branco */
   cursor: pointer;
 }
 
+/* ======================= PARAGRAFOS ======================= */
 p {
-  color: #FFF;
-  font-size: 20px;
-  letter-spacing: 2px;
-  font-weight: 300;
-  opacity: 0;
-  transition: all 3s ease;
+  color: #FFF;                 /* Branco */
+  font-size: 20px;             /* Fonte maior */
+  letter-spacing: 2px;         /* Espaçamento entre letras */
+  font-weight: 300;            /* Fonte leve */
+  opacity: 0;                  /* Invisível inicialmente */
+  transition: all 3s ease;     /* Transição suave para aparecer */
 }
 
+/* ======================= LINKS ======================= */
 a {
-  opacity: 0;
+  opacity: 0;                  /* Invisível inicialmente */
   font-size: 13px;
-  color: #e5ff00; /* $pink */
+  color: #e5ff00;              /* Amarelo */
   letter-spacing: 1px;
-  text-decoration: none;
+  text-decoration: none;       /* Remove sublinhado */
 }
 
+/* ======================= CLASSE CLICADA ======================= */
 .clicked {
-  transform: scale(1);
-  opacity: 1;
-  z-index: 100;
+  transform: scale(1);         /* Aumenta ao aparecer */
+  opacity: 1;                  /* Visível */
+  z-index: 100;                /* Acima de todos */
 }
 
 .clicked p,
 .clicked a {
-  opacity: 1;
+  opacity: 1;                  /* Faz textos e links ficarem visíveis ao abrir a layer */
 }
-
-

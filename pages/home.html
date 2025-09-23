@@ -114,6 +114,17 @@
         </filter>
       </defs>
     </svg>
+
+  <!--feGaussianBlur: desfoca os elementos (bolhas, blobs) para suavizar suas bordas.
+
+feColorMatrix: aumenta o contraste dos pixels borrados, dando aquele efeito líquido que faz as bolhas se fundirem.
+
+feBlend: combina o resultado com o gráfico original, mantendo a forma do botão e aplicando o efeito “goo”.
+
+display:none: o SVG não aparece na tela, mas o filtro é aplicado nos elementos via CSS com filter: url(#goo);.
+SVG significa Scalable Vector Graphics (Gráficos Vetoriais Escaláveis). É um formato de imagem baseado em vetores, ou seja, diferente de imagens em JPEG ou PNG que são compostas por pixels, o SVG é construído com formas, linhas e curvas matemáticas.
+
+-->
   </div>
 
 </section>

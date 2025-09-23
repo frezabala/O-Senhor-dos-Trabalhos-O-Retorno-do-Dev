@@ -7,10 +7,11 @@ document.getElementById('start-game').addEventListener('click', function() {
 
 // Quando o botão #hi for clicado
 document.getElementById("hi").addEventListener("click", function() {
-  document.querySelector(".layer").classList.add("clicked");
+  document.querySelector(".layer").classList.toggle("clicked");
 });
 
 // Quando o ícone #remove for clicado
 document.getElementById("remove").addEventListener("click", function() {
-  document.querySelector(".layer").classList.remove("clicked");
+  document.querySelector(".layer").classList.toggle("clicked");
 });
+

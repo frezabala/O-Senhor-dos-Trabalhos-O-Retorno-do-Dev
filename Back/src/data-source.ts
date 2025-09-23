@@ -19,5 +19,4 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   entities: [User,Effect,Character,Tile, Save,Item],
   synchronize: true, // Temporario TESTE
-  logging: true
 }) 

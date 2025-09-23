@@ -13,10 +13,10 @@ export class Character{
     baseDamage:number
 
     @Column()
-    defense:number //defense against phisical attacks
+    defense:number //Defesa contra ataques fisicos
 
-    @Column()
-    magicRes:number //defense against magic attacks
+    //@Column()
+    //magicRes:number //Defesa contra ataques magicos
 
     @Column()
     health:number
@@ -25,5 +25,5 @@ export class Character{
     totalHealth:number
 
     @ManyToMany(() => Effect)
-    effects: Effect[] //effects the character is suffering from (weakness, reduced accuracy, strenght, healing...)
+    effects: Effect[] //Effeito que o personagem esta sobre com (fraqueza, precisão reduzida, força, cura)
 }

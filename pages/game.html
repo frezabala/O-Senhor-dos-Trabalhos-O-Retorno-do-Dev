@@ -12,60 +12,51 @@
       <div id="map">
         <table id="table">
           <tr>
-            <td>
-              <img id="show_aragorn" src="../imagens/aragorn.png" alt="" />
-            </td>
-            <td>
-              <img id="show_legolas" src="../imagens/legolas.png" alt="" />
-            </td>
-            <td>
-              <img id="show_gimli" src="../imagens/gimli.png" alt="" />
-            </td>
-            <td>
-              <img id="show_boromir" src="../imagens/boromir.png" alt="" />
-            </td>
-            <td>
-              <img id="show_gandalf" src="../imagens/gandalf.png" alt="" />
-            </td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
+            <td></td>
+            <td id="show_uruk"></td>
+            <td id="show_gandalf"></td>
+            <td id="show_nazgul"></td>
+            <td id="show_aragorn"></td>
           </tr>
           <tr>
-            <td><img src="../imagens/frodo.png" alt="" /></td>
-            <td>10</td>
-            <td>11</td>
-            <td>12</td>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-            <td>16</td>
+            <td id="show_pot1"></td>
+            <td id="show_balrog"></td>
+            <td id="show_legolas"></td>
+            <td id="show_saruman"></td>
+            <td id="show_gimli"></td>
           </tr>
           <tr>
-            <td>17</td>
-            <td>18</td>
-            <td>19</td>
-            <td>20</td>
-            <td>21</td>
-            <td>22</td>
-            <td>23</td>
-            <td>24</td>
-          </tr>
-          <tr>
-            <td>25</td>
-            <td>26</td>
-            <td>27</td>
-            <td>28</td>
-            <td>29</td>
-            <td>30</td>
-            <td>31</td>
-            <td>32</td>
+            <td id="show_pot2"></td>
+            <td id="show_shelob"></td>
+            <td id="show_boromir"></td>
+            <td id="show_smeagol"></td>
+            <td id="show_sauron"></td>
           </tr>
         </table>
       </div>
       <div id="combat">
-        <div id="character_combat" class="combat_aragorn"></div>
-        <div id="enemy_combat" class=""></div>
+        <div id="character_combat" class="combat_frodo"></div>
+        <div id="character_status" class="status">
+          <div class="info">
+            <div id="character_name" class="name">Frodo</div>
+            <div id="character_level" class="level"></div>
+          </div>
+          <div id="character_health" class="health">10/10</div>
+        </div>
+        <div id="enemy_combat" class="combat_aragorn"></div>
+        <div id="enemy_status" class="status">
+          <div class="info">
+            <div id="enemy_name" class="name">Sauron</div>
+            <div id="enemy_level" class="level">LVL 1</div>
+          </div>
+          <div id="enemy_health" class="health">10/10</div>
+        </div>
+        <div id="combat_choises">
+          <button id="fight">FIGHT</button>
+          <button id="bag">BAG</button>
+          <button id="member">MEMBER</button>
+          <button id="run">RUN</button>
+        </div>
       </div>
     </section>
     <div id="left_side">
@@ -74,34 +65,36 @@
           <img src="../imagens/frodo.png" alt="Frodo" />
         </div>
       </section>
-      <section id="characters" class="ativo">
-        <div title="Samwise Gangee" id="sam" class="ativo">
-          <div id="sam_health" class="health">5/5</div>
+      <section id="characters" class="active">
+        <div title="Samwise Gangee" id="sam" class="active">
+          <div id="sam_health" class="health sam_health">5/5</div>
           <img src="../imagens/samwise.png" alt="Sam" />
           <p class="description"></p>
         </div>
         <div title="Aragorn" id="aragorn">
-          <div id="aragorn_health" class="health">9/10</div>
+          <div id="aragorn_health" class="health aragorn_health">9/10</div>
           <img src="../imagens/aragorn.png" alt="Aragorn" />
           <p class="description"></p>
         </div>
         <div title="Legolas" id="legolas">
-          <div id="legolas_health" class="health">10/10</div>
+          <div id="legolas_health" class="health legolas_health">10/10</div>
           <img src="../imagens/legolas.png" alt="Legolas" />
           <p class="description"></p>
         </div>
         <div title="Gimli" id="gimli">
-          <div id="gimli_health" class="health">10/10</div>
+          <div id="gimli_health" class="health gimli_health">10/10</div>
           <img src="../imagens/gimli.png" alt="Gimli" />
           <p class="description"></p>
         </div>
         <div title="Boromir" id="boromir">
-          <div id="boromir_health" class="health">10/10</div>
+          <div id="boromir_health" class="health boromir_health">10/10</div>
           <img src="../imagens/boromir.png" alt="Boromir" />
+          <p class="description"></p>
         </div>
         <div title="Gandalf The Grey" id="gandalf">
-          <div id="gandalf_health" class="health">10/10</div>
+          <div id="gandalf_health" class="health gandalf_health">10/10</div>
           <img src="../imagens/gandalf.png" alt="Gandalf" />
+          <p class="description"></p>
         </div>
       </section>
     </div>

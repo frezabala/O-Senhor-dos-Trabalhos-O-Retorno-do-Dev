@@ -19,28 +19,17 @@ html, body {
 }
 
 body {
-<<<<<<< HEAD
 
-  font-family: 'Cinzel', serif;
-  color: #fff;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url("/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/imagens/fundo.jpg") no-repeat center center fixed;
-  background-size: cover;
-  position: relative;
-=======
   font-family: 'Cinzel', serif;  /* Fonte temática (ex: Senhor dos Anéis) */
   color: #fff;                   /* Cor branca para o texto */
   min-height: 100vh;             /* Altura mínima igual à altura da tela */
   display: flex;                 /* Usa flexbox para centralizar conteúdo */
   justify-content: center;      /* Centraliza horizontalmente */
   align-items: center;          /* Centraliza verticalmente */
-  background: url("/O-Senhor-dos-Trabalhos-O-Retorno-do-Dev/imagens/fundoFloresta.jpg") no-repeat center center fixed;
+  background: url("../imagens/fundo.jpg") no-repeat center center fixed;
   background-size: cover;       /* Imagem de fundo cobre toda a tela */
   position: relative;           /* Necessário para o pseudo-elemento ::before */
->>>>>>> 46b5fd55baa52aa518d8f23e70a0c66e1fd89f44
+
 }
 
 /* Camada escura por cima da imagem de fundo */
@@ -55,17 +44,7 @@ body::before {
 /* Container principal do conteúdo */
 .card {
   width: 100%;
-<<<<<<< HEAD
-  max-width: 900px;
-  background: linear-gradient(170deg, rgba(47, 67, 41, 0.662), rgba(255, 255, 255, 0.021));
-  border: 1px solid rgba(202,168,59,0.12);
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(2,2,2,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  backdrop-filter: blur(2px);
-=======
+
   max-width: 900px;              /* Limite máximo de largura */
   background: linear-gradient(180deg, rgba(47, 67, 41, 0.662), rgba(255, 255, 255, 0.021)); /* Fundo em degradê transparente */
   border: 1px solid rgba(202,168,59,0.12); /* Borda dourada clara */
@@ -77,19 +56,16 @@ body::before {
   display: grid;                 /* Layout em grade */
   grid-template-columns: 1fr 420px; /* Duas colunas: conteúdo e painel lateral */
   backdrop-filter: blur(2px);   /* Efeito de desfoque (frosted glass) */
->>>>>>> 46b5fd55baa52aa518d8f23e70a0c66e1fd89f44
+
 }
 
 /* Painel lateral (lado direito da .card) */
 .painel {
   padding: 48px 36px;
-<<<<<<< HEAD
-  background: linear-gradient(170deg, rgb(58, 70, 26), rgba(16, 14, 13, 0.705));
-  border-right: 1px solid rgba(202, 169, 59, 0.384);
-=======
+
   background: linear-gradient(180deg, rgba(58, 70, 26, 0.6), rgba(16,14,13,0.5)); /* Degradê escuro */
   border-right: 1px solid rgba(202,168,59,0.04); /* Linha de separação sutil */
->>>>>>> 46b5fd55baa52aa518d8f23e70a0c66e1fd89f44
+
   display: flex;
   flex-direction: column; /* Elementos em coluna */
   gap: 18px;               /* Espaço entre os itens */
@@ -120,22 +96,13 @@ form {
   background: linear-gradient(180deg, rgba(255,250,235,0.02), rgba(255,250,235,0.01)); /* Fundo quase transparente */
 }
 
-<<<<<<< HEAD
-label { font-size: 13px; color: var(--parchment); margin-bottom: 6px }
 
-.field { display: flex; flex-direction: column; gap: 6px }
-
-input[type="text"], input[type="email"], input[type="password"] {
-  padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(202,168,59,0.09);
-  background: rgba(255, 255, 255, 0.068); color: var(--parchment); font-size: 14px;
-  outline: none; transition: box-shadow .18s, border-color .18s;
-=======
 /* Rótulos dos campos */
 label {
   font-size: 13px;
   color: var(--parchment);
   margin-bottom: 6px;
->>>>>>> 46b5fd55baa52aa518d8f23e70a0c66e1fd89f44
+
 }
 
 /* Campo agrupado com label e input */
@@ -167,11 +134,9 @@ input::placeholder {
 
 /* Estilo quando o input está em foco */
 input:focus {
-<<<<<<< HEAD
-  border-color: rgba(202, 169, 59, 0.534);
-=======
+
   border-color: rgba(202,168,59,0.35); /* Destaque dourado */
->>>>>>> 46b5fd55baa52aa518d8f23e70a0c66e1fd89f44
+
   box-shadow: 0 6px 18px rgba(42,32,8,0.12) inset;
 }
 
@@ -215,14 +180,8 @@ input:focus {
   color: #c9a635; /* Dourado */
 }
 
-<<<<<<< HEAD
-.haveAc a {
-  color: #c9a635;
-}
 
 
-=======
->>>>>>> 46b5fd55baa52aa518d8f23e70a0c66e1fd89f44
 @media (max-width:480px) {
   /* Para telas pequenas (celulares) */
 
@@ -230,7 +189,7 @@ input:focus {
     grid-template-columns: 1fr; /* Layout em uma única coluna */
   }
 
-  .panel { /* ⚠️ Erro aqui: o seletor correto seria .painel */
+  .painel { /* Corrigido: agora corresponde ao nome da classe no HTML */
     padding: 28px 28px;
   }
 

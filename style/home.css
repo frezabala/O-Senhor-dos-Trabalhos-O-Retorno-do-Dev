@@ -148,3 +148,123 @@ body::before {
 .firefly:nth-child(15) { top:55%; left:75%; animation-delay:.5s,1.7s; }
 .firefly:nth-child(16) { top:20%; left:15%; animation-delay:1.4s,.8s; }
 .firefly:nth-child(17) { top:70%; left:75%; animation-delay:1.5s,.9s; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.buttons {
+  margin-top: 50px;
+  text-align: center;
+  border-radius: 30px;
+}
+
+/* Botão Blob */
+.blob-btn {
+  position: relative;
+  padding: 35px 56px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffee00; /* cyan */
+  font-size: 16px;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: color 0.5s;
+  z-index: 1;
+}
+
+/* Borda do botão */
+.blob-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #fbff00;
+  border-radius: 30px;
+  z-index: 1;
+}
+
+/* Fundo animado do botão */
+.blob-btn::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  z-index: -2;
+  transition: all 0.3s 0.2s;
+}
+
+/* Hover */
+.blob-btn:hover {
+  color: #000000;
+}
+
+.blob-btn:hover::after {
+  left: 0;
+  top: 0;
+  transition: all 0.3s;
+  border-radius: 30px;
+}
+
+/* Inner layer */
+.blob-btn__inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background: #000000;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Container dos blobs */
+.blob-btn__blobs {
+  position: relative;
+  display: block;
+  height: 100%;
+  filter: url('#goo');
+}
+
+/* Cada blob */
+.blob-btn__blob {
+  position: absolute;
+  top: 2px;
+  width: 29%; /* 4 blobs */
+  height: 100%;
+  background: #fbff00;
+  border-radius: 100%;
+  transform: translate3d(0,150%,0) scale(2.0);
+  transition: transform 0.45s;
+}
+
+/* Posicionamento individual dos blobs */
+.blob-btn__blob:nth-child(1) { left: 0; transition-delay: 0s; }
+.blob-btn__blob:nth-child(2) { left: 30%; transition-delay: 0.08s; }
+.blob-btn__blob:nth-child(3) { left: 60%; transition-delay: 0.16s; }
+.blob-btn__blob:nth-child(4) { left: 90%; transition-delay: 0.24s; }
+
+/* Hover nos blobs */
+.blob-btn:hover .blob-btn__blob {
+  transform: translateZ(0) scale(1.4);
+}

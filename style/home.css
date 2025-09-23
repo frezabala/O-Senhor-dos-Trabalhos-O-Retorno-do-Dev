@@ -96,7 +96,7 @@ body::before {
   position: absolute;                       /* Posiciona na tela */
   top: 20px;                                /* Distância do topo */
   left: 30px;                               /* Distância da esquerda */
-  transform: rotate(-25deg);                /* Inclinação da imagem para dar estilo */
+                /* Inclinação da imagem para dar estilo */
 }
 
 

@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany} from 'typeorm'
-import { Effect } from './Effect'
+import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm'
 
 @Entity('characters')
 export class Character{
@@ -24,6 +23,6 @@ export class Character{
     @Column()
     totalHealth:number
 
-    @ManyToMany(() => Effect)
-    effects: Effect[] //Effeito que o personagem esta sobre com (fraqueza, precisão reduzida, força, cura)
+    //@ManyToMany(() => Effect)
+    //effects: Effect[] //Effeito que o personagem esta sobre com (fraqueza, precisão reduzida, força, cura)
 }

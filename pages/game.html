@@ -7,123 +7,178 @@
     <link rel="stylesheet" href="../style/game.css" />
     <title>PokerAneis</title>
   </head>
-  <body>
-    <section id="Container">
-      <div id="map">
-        <table id="table">
-          <tr>
-            <td></td>
-            <td id="show_uruk"></td>
-            <td id="show_gandalf"></td>
-            <td id="show_nazgul"></td>
-            <td id="show_aragorn"></td>
-          </tr>
-          <tr>
-            <td id="show_pot1"></td>
-            <td id="show_balrog"></td>
-            <td id="show_legolas"></td>
-            <td id="show_saruman"></td>
-            <td id="show_gimli"></td>
-          </tr>
-          <tr>
-            <td id="show_pot2"></td>
-            <td id="show_shelob"></td>
-            <td id="show_boromir"></td>
-            <td id="show_smeagol"></td>
-            <td id="show_sauron"></td>
-          </tr>
-        </table>
+<!-- ======================= INÍCIO DO BODY / INTERFACE DO JOGO ======================= -->
+<body>
+
+  <!-- Seção principal que agrupa o mapa e o painel de combate.
+       Observação: id "Container" está com C maiúsculo — por consistência e para evitar bugs, prefira ids em lowercase (ex: id="container"). -->
+  <section id="Container">
+
+    <!-- ===== MAPA DO JOGO (GRID) ===== -->
+    <div id="map">
+      <!-- Usando <table> para um layout de grades. Está ok para um mapa simples,
+           mas considere usar elementos semânticos / grid CSS se precisar de responsividade. -->
+      <table id="table">
+        <tr>
+          <td></td>                       <!-- célula vazia — pode ser ponto inicial -->
+          <td id="show_uruk"></td>        <!-- célula para exibir Uruk-hai (inimigo/evento) -->
+          <td id="show_gandalf"></td>     <!-- célula para exibir Gandalf (ou evento) -->
+          <td id="show_nazgul"></td>      <!-- célula para exibir Nazgûl -->
+          <td id="show_aragorn"></td>     <!-- célula para exibir Aragorn -->
+        </tr>
+        <tr>
+          <td id="show_pot1"></td>        <!-- posição para potion/item 1 -->
+          <td id="show_balrog"></td>      <!-- posição para Balrog -->
+          <td id="show_legolas"></td>     <!-- posição para Legolas -->
+          <td id="show_saruman"></td>     <!-- posição para Saruman -->
+          <td id="show_gimli"></td>       <!-- posição para Gimli -->
+        </tr>
+        <tr>
+          <td id="show_pot2"></td>        <!-- posição para potion/item 2 -->
+          <td id="show_shelob"></td>      <!-- posição para Shelob -->
+          <td id="show_boromir"></td>     <!-- posição para Boromir -->
+          <td id="show_smeagol"></td>     <!-- posição para Smeagol -->
+          <td id="show_sauron"></td>      <!-- posição para Sauron -->
+        </tr>
+      </table>
+    </div>
+
+    <!-- ===== PAINEL DE COMBATE ===== -->
+    <div id="combat">
+
+      <!-- Área onde aparece a representação do personagem em combate.
+           A classe (ex: "combat_sam") provavelmente define o sprite/fundo via CSS. -->
+      <div id="character_combat" class="combat_sam"></div>
+
+      <!-- Painel de status do personagem (nome, nível, vida) -->
+      <div id="character_status" class="status">
+        <div class="info">
+          <!-- Nome visível do personagem — atualizável via JS -->
+          <div id="character_name" class="name">sam</div>
+          <!-- Nível do personagem — atualizável via JS -->
+          <div id="character_level" class="level">LVL 1</div>
+        </div>
+        <!-- Exibe vida atual / vida máxima. Mantém formato "cur / max" para fácil parsing em JS -->
+        <div id="character_health" class="health sam_health">10 / 10</div>
       </div>
-      <div id="combat">
-        <div id="character_combat" class="combat_sam"></div>
-        <div id="character_status" class="status">
-          <div class="info">
-            <div id="character_name" class="name">sam</div>
-            <div id="character_level" class="level">LVL 1</div>
-          </div>
-          <div id="character_health" class="health sam_health">10 / 10</div>
+
+      <!-- Área onde aparece a representação do inimigo -->
+      <div id="enemy_combat" class="combat_uruk"></div>
+
+      <!-- Painel de status do inimigo (nome, nível, vida) -->
+      <div id="enemy_status" class="status">
+        <div class="info">
+          <div id="enemy_name" class="name">Uruk-hai</div>
+          <div id="enemy_level" class="level">LVL 1</div>
         </div>
-        <div id="enemy_combat" class="combat_uruk"></div>
-        <div id="enemy_status" class="status">
-          <div class="info">
-            <div id="enemy_name" class="name">Uruk-hai</div>
-            <div id="enemy_level" class="level">LVL 1</div>
-          </div>
-          <div id="enemy_health" class="health">10 / 10</div>
-        </div>
-        <div id="combat_log">
-          <pre id="line1">a</pre>
-          <pre id="line2">b</pre>
-          <pre id="line3">c</pre>
-          <pre id="line4">d</pre>
-          <pre id="line5">e</pre>
-          <pre id="line6">f</pre>
-          <pre id="line7">g</pre>
-        </div>
-        <div id="combat_choises">
-          <button id="fight">FIGHT</button>
-          <button id="bag">POTION</button>
-          <button id="member">MEMBER</button>
-          <button id="run">RUN</button>
-        </div>
+        <div id="enemy_health" class="health">10 / 10</div>
+      </div>
+
+      <!-- LOG DO COMBATE
+           Usou <pre> para preservar espaçamento/linha — ideal para linha-a-linha do log.
+           Recomendo controlar via JS adicionando/removendo linhas dinamicamente. -->
+      <div id="combat_log">
+        <pre id="line1">.</pre>
+        <pre id="line2">.</pre>
+        <pre id="line3">.</pre>
+        <pre id="line4">.</pre>
+        <pre id="line5">.</pre>
+        <pre id="line6">.</pre>
+        <pre id="line7">.</pre>
+      </div>
+
+      <!-- BOTÕES DE AÇÃO DO COMBATE -->
+      <div id="combat_choises">
+        <!-- Cada botão precisa de event listeners em JS; evite IDs duplicados. -->
+        <button id="fight">FIGHT</button>   <!-- ação: atacar -->
+        <button id="bag">POTION</button>    <!-- ação: usar item/poção -->
+        <button id="member">MEMBER</button>  <!-- ação: trocar membro / abrir menu membros -->
+        <button id="run">RUN</button>       <!-- ação: tentar fugir -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LADO ESQUERDO: PERSONAGENS / AVATAR ===== -->
+  <div id="left_side">
+
+    <!-- Avatar do jogador (ex: Frodo). Mantive <section> para organização visual. -->
+    <section>
+      <div>
+        <img src="../imagens/frodo.png" alt="Frodo" />
       </div>
     </section>
-    <div id="left_side">
-      <section>
-        <div>
-          <img src="../imagens/frodo.png" alt="Frodo" />
-        </div>
-      </section>
-      <section id="characters">
-        <div title="Samwise Gangee" id="sam" class="active character">
-          <img src="../imagens/samwise.png" alt="Sam" />
-          <div id="sam_health" class="health sam_health">5/5</div>
-          <p class="description"></p>
-        </div>
-        <div title="Aragorn" id="aragorn" class="character">
-          <img src="../imagens/aragorn.png" alt="Aragorn" />
-          <div id="aragorn_health" class="health aragorn_health">9/10</div>
-          <p class="description"></p>
-        </div>
-        <div title="Legolas" id="legolas" class="character">
-          <img src="../imagens/legolas.png" alt="Legolas" />
-          <div id="legolas_health" class="health legolas_health">10/10</div>
-          <p class="description"></p>
-        </div>
-        <div title="Gimli" id="gimli" class="character">
-          <img src="../imagens/gimli.png" alt="Gimli" />
-          <div id="gimli_health" class="health gimli_health">10/10</div>
-          <p class="description"></p>
-        </div>
-        <div title="Boromir" id="boromir" class="character">
-          <img src="../imagens/boromir.png" alt="Boromir" />
-          <div id="boromir_health" class="health boromir_health">10/10</div>
-          <p class="description"></p>
-        </div>
-        <div title="Gandalf The Grey" id="gandalf" class="character">
-          <img src="../imagens/gandalf.png" alt="Gandalf" />
-          <div id="gandalf_health" class="health gandalf_health">10/10</div>
-          <p class="description"></p>
-        </div>
-      </section>
-    </div>
-    <div>
-      <div id="right_side">
-        <p>seus items</p>
-        <div id="potion">
-          <img
-            title="cura o personagem"
-            src="../imagens/lembas.png"
-            alt=""
-            width="100%"
-          />
-          <p>
-            Lambas <br />
-            <span id="potion_number">1</span>
-          </p>
-        </div>
+
+    <!-- Lista de personagens do grupo.
+         Cada personagem é um bloco com imagem, vida e descrição.
+         Observação: o id "sam" aparece apenas aqui; garanta que não haja ids duplicados em outras partes. -->
+    <section id="characters">
+
+      <!-- Ex.: Sam — tem class "active" indicando selecionado -->
+      <div title="Samwise Gangee" id="sam" class="active character">
+        <img src="../imagens/samwise.png" alt="Sam" />
+        <div id="sam_health" class="health sam_health">5/5</div>
+        <p class="description"></p> <!-- descrição opcional, preencha dinamicamente se quiser -->
+      </div>
+
+      <!-- Aragorn -->
+      <div title="Aragorn" id="aragorn" class="character">
+        <img src="../imagens/aragorn.png" alt="Aragorn" />
+        <div id="aragorn_health" class="health aragorn_health">9/10</div>
+        <p class="description"></p>
+      </div>
+
+      <!-- Legolas -->
+      <div title="Legolas" id="legolas" class="character">
+        <img src="../imagens/legolas.png" alt="Legolas" />
+        <div id="legolas_health" class="health legolas_health">10/10</div>
+        <p class="description"></p>
+      </div>
+
+      <!-- Gimli -->
+      <div title="Gimli" id="gimli" class="character">
+        <img src="../imagens/gimli.png" alt="Gimli" />
+        <div id="gimli_health" class="health gimli_health">10/10</div>
+        <p class="description"></p>
+      </div>
+
+      <!-- Boromir -->
+      <div title="Boromir" id="boromir" class="character">
+        <img src="../imagens/boromir.png" alt="Boromir" />
+        <div id="boromir_health" class="health boromir_health">10/10</div>
+        <p class="description"></p>
+      </div>
+
+      <!-- Gandalf -->
+      <div title="Gandalf The Grey" id="gandalf" class="character">
+        <img src="../imagens/gandalf.png" alt="Gandalf" />
+        <div id="gandalf_health" class="health gandalf_health">10/10</div>
+        <p class="description"></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== LADO DIREITO: INVENTÁRIO / ITENS ===== -->
+  <div>
+    <div id="right_side">
+      <p>seus items</p>
+      <div id="potion">
+        <!-- Imagem do item; use alt descritivo para acessibilidade -->
+        <img
+          title="cura o personagem"
+          src="../imagens/lembas.png"
+          alt="Lembas, poção de cura"
+          width="100%"
+        />
+        <p>
+          Lambas <br />
+          <!-- span com quantidade: atualize via JS -->
+          <span id="potion_number">1</span>
+        </p>
       </div>
     </div>
-  </body>
+  </div>
+
+</body>
+
   <script src="../script/game.js"></script>
 </html>

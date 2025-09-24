@@ -26,16 +26,20 @@ async function fetchUserProfile() {
 }
 //pega status de personagens do banco
 async function getCharacters() {
-  const characters = await fetch("http://localhost:3000/chars/all", {});
-  characters.forEach((character, index) => {
+  try{
+    const characters = await fetch("http://localhost:3000/chars/all", {});
+    await characters.json().forEach((character, index) => {
     charList[index].baseDamage = character.baseDamage;
     charList[index].defense = character.defense;
     charList[index].health = character.health;
     charList[index].level = character.level;
     charList[index].magicRes = character.magicRes;
     charList[index].totalHealth = character.totalHealth;
-    charList[index].name = character.name;
-  });
+    charList[index].name = character.name;});
+  }catch(e){
+    alert("deu merda" +e)
+  }
+  
 }
 
 window.addEventListener("DOMContentLoaded", fetchUserProfile);
@@ -907,3 +911,4 @@ let save = {
   tileY: pos[1],
   won: won,
 };
+getCharacters()

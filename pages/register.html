@@ -32,7 +32,7 @@
 
     <!-- Formulário de cadastro -->
     <!-- onsubmit="event.preventDefault(); ..." impede envio real e mostra um alerta de boas-vindas -->
-    <form id="formCadastro"  onsubmit="event.preventDefault(); alert('Conta criada — seja bem-vindo!');">
+    <form id="formCadastro">
       
       <!-- Campo de nome -->
       <!-- style="position:relative" para poder posicionar ícones ou labels internamente, se precisar -->
@@ -73,8 +73,10 @@
         </p>
       </div>
     </form>
+    <p id="mensagem"></p>
   </div>
 </main>
+</body>
 
-<script src="../script/index.js"></script>
+<script src="../script/register.js"></script>
 </html>

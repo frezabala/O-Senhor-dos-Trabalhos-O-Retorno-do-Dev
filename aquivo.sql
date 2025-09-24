@@ -1,0 +1,2 @@
+insert into characters (name,baseDamage,defense,health,totalHealth) VALUES 
+('Sam',5,5,100,100),('aragorn',15,20,200,200),('legolas',20,10,200,200),('gimli',17,15,200,200),('boromir',20,9,200,200),('gandalf',1,200,200,200),('uruk',5,4,100,100),('nazgul',10,13,150,150),('balrog',30,300,1000,1000),('saruman',13,5,200,200),('shelob',20,10,250,250),('smeagol',10,12,200,200),('sauron',17,20,300,300)

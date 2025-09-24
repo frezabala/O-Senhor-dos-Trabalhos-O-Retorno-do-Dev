@@ -29,13 +29,13 @@
 
     <!-- Formulário de login -->
     <!-- onsubmit impede envio real e mostra um alerta (útil para teste) -->
-    <form onsubmit="event.preventDefault(); alert('Conta acessada com sucesso!');">
+    <form id="login">
       
       <!-- Campo de nome/usuário -->
       <div style="position:relative">
-        <label for="name">Nome</label>
+        <label for="email">Email</label>
         <div class="field">
-          <input id="name" name="name" type="text" placeholder="" required>
+          <input id="email" name="email" type="em" placeholder="" required>
         </div>
       </div>
 
@@ -54,6 +54,7 @@
 
       <!-- Link para criar conta, caso o usuário não tenha -->
       <div class="haveAc2">
+        <p id="mensagem"></p>
         <p class="switch">
           Não tem uma conta?
           <!-- Link para a página de registro -->
@@ -66,18 +67,8 @@
 
 
 </body>
-<script>
-    window.onload = function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('alert') === 'true') {
-            alert('Você não está logado!');
-        }
-    };
-    document.getElementById('btn').addEventListener('click', function() {
-    // Redireciona para a página do jogo
-    window.location.href = 'home.html';
-});
-</script>
+<script src="../script/login.js"></script>
+
 
 
 </html>

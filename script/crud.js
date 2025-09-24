@@ -5,7 +5,7 @@ async function carregarPerfil() {
 
     // Se o token não existir, o usuário não está autenticado
     if (!token) {
-        document.getElementById("mensagem").textContent = "Usuário não autenticado!";
+        document.getElementById("mensagem").innerText = "Usuário não autenticado!";
         document.getElementById("mensagem").style.color = "red";
         return; // Encerra a função
     }
@@ -16,50 +16,51 @@ async function carregarPerfil() {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + token // Envia o token de autenticação
+                "Authorization": token // Envia o token de autenticação
             }
         });
 
         // Se a resposta não for bem-sucedida, lança um erro
         if (!resposta.ok) {
-            const erro = await resposta.text();
+            const erro = resposta.message;
             throw new Error(erro);
         }
 
         // Converte a resposta em JSON
-        const user = await resposta.json();
+        const user = resposta.json();
 
         // Preenche os campos do formulário com os dados retornados da API
-        document.getElementById("Nome").value = user.name || "";
-        document.getElementById("Email").value = user.email || "";
+        document.getElementById("Nome").value;
+        document.getElementById("Email").value ;
 
     } catch (erro) {
         // Caso ocorra algum erro na requisição, exibe no console e na tela
         console.error("Erro:", erro);
-        document.getElementById("mensagem").textContent = "Erro ao carregar perfil: " + erro.message;
+        document.getElementById("mensagem").innerText = "Erro ao carregar perfil: " + erro.message;
         document.getElementById("mensagem").style.color = "red";
     }
 
     // EVENTO: Clique no botão "Deletar"
-    document.getElementById("btnDeletar").addEventListener("click", async () => {
+    document.getElementById("btnDeletar").addEventListener("click", async (event) => {
+        event.preventDefault();
         try {
             // Faz uma requisição DELETE para remover o usuário logado
             const resposta = await fetch("http://localhost:3000/users/me", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer " + token // Envia o token de autenticação
+                    "Authorization": token // Envia o token de autenticação
                 }
             });
 
             // Verifica se a resposta foi bem-sucedida
             if (!resposta.ok) {
-                const erro = await resposta.text();
+                const erro = await resposta.message;
                 throw new Error(erro);
             }
 
             // Se o usuário for deletado com sucesso
-            document.getElementById("mensagem").textContent = "Usuário deletado!";
+            document.getElementById("mensagem").innerText = "Usuário deletado!";
             document.getElementById("mensagem").style.color = "green";
 
             // Redireciona o usuário para a página de login
@@ -68,13 +69,14 @@ async function carregarPerfil() {
         } catch (erro) {
             // Caso ocorra erro ao deletar o usuário
             console.error("Erro:", erro);
-            document.getElementById("mensagem").textContent = "Erro ao deletar usuário: " + erro.message;
+            document.getElementById("mensagem").innerText = "Erro ao deletar usuário: " + erro.message;
             document.getElementById("mensagem").style.color = "red";
         }
     });
 
     // EVENTO: Clique no botão "Atualizar"
-   document.getElementById("btnAtualizar").addEventListener("click", async () => {
+   document.getElementById("userUpdate").addEventListener("submit", async (event) => {
+    event.preventDefault();
         // Pega os valores dos campos do formulário
         const name = document.getElementById("Nome").value.trim();
         const email = document.getElementById("Email").value.trim();
@@ -88,7 +90,7 @@ async function carregarPerfil() {
 
         // Verifica se ao menos um campo foi preenchido
         if (!dadosParaAtualizar.name && !dadosParaAtualizar.email && !dadosParaAtualizar.password) {
-            document.getElementById("mensagem").textContent = "Nenhum campo para atualizar!";
+            document.getElementById("mensagem").innerText = "Nenhum campo para atualizar!";
             document.getElementById("mensagem").style.color = "red";
             return; // Encerra a função
         }
@@ -99,26 +101,26 @@ async function carregarPerfil() {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer " + token // Envia o token de autenticação
+                    "Authorization": token // Envia o token de autenticação
                 },
                 body: JSON.stringify(dadosParaAtualizar) // Envia os dados no corpo da requisição
             });
 
             // Verifica se a resposta foi bem-sucedida
             if (!resposta.ok) {
-                const erro = await resposta.text();
-                throw new Error(erro);
+                const erro = resposta.message;
                 alert(erro)
+                throw new Error(erro);                
             }
 
             // Exibe mensagem de sucesso
-            document.getElementById("mensagem").textContent = "Dados atualizados com sucesso!";
+            document.getElementById("mensagem").innerText = "Dados atualizados com sucesso!";
             document.getElementById("mensagem").style.color = "green";
 
         } catch (erro) {
             // Caso ocorra erro ao atualizar os dados
             console.error("Erro:", erro);
-            document.getElementById("mensagem").textContent = "Erro ao atualizar dados: " + erro.message;
+            document.getElementById("mensagem").innerText = "Erro ao atualizar dados: " + erro.message;
             document.getElementById("mensagem").style.color = "red";
         }
     });

@@ -34,10 +34,10 @@
   <!-- Camada que aparece sobre a tela (tipo modal/pop-up) -->
   <div class="layer">
     
-    <!-- Ícone de fechar (X) usando Font Awesome -->
-    <i id="remove" class="fa fa-remove" aria-hidden="true"></i>
+
     
-    <!-- =================== FORMULÁRIO =================== -->
+    <form id="userUpdate">
+      <!-- =================== FORMULÁRIO =================== -->
     <!-- Label e input para o nome do usuário -->
     <label for="Nome">Nome</label>
     <input type="text" id="Nome" name="Nome" >
@@ -48,18 +48,20 @@
     
     <!-- Label e input para a senha do usuário -->
     <label for="Senha">Senha</label>
-    <input type="password" id="Senha" name="Senha" >
+    <input type="password" id="Senha" name="Senha" autocomplete="aaaaaaaaaa" >
     
     <!-- Botões para ações sobre a conta -->
  
-    <button id="btnAtualizar">Editar</button>     <!-- Edita os dados preenchidos -->
+    <button id="btnAtualizar" type="submit">Editar</button>     <!-- Edita os dados preenchidos -->
     <button id="btnDeletar">Excluir</button> <!-- Exclui a conta do usuário -->
     
 
-
+    <p id="mensagem"></p>
     
   </div> <!-- Fim da camada "layer" -->
 </div> <!-- Fim do container principal "toplayer" -->
+    </form>
+    
 
 
 
@@ -148,5 +150,8 @@ SVG significa Scalable Vector Graphics (Gráficos Vetoriais Escaláveis). É um 
 <div class="firefly"></div>
 <div class="firefly"></div>
 
-</html>
+</body>
 <script src="../script/btn.js"></script>
+<script src="../script/crud.js"></script>
+</html>
+

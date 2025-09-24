@@ -1,6 +1,6 @@
 async function fetchUserProfile() {
   const token = localStorage.getItem("token");
-  if (token) {
+  if (!token) {
     window.location.href = "login.html?alert=true";
     return;
   } else {

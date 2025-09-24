@@ -9,8 +9,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "strictPropertyInitialization": false,
-    "ignoreDeprecations": "6.0"
+    "strictPropertyInitialization": false
   },
   "include": ["src", "../script/register.js", "../script/login.js"],
   "exclude": ["node_modules"]

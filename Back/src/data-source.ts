@@ -3,9 +3,6 @@ import { DataSource } from 'typeorm'
 import { config } from 'dotenv'
 import { User } from './entities/User'
 import { Character } from './entities/Character'
-import { Tile } from './entities/Tile'
-import { Item } from './entities/Item'
-import { Effect } from './entities/Effect'
 import { Save } from './entities/Save'
 
 config()
@@ -17,6 +14,6 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [User,Effect,Character,Tile, Save,Item],
+  entities: [User,Character, Save],
   synchronize: true, // Temporario TESTE
 }) 

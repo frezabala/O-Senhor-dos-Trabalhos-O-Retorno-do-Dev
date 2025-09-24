@@ -4,6 +4,6 @@ export class AddItemDTO{
     @IsNotEmpty({message: "SaveId cannot be null"})
     id:number;
 
-    @IsNotEmpty({message: "ItemId cannot be null"})
-    itemId:number
+    @IsNotEmpty({message: "ItemNum cannot be null"})
+    itemNum:number
 }

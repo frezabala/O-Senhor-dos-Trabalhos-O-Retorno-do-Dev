@@ -1,6 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany, OneToOne} from 'typeorm'
-import { Tile } from './Tile'
-import { Item } from './Item'
 import { User } from './User'
 
 @Entity('saves')
@@ -30,10 +28,10 @@ export class Save{
     hasGimb:boolean
 
     @Column({nullable: true})
-    gimbHealth:number
+    gimlHealth:number
 
     @Column({nullable: true})
-    gimbLevel:number
+    gimlLevel:number
     //legol 4
     @Column({nullable: true})   
     hasLego:boolean
@@ -62,11 +60,14 @@ export class Save{
     @Column({nullable: true})
     gandalLevel:number
 
-    @ManyToMany(() => Tile)
-    tilesPassed: Tile[]
+    @Column()
+    tileslocalx: number
 
-    @ManyToMany(() => Item)
-    items:Item[]
+    @Column()
+    tilesLocaly:number
+
+    @Column()
+    items:number
 
     @Column()
     won:boolean

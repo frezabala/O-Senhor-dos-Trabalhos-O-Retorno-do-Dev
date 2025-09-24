@@ -4,8 +4,6 @@ import userRoutes from './user.routes'
 import characterRoutes from './character.routes'
 import saveRoutes from './save.routes'
 import effectRoutes from './effect.routes'
-import itemRoutes from './item.routes'
-import tilesRoutes from './tiles.routes'
 
 const router = Router()
 
@@ -14,7 +12,5 @@ router.use('/users', userRoutes)
 router.use('/saves', saveRoutes)
 router.use('/chars', characterRoutes)
 router.use('/effects', effectRoutes)
-router.use('/items', itemRoutes)
-router.use("/tiles",tilesRoutes)
 
 export default router

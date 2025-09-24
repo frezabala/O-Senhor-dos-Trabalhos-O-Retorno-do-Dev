@@ -30,8 +30,8 @@ async function carregarPerfil() {
         const user = await resposta.json();
 
         // Preenche os campos do formulário com os dados retornados da API
-        document.getElementById("nome").value = user.name || "";
-        document.getElementById("email").value = user.email || "";
+        document.getElementById("Nome").value = user.name || "";
+        document.getElementById("Email").value = user.email || "";
 
     } catch (erro) {
         // Caso ocorra algum erro na requisição, exibe no console e na tela
@@ -41,10 +41,10 @@ async function carregarPerfil() {
     }
 
     // EVENTO: Clique no botão "Deletar"
-    btnDeletar.addEventListener("click", async () => {
+    document.getElementById("btnDeletar").addEventListener("click", async () => {
         try {
             // Faz uma requisição DELETE para remover o usuário logado
-            const resposta = await fetch("http://localhost:3000/saves/me", {
+            const resposta = await fetch("http://localhost:3000/users/me", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -74,11 +74,11 @@ async function carregarPerfil() {
     });
 
     // EVENTO: Clique no botão "Atualizar"
-    btnAtualizar.addEventListener("click", async () => {
+   document.getElementById("btnAtualizar").addEventListener("click", async () => {
         // Pega os valores dos campos do formulário
-        const name = document.getElementById("nome").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("senha").value;
+        const name = document.getElementById("Nome").value.trim();
+        const email = document.getElementById("Email").value.trim();
+        const password = document.getElementById("Senha").value;
 
         // Cria objeto com os dados que serão atualizados (apenas os preenchidos)
         const dadosParaAtualizar = {};
@@ -95,7 +95,7 @@ async function carregarPerfil() {
 
         try {
             // Faz uma requisição PUT para atualizar os dados do usuário
-            const resposta = await fetch("http://localhost:3000/saves/me", {
+            const resposta = await fetch("http://localhost:3000/users/me", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -108,6 +108,7 @@ async function carregarPerfil() {
             if (!resposta.ok) {
                 const erro = await resposta.text();
                 throw new Error(erro);
+                alert(erro)
             }
 
             // Exibe mensagem de sucesso

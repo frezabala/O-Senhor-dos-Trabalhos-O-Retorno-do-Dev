@@ -354,7 +354,7 @@ button#hi {
 }
 
 /* ======================= BOTOES DA LAYER ======================= */
-.layer input[type="button"] {
+.layer button {
   background: #fbff00;         /* Amarelo */
   color: #000000;              /* Texto preto */
   border: none;                /* Sem borda */
@@ -367,8 +367,8 @@ button#hi {
 }
 
 /* ======================= HOVER BOTOES ======================= */
-.layer input[type="button"]:hover {
-  background: #e5ff00;         /* Amarelo mais claro ao passar o mouse */
+.layer button:hover {
+  background: #b3c703;         /* Amarelo mais claro ao passar o mouse */
 }
 
 /* ======================= ÍCONES GERAIS ======================= */
@@ -410,3 +410,5 @@ a {
 .clicked a {
   opacity: 1;                  /* Faz textos e links ficarem visíveis ao abrir a layer */
 }
+
+

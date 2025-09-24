@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="../imagens/Icon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Uncial+Antiqua&display=swap"
     
+    
         rel="stylesheet">
     <link rel="stylesheet" href="../style/login.css">
 </head>
@@ -48,7 +49,7 @@
 
       <!-- Botão de ação para entrar -->
       <div class="action-btn">
-        <button class="btn1">ENTRAR</button>
+        <button id="btn" class="btn1">ENTRAR</button>
       </div>
 
       <!-- Link para criar conta, caso o usuário não tenha -->
@@ -72,6 +73,11 @@
             alert('Você não está logado!');
         }
     };
+    document.getElementById('btn').addEventListener('click', function() {
+    // Redireciona para a página do jogo
+    window.location.href = 'game.html';
+});
 </script>
+
 
 </html>

@@ -1,17 +1,13 @@
 import { AppDataSource } from '../data-source'
 import { Save } from '../entities/Save'
 import { CharacterService } from './CharacterService'
-import { ItemService } from './ItemService'
 import { UserService } from './UserService'
-import { TileService } from './TileService'
 
 export class SaveService{
     //pega os outros services pra reaproveitar codigo n ter q ficar tirando senha de usuario ou ifs de verificação para ver se existe ou n
     private charser = new CharacterService()
     private repo = AppDataSource.getRepository(Save)
     private userser = new UserService()
-    private tileser = new TileService()
-    private itemser = new ItemService()
 
     async create(userId:number,name:string){
         const won:boolean =false //como default no inicio a variavel won é sempre falso
@@ -58,8 +54,8 @@ export class SaveService{
         }else
         if(charId === 3){
             save.hasGimb = true
-            save.gimbLevel = 1
-            save.gimbHealth = (await this.charser.getbyid(3)).health
+            save.gimlLevel = 1
+            save.gimlHealth = (await this.charser.getbyid(3)).health
         }else
         if(charId === 4){
             save.hasLego = true
@@ -81,28 +77,24 @@ export class SaveService{
         return await this.repo.save(save)
     }   
     //função para adicionar item
-    async addItem(idUser:number,itemId:number){
+    async addItem(idUser:number,itemNum:number){
         const user:any = await this.userser.findbyId(idUser)
         const save = await this.repo.findOne({where:{user:user}})
         if(!save){
             throw new Error("Save not found")
         }
-        const item = await this.itemser.getbyId(itemId)//busca item
-        if(!item){ //ts reclama se n tiver esse if mas n vai cair nele pois no service de item ja tem uma verificação se ele existe
-            throw new Error("Item not found")
-        }
-        save.items.push(item)
+        save.items = itemNum
         return await this.repo.save(save)
     }
     //função adicionar tiles (quadrados) que foram passadas
-    async tilesPassed(tileId:number,idUser:number){
+    async tilesPassed(tileX:number, tileY:number,idUser:number){
         const user = await this.userser.findbyId(idUser)
         const save = await this.repo.findOne({where:{user:user}})
         if(!save){
             throw new Error("Save not found")
         }
-        const tile = await this.tileser.getbyId(tileId) //encontra tile salva no banco
-        save.tilesPassed.push(tile) //adiciona no array de tiles do save
+        save.tileslocalx = tileX
+        save.tilesLocaly = tileY
         return await this.repo.save(save)
     }
     async won(idUser:number){

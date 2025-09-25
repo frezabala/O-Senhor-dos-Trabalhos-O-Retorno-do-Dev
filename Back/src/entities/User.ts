@@ -16,10 +16,6 @@ export class User{
     @Column()
     password: string
     
-    @OneToOne(() => Save)
-    @JoinColumn()
-    save: Save
-
     @BeforeInsert()
     @BeforeUpdate()
     async hashPassword(){

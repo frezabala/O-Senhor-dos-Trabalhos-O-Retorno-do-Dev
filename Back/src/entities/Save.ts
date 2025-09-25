@@ -17,13 +17,13 @@ export class Save{
     hasAra:boolean
 
     @Column({nullable: true,default:0})
-    araHeath:number
+    araHealth:number
 
     @Column({nullable: true,default:0})
     araLevel:number
     //gimb 3
     @Column({nullable: true,default:false})
-    hasGimb:boolean
+    hasGiml:boolean
 
     @Column({nullable: true,default:0})
     gimlHealth:number
@@ -59,10 +59,10 @@ export class Save{
     gandalLevel:number
 
     @Column({nullable: true,default:0})
-    tileslocalx: number
+    tilesLocalX: number
 
     @Column({nullable: true,default:0})
-    tilesLocaly:number
+    tilesLocalY:number
 
     @Column({nullable: true,default:0})
     items:number

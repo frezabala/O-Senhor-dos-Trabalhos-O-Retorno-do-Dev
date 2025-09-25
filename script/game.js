@@ -41,24 +41,26 @@ async function getCharacters() {
     loadCharacters();
   } catch (e) {
     console.error(e);
-    alert("Erro:" + e);
+    alert("Error:" + e);
   }
 }
 
 async function getSave() {
   try {
     let token = localStorage.getItem("token");
-    const save = await fetch("http://localhost:3000/saves/me", {
+    let saveJson = await fetch("http://localhost:3000/saves/me", {
       headers: {
         "Content-Type": "application/json",
         Authorization: token,
       },
     });
+    let save = await saveJson.json();
 
-    if (!save.ok) {
+    if (save == null) {
       getCharacters();
+      console.log("não foi " + save);
 
-      await fetch("http://localhost:3000/save/me", {
+      await fetch("http://localhost:3000/saves/me", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +68,7 @@ async function getSave() {
         },
       });
     } else {
-      save = save.json();
+      console.log("foi" + save);
 
       sam.health = save.mainHealth;
       sam.level = save.mainLevel;
@@ -85,21 +87,20 @@ async function getSave() {
       hasGandal = save.hasGandal || false;
       gandalf.health = save.gandalHealth;
       gandalf.level = save.gandalLevel;
-      pos = [save.tileLocalX || 0, save.tileLocalY || 0];
+      pos = [save.tilesLocalX || 0, save.tilesLocalY || 0];
       potions = save.items || 1;
       won = save.won || false;
 
       potion_number.innerHTML = potions;
+      loadCharacters();
       removeFromMap();
       placeOnMap();
-      loadCharacters();
     }
   } catch (e) {
     console.error(e);
+    alert("Error:" + e);
   }
 }
-
-window.addEventListener("DOMContentLoaded", fetchUserProfile);
 
 const aragorn_health = document.getElementById("aragorn_health");
 const sam_health = document.getElementById("sam_health");
@@ -306,143 +307,65 @@ let positions = [
       enemy_image("combat_uruk");
     },
     async () => {
-      try {
-        await fetch("http://localhost:3000/save/me/char", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          },
-          body: JSON.stringify({ charId: 6 }),
-        });
+      SendSave();
 
-        document.getElementById("gandalf").classList.add("active");
-        hasGandal = true;
-      } catch (e) {
-        alert(e);
-      }
+      document.getElementById("gandalf").classList.add("active");
+      hasGandal = true;
     },
     () => {
       start_combat(nazgul);
       enemy_image("combat_nazgul");
     },
     async () => {
-      try {
-        await fetch("http://localhost:3000/save/me/char", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          },
-          body: JSON.stringify({ charId: 2 }),
-        });
-
-        document.getElementById("aragorn").classList.add("active");
-        hasAra = true;
-      } catch (e) {
-        alert(e);
-      }
+      SendSave();
+      document.getElementById("aragorn").classList.add("active");
+      hasAra = true;
     },
   ],
   [
     async () => {
-      try {
-        await fetch("http://localhost:3000/save/me/item", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          },
-          body: JSON.stringify({ potions: potions }),
-        });
+      SendSave();
 
-        potions++;
-        potion_number.innerHTML = potions;
-      } catch (e) {
-        alert(e);
-      }
+      potions++;
+      potion_number.innerHTML = potions;
     },
     () => {
       start_combat(balrog);
       enemy_image("combat_balrog");
     },
     async () => {
-      try {
-        await fetch("http://localhost:3000/save/me/char", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          },
-          body: JSON.stringify({ charId: 3 }),
-        });
+      SendSave();
 
-        document.getElementById("legolas").classList.add("active");
-        hasLego = true;
-      } catch (e) {
-        alert(e);
-      }
+      document.getElementById("legolas").classList.add("active");
+      hasLego = true;
     },
     () => {
       start_combat(saruman);
       enemy_image("combat_saruman");
     },
     async () => {
-      try {
-        await fetch("http://localhost:3000/save/me/char", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          },
-          body: JSON.stringify({ charId: 4 }),
-        });
+      SendSave();
 
-        document.getElementById("gimli").classList.add("active");
-        hasGiml = true;
-      } catch (e) {
-        alert(e);
-      }
+      document.getElementById("gimli").classList.add("active");
+      hasGiml = true;
     },
   ],
   [
     async () => {
-      try {
-        await fetch("http://localhost:3000/save/me/item", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          },
-          body: JSON.stringify({ potions: potions }),
-        });
+      SendSave();
 
-        potions++;
-        potion_number.innerHTML = potions;
-      } catch (e) {
-        alert(e);
-      }
+      potions++;
+      potion_number.innerHTML = potions;
     },
     () => {
       start_combat(shelob);
       enemy_image("combat_shelob");
     },
     async () => {
-      try {
-        await fetch("http://localhost:3000/save/me/char", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          },
-          body: JSON.stringify({ charId: 5 }),
-        });
+      SendSave();
 
-        document.getElementById("boromir").classList.add("active");
-        hasBoro = true;
-      } catch (e) {
-        alert(e);
-      }
+      document.getElementById("boromir").classList.add("active");
+      hasBoro = true;
     },
     () => {
       start_combat(smeagol);
@@ -1052,17 +975,17 @@ function createSave() {
     legoHealth: legolas.health,
     legoLevel: legolas.level,
     hasGiml: hasGiml,
-    gimliHealth: gimli.health,
-    gimliLevel: gimli.level,
+    gimlHealth: gimli.health,
+    gimlLevel: gimli.level,
     hasBoro: hasBoro,
     boroHealth: boromir.health,
     boroLevel: boromir.level,
     hasGandal: hasGandal,
     gandalHealth: gandalf.health,
     gandalLevel: gandalf.level,
-    potions: potions,
-    tileX: pos[0],
-    tileY: pos[1],
+    items: potions,
+    tilesLocalX: pos[0],
+    tilesLocalY: pos[1],
     won: won,
   };
   return save;
@@ -1167,3 +1090,5 @@ window.addEventListener("keydown", (key) => {
 potion_number.innerHTML = potions;
 placeOnMap();
 getCharacters();
+
+fetchUserProfile();

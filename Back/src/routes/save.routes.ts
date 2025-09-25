@@ -14,7 +14,7 @@ router.post('/me', authMiddleware,control.create.bind(control))
 router.put('/me', authMiddleware,validateDTO(UpdateSaveDTO),control.update.bind(control))
 router.delete('/me', authMiddleware,control.remove.bind(control))
 router.patch('/me',authMiddleware,control.saveWon.bind(control))
-router.patch('/me/char',authMiddleware, validateDTO(AddCharDTO),control.addChar.bind(control))
+router.patch('/me/char',authMiddleware,control.addChar.bind(control))
 router.patch('/me/item',authMiddleware,validateDTO(AddItemDTO),control.addItem.bind(control))
 
 export default router

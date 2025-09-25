@@ -49,10 +49,10 @@ export class SaveService{
         if(charId === 2){
             save.hasAra = true
             save.araLevel = 1
-            save.araHeath = (await this.charser.getbyid(2)).health
+            save.araHealth = (await this.charser.getbyid(2)).health
         }else
         if(charId === 4){
-            save.hasGimb = true
+            save.hasGiml = true
             save.gimlLevel = 1
             save.gimlHealth = (await this.charser.getbyid(3)).health
         }else
@@ -92,8 +92,8 @@ export class SaveService{
         if(!save){
             throw new Error("Save not found")
         }
-        save.tileslocalx = tileX
-        save.tilesLocaly = tileY
+        save.tilesLocalX = tileX
+        save.tilesLocalY = tileY
         return await this.repo.save(save)
     }
     async won(idUser:number){

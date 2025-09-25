@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import { SaveController } from '../controllers/SaveController'  
 import { validateDTO } from '../middlewares/validateDTO'
-import { CreateSaveDTO } from '../dtos/CreateSaveDTO'
 import { UpdateSaveDTO } from '../dtos/UpdateSaveDTO'
 import { authMiddleware } from '../middlewares/authMiddleware'
 import { AddItemDTO } from '../dtos/AddItemDTO'

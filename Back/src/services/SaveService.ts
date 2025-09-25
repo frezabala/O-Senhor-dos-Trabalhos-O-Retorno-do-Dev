@@ -1,5 +1,6 @@
 import { AppDataSource } from '../data-source'
 import { Save } from '../entities/Save'
+import { User } from '../entities/User'
 import { CharacterService } from './CharacterService'
 import { UserService } from './UserService'
 
@@ -9,14 +10,19 @@ export class SaveService{
     private repo = AppDataSource.getRepository(Save)
     private userser = new UserService()
 
-    async create(userId:number){
-        const won:boolean =false //como default no inicio a variavel won é sempre falso
-        const mainLevel:number = 1 //como default no inicio o usuario sempre vai ter o personagem id 1 na party (sam)
-        const user = await this.userser.findbyId(userId) // encontra o usuario para adicionar no save como o responsavel pelo save
-        const mainHealth:number = (await this.charser.getbyid(1)).health // pega a vida do personagem id 1 e salva ela (sam)
-        const data:Partial<Save> = {mainHealth,mainLevel,won,user} //junta tudo em um save partial (incompleto)
+    async create(data: {mainHealth:number,user:Partial<User>}){
+        // const won:boolean =false //como default no inicio a variavel won é sempre falso
+        // const mainLevel:number = 1 //como default no inicio o usuario sempre vai ter o personagem id 1 na party (sam)
+        // const sam = await this.charser.getbyid(1)
+        // const user = await this.userser.findbyId(userId) // encontra o usuario para adicionar no save como o responsavel pelo save
+        // const mainHealth:number = sam.health // pega a vida do personagem id 1 e salva ela (sam)
+        // const data = {mainHealth,mainLevel,won,user} //junta tudo em um save partial (incompleto)
         const save = this.repo.create(data)
-        return await this.repo.save(save)
+        try{
+            return await this.repo.save(save)
+        }catch(e:any){
+            return e.message
+        }        
     }
     async getbyid(userId:number){
         const user = await this.userser.findbyId(userId)

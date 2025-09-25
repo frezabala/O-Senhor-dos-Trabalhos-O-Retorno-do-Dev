@@ -483,8 +483,8 @@ async function sam_reduce_health() {
         sam_percentage("0%");
         message(`${current_enemy.name} kills ${character_name.innerText}`);
         document.getElementById("sam").classList.remove("active");
-        death();
         hasSam = false;
+        death();
       }
     }
   }
@@ -517,8 +517,8 @@ async function aragorn_reduce_health() {
         aragorn_percentage("0%");
         message(`${current_enemy.name} kills ${character_name.innerText}`);
         document.getElementById("aragorn").classList.remove("active");
-        death();
         hasAra = false;
+        death();
       }
     }
   }
@@ -551,8 +551,8 @@ async function legolas_reduce_health() {
         legolas_percentage("0%");
         message(`${current_enemy.name} kills ${character_name.innerText}`);
         document.getElementById("legolas").classList.remove("active");
-        death();
         hasLego = false;
+        death();
       }
     }
   }
@@ -585,8 +585,8 @@ async function gimli_reduce_health() {
         gimli_percentage("0%");
         message(`${current_enemy.name} kills ${character_name.innerText}`);
         document.getElementById("gimli").classList.remove("active");
-        death();
         hasGiml = false;
+        death();
       }
     }
   }
@@ -619,8 +619,8 @@ async function boromir_reduce_health() {
         boromir_percentage("0%");
         message(`${current_enemy.name} kills ${character_name.innerText}`);
         document.getElementById("boromir").classList.remove("active");
-        death();
         hasBoro = false;
+        death();
       }
     }
   }
@@ -643,8 +643,8 @@ async function gandalf_reduce_health() {
 
       message("Fly, you fools!");
       document.getElementById("gandalf").classList.remove("active");
-      death();
       hasGandal = false;
+      death();
       await SendSave();
       return;
     }
@@ -730,7 +730,7 @@ function start_combat(enemy) {
   character_health.className = "health";
   character_level.innerHTML = `LVL `;
   character_health.innerHTML = ` / `;
-  message("choose a fighter");
+  message("Choose a fighter!");
   first = true;
 }
 //função para quando um personagem morre
@@ -741,7 +741,11 @@ function death() {
   character_health.className = "health";
   character_level.innerHTML = `LVL `;
   character_health.innerHTML = ` / `;
-  message("choose a fighter");
+  if (hasAra || hasBoro || hasGandal || hasGiml || hasLego || hasSam) {
+    message("Choose a fighter!");
+  } else {
+    message("You loose!");
+  }
 }
 //chama a função da posição atual, e depois remove ela
 function check_pos() {
@@ -848,152 +852,181 @@ function fight() {
 {
   document.getElementById("sam").addEventListener("click", () => {
     if (change) {
-      change = false;
       character_combat.className = "combat_sam";
       character_name.innerHTML = "Sam";
       character_health.className = "health sam_health";
       character_level.innerHTML = `LVL ${sam.level}`;
       character_health.innerHTML = `${sam.health} / ${sam.totalHealth}`;
+      message(`Changed to ${sam.name}`);
       if (!first) {
         sam_reduce_health();
       }
+      change = false;
+      first = false;
     } else if (drink) {
-      drink = false;
-
       sam.health = sam.totalHealth;
       sam_health.innerHTML = `${sam.health}/${sam.totalHealth}`;
       sam_percentage("100%");
       if ((character_combat.className = "combat_sam")) {
         character_health.innerHTML = `${sam.health} / ${sam.totalHealth}`;
       }
-
+      message(`${sam.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
+      if (!first) {
+        sam_reduce_health();
+      }
+      drink = false;
     }
   });
 
   document.getElementById("aragorn").addEventListener("click", () => {
     if (change) {
-      change = false;
       character_combat.className = "combat_aragorn";
       character_name.innerText = "Aragorn";
       character_health.className = "health aragorn_health";
       character_level.innerHTML = `LVL ${aragorn.level}`;
       character_health.innerHTML = `${aragorn.health} / ${aragorn.totalHealth}`;
+      message(`Changed to ${aragorn.name}`);
       if (!first) {
         aragorn_reduce_health();
       }
+      change = false;
+      first = false;
     } else if (drink) {
-      drink = false;
-
       aragorn.health = aragorn.totalHealth;
       aragorn_health.innerHTML = `${aragorn.health}/${aragorn.totalHealth}`;
       aragorn_percentage("100%");
       if ((character_combat.className = "combat_aragorn")) {
         character_health.innerHTML = `${aragorn.health} / ${aragorn.totalHealth}`;
       }
+      message(`${aragorn.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
+      if (!first) {
+        aragorn_reduce_health();
+      }
+      drink = false;
     }
   });
 
   document.getElementById("legolas").addEventListener("click", () => {
     if (change) {
-      change = false;
       character_combat.className = "combat_legolas";
       character_name.innerHTML = "Legolas";
       character_health.className = "health legolas_health";
       character_level.innerHTML = `LVL ${legolas.level}`;
       character_health.innerHTML = `${legolas.health} / ${legolas.totalHealth}`;
+      message(`Changed to ${legolas.name}`);
       if (!first) {
         legolas_reduce_health();
       }
+      change = false;
+      first = false;
     } else if (drink) {
-      drink = false;
-
       legolas.health = legolas.totalHealth;
       legolas_health.innerHTML = `${legolas.health}/${legolas.totalHealth}`;
       legolas_percentage("100%");
       if ((character_combat.className = "combat_legolas")) {
         character_health.innerHTML = `${legolas.health} / ${legolas.totalHealth}`;
       }
+      message(`${legolas.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
+      if (!first) {
+        legolas_reduce_health();
+      }
+      drink = false;
     }
   });
 
   document.getElementById("gimli").addEventListener("click", () => {
     if (change) {
-      change = false;
       character_combat.className = "combat_gimli";
       character_name.innerHTML = "Gimli";
       character_health.className = "health gimli_health";
       character_level.innerHTML = `LVL ${gimli.level}`;
       character_health.innerHTML = `${gimli.health} / ${gimli.totalHealth}`;
+      message(`Changed to ${gimli.name}`);
       if (!first) {
         gimli_reduce_health();
       }
+      change = false;
+      first = false;
     } else if (drink) {
-      drink = false;
-
       gimli.health = gimli.totalHealth;
       gimli_health.innerHTML = `${gimli.health}/${gimli.totalHealth}`;
       gimli_percentage("100%");
       if ((character_combat.className = "combat_gimli")) {
         character_health.innerHTML = `${gimli.health} / ${gimli.totalHealth}`;
       }
+      message(`${gimli.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
+      if (!first) {
+        gimli_reduce_health();
+      }
+      drink = false;
     }
   });
 
   document.getElementById("boromir").addEventListener("click", () => {
     if (change) {
-      change = false;
       character_combat.className = "combat_boromir";
       character_name.innerHTML = "Boromir";
       character_health.className = "health boromir_health";
       character_level.innerHTML = `LVL ${boromir.level}`;
       character_health.innerHTML = `${boromir.health} / ${boromir.totalHealth}`;
+      message(`Changed to ${boromir.name}`);
       if (!first) {
         boromir_reduce_health();
       }
+      change = false;
+      first = false;
     } else if (drink) {
-      drink = false;
-
       boromir.health = boromir.totalHealth;
       boromir_health.innerHTML = `${boromir.health}/${boromir.totalHealth}`;
       boromir_percentage("100%");
       if ((character_combat.className = "combat_boromir")) {
         character_health.innerHTML = `${boromir.health} / ${boromir.totalHealth}`;
       }
+      message(`${boromir.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
+      if (!first) {
+        boromir_reduce_health();
+      }
+      drink = false;
     }
   });
 
   document.getElementById("gandalf").addEventListener("click", () => {
     if (change) {
-      change = false;
       character_combat.className = "combat_gandalf";
       character_name.innerHTML = "Gandalf";
       character_health.className = "health gandalf_health";
       character_level.innerHTML = `LVL ${gandalf.level}`;
       character_health.innerHTML = `${gandalf.health} / ${gandalf.totalHealth}`;
+      message(`Changed to ${gandalf.name}`);
       if (!first) {
         gandalf_reduce_health();
       }
+      change = false;
+      first = false;
     } else if (drink) {
-      drink = false;
-
       gandalf.health = gandalf.totalHealth;
       gandalf_health.innerHTML = `${gandalf.health}/${gandalf.totalHealth}`;
       gandalf_percentage("100%");
       if ((character_combat.className = "combat_gandalf")) {
         character_health.innerHTML = `${gandalf.health} / ${gandalf.totalHealth}`;
       }
+      message(`${gandalf.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
+      if (!first) {
+        gandalf_reduce_health();
+      }
+      drink = false;
     }
   });
 }

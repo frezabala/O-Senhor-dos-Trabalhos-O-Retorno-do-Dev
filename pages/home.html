@@ -4,120 +4,143 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=settings" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=settings"
+    />
     <link rel="stylesheet" href="../style/home.css" />
 
-    <link rel="shortcut icon" href="../imagens/Icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../imagens/Icon.png" type="image/x-icon" />
     <title>PokerAneis</title>
   </head>
   <body>
+    <!-- Ícone de logout no canto superior (porta que leva à tela de login) -->
+    <div id="logout">
+      <!-- Link que redireciona para login.html -->
+      <a href="login.html">
+        <!-- Imagem usada como botão de logout -->
+        <img title="logout" src="../imagens/porta.png" alt="logout" />
+      </a>
+    </div>
 
-<!-- Ícone de logout no canto superior (porta que leva à tela de login) -->
-<div id="logout">
-  <!-- Link que redireciona para login.html -->
-  <a href="login.html">
-    <!-- Imagem usada como botão de logout -->
-    <img title="logout" src="../imagens/porta.png" alt="logout">
-  </a>
+    <!-- =================== CONTAINER PRINCIPAL =================== -->
+    <div class="toplayer">
+      <!-- Botão principal que provavelmente abre a camada de edição de conta -->
+      <button id="hi">Click Here</button>
 
-  
-  
-</div>
+      <!-- Camada que aparece sobre a tela (tipo modal/pop-up) -->
+      <div class="layer">
+        <form id="userUpdate">
+          <!-- =================== FORMULÁRIO =================== -->
+          <!-- Label e input para o nome do usuário -->
+          <label for="Nome">Name</label>
+          <input type="text" id="Nome" name="Nome" />
 
+          <!-- Label e input para o email do usuário -->
+          <label for="Email">Email</label>
+          <input type="email" id="Email" name="Email" />
 
-<!-- =================== CONTAINER PRINCIPAL =================== -->
-<div class="toplayer">
-  
-  <!-- Botão principal que provavelmente abre a camada de edição de conta -->
-  <button id="hi">Click Here</button>
-  
-  <!-- Camada que aparece sobre a tela (tipo modal/pop-up) -->
-  <div class="layer">
-    
+          <!-- Label e input para a senha do usuário -->
+          <label for="Senha">Password</label>
+          <input
+            type="password"
+            id="Senha"
+            name="Senha"
+            autocomplete="aaaaaaaaaa"
+          />
 
-    
-    <form id="userUpdate">
-      <!-- =================== FORMULÁRIO =================== -->
-    <!-- Label e input para o nome do usuário -->
-    <label for="Nome">Nome</label>
-    <input type="text" id="Nome" name="Nome" >
-    
-    <!-- Label e input para o email do usuário -->
-    <label for="Email">Email</label>
-    <input type="email" id="Email" name="Email" >
-    
-    <!-- Label e input para a senha do usuário -->
-    <label for="Senha">Senha</label>
-    <input type="password" id="Senha" name="Senha" autocomplete="aaaaaaaaaa" >
-    
-    <!-- Botões para ações sobre a conta -->
- 
-    <button id="btnAtualizar" type="submit">Editar</button>     <!-- Edita os dados preenchidos -->
-    <button id="btnDeletar">Excluir</button> <!-- Exclui a conta do usuário -->
-    
+          <!-- Botões para ações sobre a conta -->
 
-    <p id="mensagem"></p>
-    
-  </div> <!-- Fim da camada "layer" -->
-</div> <!-- Fim do container principal "toplayer" -->
-    </form>
-    
+          <button id="btnAtualizar" type="submit">Edit</button>
+          <!-- Edita os dados preenchidos -->
+          <button id="btnDeletar">Delete</button>
+          <!-- Exclui a conta do usuário -->
 
+          <p id="mensagem"></p>
+        </form>
+      </div>
+      <!-- Fim da camada "layer" -->
+    </div>
+    <!-- Fim do container principal "toplayer" -->
 
+    <!-- Container genérico (você pode colocar conteúdo aqui se quiser) -->
+    <div class="container"></div>
 
-<!-- Container genérico (você pode colocar conteúdo aqui se quiser) -->
-<div class="container">
-</div>
+    <!-- Seção principal que ocupa a tela inteira (centralizada pelo CSS #container) -->
+    <section id="container">
+      <!-- Bloco que contém o botão de iniciar jogo -->
+      <div id="start-game">
+        <div class="buttons">
+          <!-- Botão estilizado com efeito “blob” -->
+          <div class="blob-btn">
+            Start Game
+            <!-- Texto do botão -->
 
-<!-- Seção principal que ocupa a tela inteira (centralizada pelo CSS #container) -->
-<section id="container">
-
-  <!-- Bloco que contém o botão de iniciar jogo -->
-  <div id="start-game">
-    <div class="buttons">
-      
-      <!-- Botão estilizado com efeito “blob” -->
-      <div class="blob-btn">
-        Iniciar Jogo <!-- Texto do botão -->
-
-        <!-- Camada interna preta onde os blobs animam -->
-        <div class="blob-btn__inner">
-          
-          <!-- Container dos blobs -->
-          <div class="blob-btn__blobs">
-            <!-- Quatro bolhas amarelas que se movimentam no hover -->
-            <div class="blob-btn__blob"></div>
-            <div class="blob-btn__blob"></div>
-            <div class="blob-btn__blob"></div>
-            <div class="blob-btn__blob"></div>
+            <!-- Camada interna preta onde os blobs animam -->
+            <div class="blob-btn__inner">
+              <!-- Container dos blobs -->
+              <div class="blob-btn__blobs">
+                <!-- Quatro bolhas amarelas que se movimentam no hover -->
+                <div class="blob-btn__blob"></div>
+                <div class="blob-btn__blob"></div>
+                <div class="blob-btn__blob"></div>
+                <div class="blob-btn__blob"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+      <div id="delete-save">
+        <div class="buttons">
+          <!-- Botão estilizado com efeito “blob” -->
+          <div class="blob-btn">
+            Delete Save
+            <!-- Texto do botão -->
 
-  <!-- Filtro SVG “goo” que dá o efeito gelatinoso ao botão blob -->
-  <!-- Ele precisa estar no DOM para o filter:url('#goo') do CSS funcionar -->
-  <div style="display:none;">
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-      <defs>
-        <filter id="goo">
-          <!-- Aplica um desfoque no gráfico de entrada -->
-          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-          <!-- Aplica matriz de cor para intensificar o efeito “goo” -->
-          <feColorMatrix in="blur" mode="matrix" 
-            values="1 0 0 0 0 
+            <!-- Camada interna preta onde os blobs animam -->
+            <div class="blob-btn__inner">
+              <!-- Container dos blobs -->
+              <div class="blob-btn__blobs">
+                <!-- Quatro bolhas amarelas que se movimentam no hover -->
+                <div class="blob-btn__blob"></div>
+                <div class="blob-btn__blob"></div>
+                <div class="blob-btn__blob"></div>
+                <div class="blob-btn__blob"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtro SVG “goo” que dá o efeito gelatinoso ao botão blob -->
+      <!-- Ele precisa estar no DOM para o filter:url('#goo') do CSS funcionar -->
+      <div style="display: none">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+          <defs>
+            <filter id="goo">
+              <!-- Aplica um desfoque no gráfico de entrada -->
+              <feGaussianBlur
+                in="SourceGraphic"
+                result="blur"
+                stdDeviation="10"
+              ></feGaussianBlur>
+              <!-- Aplica matriz de cor para intensificar o efeito “goo” -->
+              <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="1 0 0 0 0 
                     0 1 0 0 0 
                     0 0 1 0 0 
-                    0 0 21 -7 0" 
-            result="goo"></feColorMatrix>
-          <!-- Mistura a versão “goo” com o gráfico original -->
-          <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-        </filter>
-      </defs>
-    </svg>
+                    0 0 21 -7 0"
+                result="goo"
+              ></feColorMatrix>
+              <!-- Mistura a versão “goo” com o gráfico original -->
+              <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+            </filter>
+          </defs>
+        </svg>
 
-  <!--feGaussianBlur: desfoca os elementos (bolhas, blobs) para suavizar suas bordas.
+        <!--feGaussianBlur: desfoca os elementos (bolhas, blobs) para suavizar suas bordas.
 
 feColorMatrix: aumenta o contraste dos pixels borrados, dando aquele efeito líquido que faz as bolhas se fundirem.
 
@@ -127,31 +150,28 @@ display:none: o SVG não aparece na tela, mas o filtro é aplicado nos elementos
 SVG significa Scalable Vector Graphics (Gráficos Vetoriais Escaláveis). É um formato de imagem baseado em vetores, ou seja, diferente de imagens em JPEG ou PNG que são compostas por pixels, o SVG é construído com formas, linhas e curvas matemáticas.
 
 -->
-  </div>
+      </div>
+    </section>
 
-</section>
+    <!-- As divs abaixo representam cada “vagalume” animado no fundo -->
+    <!-- Cada uma será posicionada e animada via CSS .firefly e @keyframes -->
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
 
-<!-- As divs abaixo representam cada “vagalume” animado no fundo -->
-<!-- Cada uma será posicionada e animada via CSS .firefly e @keyframes -->
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
 
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
 
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-
-<div class="firefly"></div>
-<div class="firefly"></div>
-<div class="firefly"></div>
-
-</body>
-<script src="../script/btn.js"></script>
-<script src="../script/crud.js"></script>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+  </body>
+  <script src="../script/btn.js"></script>
+  <script src="../script/crud.js"></script>
 </html>
-

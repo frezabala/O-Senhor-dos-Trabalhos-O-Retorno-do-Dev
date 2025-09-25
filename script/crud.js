@@ -136,3 +136,18 @@ document
       document.getElementById("mensagem").style.color = "red";
     }
   });
+document.getElementById("delete-save").addEventListener("click", async () => {
+  try {
+    const del = await fetch("http://localhost:3000/saves/me", {
+      method: "DELETE",
+      headers: { Authorization: localStorage.getItem("token") },
+    });
+    if (!del.ok) {
+      alert("Can't find save");
+    } else {
+      alert("Save deleted");
+    }
+  } catch (e) {
+    alert("Error: " + e);
+  }
+});

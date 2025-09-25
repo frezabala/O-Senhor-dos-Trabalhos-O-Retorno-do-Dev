@@ -18,11 +18,7 @@ export class SaveService{
         // const mainHealth:number = sam.health // pega a vida do personagem id 1 e salva ela (sam)
         // const data = {mainHealth,mainLevel,won,user} //junta tudo em um save partial (incompleto)
         const save = this.repo.create(data)
-        try{
-            return await this.repo.save(save)
-        }catch(e:any){
-            return e.message
-        }        
+        return await this.repo.save(save)
     }
     async getbyid(userId:number){
         const user = await this.userser.findbyId(userId)

@@ -729,6 +729,33 @@ function loadCharacters() {
   gandalf_percentage(`${(gandalf.health / gandalf.totalHealth) * 100}%`);
 }
 //ataque
+function attackCurrent() {
+  let p1 = document.getElementById("character_combat").className.split("_")[1];
+  switch (p1) {
+    case "sam":
+      sam_reduce_health();
+      break;
+    case "aragorn":
+      aragorn_reduce_health();
+      break;
+    case "legolas":
+      legolas_reduce_health();
+      break;
+    case "gimli":
+      gimli_reduce_health();
+      break;
+    case "boromir":
+      boromir_reduce_health();
+      break;
+    case "gandalf":
+      gandalf_reduce_health();
+      break;
+
+    default:
+      break;
+  }
+}
+
 function fight() {
   drink = false;
   if (!first) {
@@ -790,14 +817,14 @@ function fight() {
       sam.health = sam.totalHealth;
       sam_health.innerHTML = `${sam.health}/${sam.totalHealth}`;
       sam_percentage("100%");
-      if ((character_combat.className = "combat_sam")) {
+      if (character_combat.className == "combat_sam") {
         character_health.innerHTML = `${sam.health} / ${sam.totalHealth}`;
       }
       message(`${sam.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
       if (!first) {
-        sam_reduce_health();
+        attackCurrent();
       }
       drink = false;
     }
@@ -820,14 +847,14 @@ function fight() {
       aragorn.health = aragorn.totalHealth;
       aragorn_health.innerHTML = `${aragorn.health}/${aragorn.totalHealth}`;
       aragorn_percentage("100%");
-      if ((character_combat.className = "combat_aragorn")) {
+      if (character_combat.className == "combat_aragorn") {
         character_health.innerHTML = `${aragorn.health} / ${aragorn.totalHealth}`;
       }
       message(`${aragorn.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
       if (!first) {
-        aragorn_reduce_health();
+        attackCurrent();
       }
       drink = false;
     }
@@ -850,14 +877,14 @@ function fight() {
       legolas.health = legolas.totalHealth;
       legolas_health.innerHTML = `${legolas.health}/${legolas.totalHealth}`;
       legolas_percentage("100%");
-      if ((character_combat.className = "combat_legolas")) {
+      if (character_combat.className == "combat_legolas") {
         character_health.innerHTML = `${legolas.health} / ${legolas.totalHealth}`;
       }
       message(`${legolas.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
       if (!first) {
-        legolas_reduce_health();
+        attackCurrent();
       }
       drink = false;
     }
@@ -881,13 +908,13 @@ function fight() {
       gimli_health.innerHTML = `${gimli.health}/${gimli.totalHealth}`;
       gimli_percentage("100%");
       if ((character_combat.className = "combat_gimli")) {
-        character_health.innerHTML = `${gimli.health} / ${gimli.totalHealth}`;
+        character_health.innerHTML == `${gimli.health} / ${gimli.totalHealth}`;
       }
       message(`${gimli.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
       if (!first) {
-        gimli_reduce_health();
+        attackCurrent();
       }
       drink = false;
     }
@@ -910,14 +937,14 @@ function fight() {
       boromir.health = boromir.totalHealth;
       boromir_health.innerHTML = `${boromir.health}/${boromir.totalHealth}`;
       boromir_percentage("100%");
-      if ((character_combat.className = "combat_boromir")) {
+      if (character_combat.className == "combat_boromir") {
         character_health.innerHTML = `${boromir.health} / ${boromir.totalHealth}`;
       }
       message(`${boromir.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
       if (!first) {
-        boromir_reduce_health();
+        attackCurrent();
       }
       drink = false;
     }
@@ -940,14 +967,14 @@ function fight() {
       gandalf.health = gandalf.totalHealth;
       gandalf_health.innerHTML = `${gandalf.health}/${gandalf.totalHealth}`;
       gandalf_percentage("100%");
-      if ((character_combat.className = "combat_gandalf")) {
+      if (character_combat.className == "combat_gandalf") {
         character_health.innerHTML = `${gandalf.health} / ${gandalf.totalHealth}`;
       }
       message(`${gandalf.name} ate a lambas bread`);
       potions--;
       potion_number.innerHTML = potions;
       if (!first) {
-        gandalf_reduce_health();
+        attackCurrent();
       }
       drink = false;
     }

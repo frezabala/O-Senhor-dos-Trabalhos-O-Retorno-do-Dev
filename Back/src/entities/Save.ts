@@ -6,8 +6,6 @@ export class Save{
     @PrimaryGeneratedColumn()
     id:number
 
-    @Column()
-    name:string
     //sam
     @Column()
     mainHealth:number

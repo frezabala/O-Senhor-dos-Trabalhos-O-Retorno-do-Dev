@@ -8,7 +8,7 @@ const service = new SaveService()
 export class SaveController{
     async create(req:Request,res:Response){
         try{
-            const save = await service.create((req as any).user.id,req.body.name) //(req as any).user.id pega o ID do usuario, req.body.name pega o valor Name na requisição
+            const save = await service.create((req as any).user.id) //(req as any).user.id pega o ID do usuario, req.body.name pega o valor Name na requisição
             res.json(save)
         }catch(e:any){
             res.status(400).json({message: e.mensagem})
@@ -16,23 +16,16 @@ export class SaveController{
     }
     async get(req:Request,res:Response){
         try{
-            const save = await service.getbyid(req.body.id, (req as any).user.id)
+            const save = await service.getbyid((req as any).user.id)
             res.json(save)
         }catch(e:any){
             res.status(404).json({message: e.mensagem})
         }
     }
-    async list(req:Request,res:Response){
-        try{
-            const saves = await service.listbyUser((req as any).user.id)
-            res.json(saves)
-        }catch(e:any){
-            res.status(400).json({message: e.mensagem})
-        }
-    }
+
     async update(req:Request,res:Response){
         try{
-            const save = await service.update(req.body.id, (req as any).user.id, req.body)
+            const save = await service.update((req as any).user.id, req.body)
             res.json(save)
         }catch(e:any){
             res.status(400).json({message: e.mensagem})
@@ -40,7 +33,7 @@ export class SaveController{
     }
     async remove(req:Request,res:Response){
         try{
-            const result = await service.remove(req.body.id, (req as any).user.id)
+            const result = await service.remove((req as any).user.id)
             res.json(result)
         }catch(e:any){
             res.status(404).json({message: e.mensagem})
@@ -48,7 +41,7 @@ export class SaveController{
     }
     async addChar(req:Request,res:Response){
         try{
-            const save = await service.addCharacter(req.body.id, (req as any).user.id, req.body.charId)
+            const save = await service.addCharacter((req as any).user.id, req.body.charId)
             res.json(save)
         }catch(e:any){
             res.status(400).json({message: e.mensagem})
@@ -56,7 +49,7 @@ export class SaveController{
     }
     async saveWon(req:Request,res:Response){
         try{
-            const save = await service.won(req.body.id, (req as any).user.id)
+            const save = await service.won((req as any).user.id)
             res.json(save)
         }catch(e:any){
             res.status(400).json({message: e.mensagem})
@@ -64,7 +57,7 @@ export class SaveController{
     }
     async addItem(req:Request,res:Response){
         try{
-            const save = await service.addItem(req.body.id, (req as any).user.id, req.body.itemId)
+            const save = await service.addItem((req as any).user.id, req.body.potions)
         }catch(e:any){
             res.status(400).json({message: e.mensagem})
         }

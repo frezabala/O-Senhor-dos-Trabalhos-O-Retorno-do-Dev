@@ -3,43 +3,100 @@ async function fetchUserProfile() {
   if (!token) {
     window.location.href = "login.html?alert=true";
     return;
-  } else {
-    console.log(token);
   }
-
   try {
     const resposta = await fetch("http://localhost:3000/users/me", {
-      method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: token,
       },
     });
     if (!resposta.ok) {
       const erro = await resposta.text();
       throw new Error(erro);
+    } else {
+      getSave();
     }
-    const dados = await resposta.json();
   } catch (erro) {
-    //window.location.href = "login.html?alert=true";
+    window.location.href = "login.html?alert=true";
   }
 }
 //pega status de personagens do banco
 async function getCharacters() {
-  try{
-    const characters = await fetch("http://localhost:3000/chars/all", {});
-    await characters.json().forEach((character, index) => {
-    charList[index].baseDamage = character.baseDamage;
-    charList[index].defense = character.defense;
-    charList[index].health = character.health;
-    charList[index].level = character.level;
-    charList[index].magicRes = character.magicRes;
-    charList[index].totalHealth = character.totalHealth;
-    charList[index].name = character.name;});
-  }catch(e){
-    alert("deu merda" +e)
+  try {
+    const characters = await fetch("http://localhost:3000/chars/all");
+    const char_list = await characters.json();
+    char_list.forEach((character, index) => {
+      charList[index].name = character.name;
+      charList[index].baseDamage = character.baseDamage;
+      charList[index].defense = character.defense;
+      charList[index].health = character.health;
+      charList[index].totalHealth = character.totalHealth;
+      if (index >= 6) {
+        charList[index].level = index - 5;
+      } else {
+        charList[index].level = 1;
+      }
+    });
+    loadCharacters();
+  } catch (e) {
+    console.error(e);
+    alert("Erro:" + e);
   }
-  
+}
+
+async function getSave() {
+  try {
+    let token = localStorage.getItem("token");
+    const save = await fetch("http://localhost:3000/saves/me", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    });
+
+    if (!save.ok) {
+      getCharacters();
+
+      await fetch("http://localhost:3000/save/me", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      });
+    } else {
+      save = save.json();
+
+      sam.health = save.mainHealth;
+      sam.level = save.mainLevel;
+      hasAra = save.hasAra || false;
+      aragorn.health = save.araHealth;
+      aragorn.level = save.araLevel;
+      hasLego = save.hasLego || false;
+      legolas.health = save.legoHealth;
+      legolas.level = save.legoLevel;
+      hasGiml = save.hasGiml || false;
+      gimli.health = save.gimlHealth;
+      gimli.level = save.gimlLevel;
+      hasBoro = save.hasBoro || false;
+      boromir.health = save.boroHealth;
+      boromir.level = save.boroLevel;
+      hasGandal = save.hasGandal || false;
+      gandalf.health = save.gandalHealth;
+      gandalf.level = save.gandalLevel;
+      pos = [save.tileLocalX || 0, save.tileLocalY || 0];
+      potions = save.items || 1;
+      won = save.won || false;
+
+      potion_number.innerHTML = potions;
+      removeFromMap();
+      placeOnMap();
+      loadCharacters();
+    }
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 window.addEventListener("DOMContentLoaded", fetchUserProfile);
@@ -69,6 +126,7 @@ let potions = 1;
 let drink = false;
 let change = false;
 let first = false;
+let hasSam = true;
 let hasAra = false;
 let hasGiml = false;
 let hasLego = false;
@@ -247,53 +305,144 @@ let positions = [
       start_combat(uruk);
       enemy_image("combat_uruk");
     },
-    () => {
-      document.getElementById("gandalf").classList.toggle("active");
-      hasGandal = true;
+    async () => {
+      try {
+        await fetch("http://localhost:3000/save/me/char", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ charId: 6 }),
+        });
+
+        document.getElementById("gandalf").classList.add("active");
+        hasGandal = true;
+      } catch (e) {
+        alert(e);
+      }
     },
     () => {
       start_combat(nazgul);
       enemy_image("combat_nazgul");
     },
-    () => {
-      document.getElementById("aragorn").classList.toggle("active");
-      hasAra = true;
+    async () => {
+      try {
+        await fetch("http://localhost:3000/save/me/char", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ charId: 2 }),
+        });
+
+        document.getElementById("aragorn").classList.add("active");
+        hasAra = true;
+      } catch (e) {
+        alert(e);
+      }
     },
   ],
   [
-    () => {
-      potions++;
-      potion_number.innerHTML = potions;
+    async () => {
+      try {
+        await fetch("http://localhost:3000/save/me/item", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ potions: potions }),
+        });
+
+        potions++;
+        potion_number.innerHTML = potions;
+      } catch (e) {
+        alert(e);
+      }
     },
     () => {
       start_combat(balrog);
       enemy_image("combat_balrog");
     },
-    () => {
-      document.getElementById("legolas").classList.toggle("active");
-      hasLego = true;
+    async () => {
+      try {
+        await fetch("http://localhost:3000/save/me/char", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ charId: 3 }),
+        });
+
+        document.getElementById("legolas").classList.add("active");
+        hasLego = true;
+      } catch (e) {
+        alert(e);
+      }
     },
     () => {
       start_combat(saruman);
       enemy_image("combat_saruman");
     },
-    () => {
-      document.getElementById("gimli").classList.toggle("active");
-      hasGiml = true;
+    async () => {
+      try {
+        await fetch("http://localhost:3000/save/me/char", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ charId: 4 }),
+        });
+
+        document.getElementById("gimli").classList.add("active");
+        hasGiml = true;
+      } catch (e) {
+        alert(e);
+      }
     },
   ],
   [
-    () => {
-      potions++;
-      potion_number.innerHTML = potions;
+    async () => {
+      try {
+        await fetch("http://localhost:3000/save/me/item", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ potions: potions }),
+        });
+
+        potions++;
+        potion_number.innerHTML = potions;
+      } catch (e) {
+        alert(e);
+      }
     },
     () => {
       start_combat(shelob);
       enemy_image("combat_shelob");
     },
-    () => {
-      document.getElementById("boromir").classList.toggle("active");
-      hasBoro = true;
+    async () => {
+      try {
+        await fetch("http://localhost:3000/save/me/char", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ charId: 5 }),
+        });
+
+        document.getElementById("boromir").classList.add("active");
+        hasBoro = true;
+      } catch (e) {
+        alert(e);
+      }
     },
     () => {
       start_combat(smeagol);
@@ -310,9 +459,9 @@ let positions = [
 function sam_percentage(x) {
   style.setProperty("--sam-health", x);
 }
-function sam_reduce_health() {
+async function sam_reduce_health() {
   if (!drink && !change) {
-    enemy_reduce_health(sam);
+    await enemy_reduce_health(sam);
   }
 
   if (current_enemy.health > 0) {
@@ -333,7 +482,9 @@ function sam_reduce_health() {
         sam_health.innerHTML = `0/${sam.totalHealth}`;
         sam_percentage("0%");
         message(`${current_enemy.name} kills ${character_name.innerText}`);
-        document.getElementById("sam").classList.toggle("active");
+        document.getElementById("sam").classList.remove("active");
+        death();
+        hasSam = false;
       }
     }
   }
@@ -342,9 +493,9 @@ function sam_reduce_health() {
 function aragorn_percentage(x) {
   style.setProperty("--aragorn-health", x);
 }
-function aragorn_reduce_health() {
+async function aragorn_reduce_health() {
   if (!drink && !change) {
-    enemy_reduce_health(aragorn);
+    await enemy_reduce_health(aragorn);
   }
 
   if (current_enemy.health > 0) {
@@ -365,7 +516,9 @@ function aragorn_reduce_health() {
         aragorn_health.innerHTML = `0/${aragorn.totalHealth}`;
         aragorn_percentage("0%");
         message(`${current_enemy.name} kills ${character_name.innerText}`);
-        document.getElementById("aragorn").classList.toggle("active");
+        document.getElementById("aragorn").classList.remove("active");
+        death();
+        hasAra = false;
       }
     }
   }
@@ -374,9 +527,9 @@ function aragorn_reduce_health() {
 function legolas_percentage(x) {
   style.setProperty("--legolas-health", x);
 }
-function legolas_reduce_health() {
+async function legolas_reduce_health() {
   if (!drink && !change) {
-    enemy_reduce_health(legolas);
+    await enemy_reduce_health(legolas);
   }
 
   if (current_enemy.health > 0) {
@@ -397,7 +550,9 @@ function legolas_reduce_health() {
         legolas_health.innerHTML = `0/${legolas.totalHealth}`;
         legolas_percentage("0%");
         message(`${current_enemy.name} kills ${character_name.innerText}`);
-        document.getElementById("legolas").classList.toggle("active");
+        document.getElementById("legolas").classList.remove("active");
+        death();
+        hasLego = false;
       }
     }
   }
@@ -406,9 +561,9 @@ function legolas_reduce_health() {
 function gimli_percentage(x) {
   style.setProperty("--gimli-health", x);
 }
-function gimli_reduce_health() {
+async function gimli_reduce_health() {
   if (!drink && !change) {
-    enemy_reduce_health(gimli);
+    await enemy_reduce_health(gimli);
   }
 
   if (current_enemy.health > 0) {
@@ -429,7 +584,9 @@ function gimli_reduce_health() {
         gimli_health.innerHTML = `0/${gimli.totalHealth}`;
         gimli_percentage("0%");
         message(`${current_enemy.name} kills ${character_name.innerText}`);
-        document.getElementById("gimli").classList.toggle("active");
+        document.getElementById("gimli").classList.remove("active");
+        death();
+        hasGiml = false;
       }
     }
   }
@@ -438,9 +595,9 @@ function gimli_reduce_health() {
 function boromir_percentage(x) {
   style.setProperty("--boromir-health", x);
 }
-function boromir_reduce_health() {
+async function boromir_reduce_health() {
   if (!drink && !change) {
-    enemy_reduce_health(boromir);
+    await enemy_reduce_health(boromir);
   }
 
   if (current_enemy.health > 0) {
@@ -461,7 +618,9 @@ function boromir_reduce_health() {
         boromir_health.innerHTML = `0/${boromir.totalHealth}`;
         boromir_percentage("0%");
         message(`${current_enemy.name} kills ${character_name.innerText}`);
-        document.getElementById("boromir").classList.toggle("active");
+        document.getElementById("boromir").classList.remove("active");
+        death();
+        hasBoro = false;
       }
     }
   }
@@ -470,7 +629,7 @@ function boromir_reduce_health() {
 function gandalf_percentage(x) {
   style.setProperty("--gandalf-health", x);
 }
-function gandalf_reduce_health() {
+async function gandalf_reduce_health() {
   if (!drink && !change) {
     if (current_enemy.name == balrog.name) {
       current_enemy.health = 0;
@@ -483,11 +642,14 @@ function gandalf_reduce_health() {
       character_health.innerHTML = `0 / 0`;
 
       message("Fly, you fools!");
-      document.getElementById("gandalf").classList.toggle("active");
+      document.getElementById("gandalf").classList.remove("active");
+      death();
+      hasGandal = false;
+      await SendSave();
       return;
     }
 
-    enemy_reduce_health(gandalf);
+    await enemy_reduce_health(gandalf);
   }
 
   if (current_enemy.health > 0) {
@@ -509,7 +671,7 @@ function gandalf_reduce_health() {
         gandalf_health.innerHTML = `0/${gandalf.totalHealth}`;
         gandalf_percentage("0%");
         message(`${current_enemy.name} kills ${character_name.innerText}`);
-        document.getElementById("gandalf").classList.toggle("active");
+        document.getElementById("gandalf").classList.remove("active");
       }
     }
   }
@@ -518,7 +680,7 @@ function gandalf_reduce_health() {
 function enemy_percentage(x) {
   style.setProperty("--enemy-health", x);
 }
-function enemy_reduce_health(attacker) {
+async function enemy_reduce_health(attacker) {
   check = attacker.baseDamage - current_enemy.defense;
   if (check > 0) {
     if (current_enemy.health - check > 0) {
@@ -537,6 +699,9 @@ function enemy_reduce_health(attacker) {
       message(`${attacker.name} kills ${current_enemy.name}`);
       if (current_enemy.name == sauron.name) {
         won = true;
+        await SendSave();
+      } else {
+        await SendSave();
       }
     }
   }
@@ -568,6 +733,16 @@ function start_combat(enemy) {
   message("choose a fighter");
   first = true;
 }
+//função para quando um personagem morre
+function death() {
+  change = true;
+  character_combat.className = "";
+  character_name.innerHTML = "";
+  character_health.className = "health";
+  character_level.innerHTML = `LVL `;
+  character_health.innerHTML = ` / `;
+  message("choose a fighter");
+}
 //chama a função da posição atual, e depois remove ela
 function check_pos() {
   positions[pos[0]][pos[1]]();
@@ -577,24 +752,52 @@ function check_pos() {
 function placeOnMap() {
   table.rows[pos[0]].cells[pos[1]].id = "current_position";
 }
-
+function removeFromMap() {
+  for (let i = 0; i < pos[0]; i++) {
+    for (let j = 0; j < table.rows[pos[0]].cells.length; j++) {
+      table.rows[i].cells[j].id = "";
+    }
+  }
+  for (let i = 0; i < pos[1]; i++) {
+    table.rows[pos[0]].cells[i].id = "";
+  }
+  table.rows[pos[0]].cells[pos[1]].id = "";
+}
 //seta valor de vida dos personagens
-function loadHealth() {
+function loadCharacters() {
+  if (sam.health <= 0) {
+    document.getElementById("sam").classList.remove("active");
+  }
   sam_health.innerHTML = `${sam.health}/${sam.totalHealth}`;
   sam_percentage(`${(sam.health / sam.totalHealth) * 100}%`);
 
+  if (hasAra && aragorn.health > 0) {
+    document.getElementById("aragorn").classList.add("active");
+  }
   aragorn_health.innerHTML = `${aragorn.health}/${aragorn.totalHealth}`;
   aragorn_percentage(`${(aragorn.health / aragorn.totalHealth) * 100}%`);
 
+  if (hasGiml && gimli.health > 0) {
+    document.getElementById("gimli").classList.add("active");
+  }
   gimli_health.innerHTML = `${gimli.health}/${gimli.totalHealth}`;
   gimli_percentage(`${(gimli.health / gimli.totalHealth) * 100}%`);
 
+  if (hasLego && legolas.health > 0) {
+    document.getElementById("legolas").classList.add("active");
+  }
   legolas_health.innerHTML = `${legolas.health}/${legolas.totalHealth}`;
   legolas_percentage(`${(legolas.health / legolas.totalHealth) * 100}%`);
 
+  if (hasBoro && boromir.health > 0) {
+    document.getElementById("boromir").classList.add("active");
+  }
   boromir_health.innerHTML = `${boromir.health}/${boromir.totalHealth}`;
   boromir_percentage(`${(boromir.health / boromir.totalHealth) * 100}%`);
 
+  if (hasGandal && gandalf.health > 0) {
+    document.getElementById("gandalf").classList.add("active");
+  }
   gandalf_health.innerHTML = `${gandalf.health}/${gandalf.totalHealth}`;
   gandalf_percentage(`${(gandalf.health / gandalf.totalHealth) * 100}%`);
 }
@@ -805,6 +1008,48 @@ function message(text) {
   line7.innerHTML = text;
 }
 
+function createSave() {
+  let save = {
+    mainHealth: sam.health,
+    mainLevel: sam.level,
+    hasAra: hasAra,
+    araHealth: aragorn.health,
+    araLevel: aragorn.level,
+    hasLego: hasLego,
+    legoHealth: legolas.health,
+    legoLevel: legolas.level,
+    hasGiml: hasGiml,
+    gimliHealth: gimli.health,
+    gimliLevel: gimli.level,
+    hasBoro: hasBoro,
+    boroHealth: boromir.health,
+    boroLevel: boromir.level,
+    hasGandal: hasGandal,
+    gandalHealth: gandalf.health,
+    gandalLevel: gandalf.level,
+    potions: potions,
+    tileX: pos[0],
+    tileY: pos[1],
+    won: won,
+  };
+  return save;
+}
+
+async function SendSave() {
+  try {
+    let token = localStorage.getItem("token");
+    await fetch("http://localhost:3000/saves/me", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(createSave()),
+    });
+  } catch (e) {
+    alert(e);
+  }
+}
 /* botões para teste
 document.getElementById("potion").addEventListener("click", () => {
   document.getElementById("map").classList.toggle("hide_map");
@@ -885,30 +1130,7 @@ window.addEventListener("keydown", (key) => {
       break;
   }
 });
+
 potion_number.innerHTML = potions;
 placeOnMap();
-loadHealth();
-let save = {
-  mainHealth: sam.health,
-  mainLevel: sam.level,
-  hasAra: hasAra,
-  araHealth: aragorn.health,
-  araLevel: aragorn.level,
-  hasLego: hasLego,
-  legoHealth: legolas.health,
-  legoLevel: legolas.level,
-  hasGiml: hasGiml,
-  gimliHealth: gimli.health,
-  gimliLevel: gimli.level,
-  hasBoro: hasBoro,
-  boroHealth: boromir.health,
-  boroLevel: boromir.level,
-  hasGandal: hasGandal,
-  gandalHealth: gandalf.health,
-  gandalLevel: gandalf.level,
-  potions: potions,
-  tileX: pos[0],
-  tileY: pos[1],
-  won: won,
-};
-getCharacters()
+getCharacters();

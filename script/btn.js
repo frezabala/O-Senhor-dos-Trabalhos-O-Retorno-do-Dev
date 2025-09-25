@@ -1,12 +1,16 @@
 // Quando o usuário clicar no botão "Iniciar o Jogo"
-document.getElementById('start-game').addEventListener('click', function() {
-    // Redireciona para a página do jogo
-    window.location.href = 'game.html';
+document.getElementById("start-game").addEventListener("click", function () {
+  // Redireciona para a página do jogo
+  window.location.href = "game.html";
 });
 
+document.getElementById("logout").addEventListener("click", () => {
+  localStorage.removeItem("token");
+  window.location.href = "home.html";
+});
 
 // Quando o botão #hi for clicado
-document.getElementById("hi").addEventListener("click", function(event) {
+document.getElementById("hi").addEventListener("click", function (event) {
   event.preventDefault();
   document.querySelector(".layer").classList.toggle("clicked");
 });
@@ -15,5 +19,3 @@ document.getElementById("hi").addEventListener("click", function(event) {
 // document.getElementById("remove").addEventListener("click", function() {
 //   document.querySelector(".layer").classList.toggle("clicked");
 // });
-
-

@@ -1,11 +1,6 @@
 import { Matches, IsOptional } from "class-validator";
-import { Item } from "../entities/Item";
-import { Tile } from "../entities/Tile";
 
 export class UpdateSaveDTO{
-    @IsOptional()
-    @Matches(/^[A-Za-zÀ-ÿ\s]+$/, { message: "Name must only have letters and spaces" })
-    name:string
 
     @IsOptional()
     mainHealth:number
@@ -23,13 +18,13 @@ export class UpdateSaveDTO{
     araLevel:number
     //gimb 3
     @IsOptional()
-    hasGimb:boolean
+    hasGiml:boolean
     
     @IsOptional()
     gimbHealth:number
     
     @IsOptional()
-    gimbLevel:number
+    gimlLevel:number
     //legol 4
     @IsOptional()  
     hasLego:boolean
@@ -59,14 +54,14 @@ export class UpdateSaveDTO{
     gandalLevel:number
     
     @IsOptional()
-    tilesPassed: Tile[]
+    tileslocalx: number
+
+    @IsOptional()    
+    tileslocaly: number
     
     @IsOptional()
-    items:Item[]
+    items:number
     
     @IsOptional()
     won:boolean
-    
-    @IsOptional()
-    ranking:string
 }

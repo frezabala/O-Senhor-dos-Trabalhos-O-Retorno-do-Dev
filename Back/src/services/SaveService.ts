@@ -9,12 +9,12 @@ export class SaveService{
     private repo = AppDataSource.getRepository(Save)
     private userser = new UserService()
 
-    async create(userId:number,name:string){
+    async create(userId:number){
         const won:boolean =false //como default no inicio a variavel won é sempre falso
         const mainLevel:number = 1 //como default no inicio o usuario sempre vai ter o personagem id 1 na party (sam)
         const user = await this.userser.findbyId(userId) // encontra o usuario para adicionar no save como o responsavel pelo save
         const mainHealth:number = (await this.charser.getbyid(1)).health // pega a vida do personagem id 1 e salva ela (sam)
-        const data:Partial<Save> = {name,mainHealth,mainLevel,won,user} //junta tudo em um save partial (incompleto)
+        const data:Partial<Save> = {mainHealth,mainLevel,won,user} //junta tudo em um save partial (incompleto)
         const save = this.repo.create(data)
         return await this.repo.save(save)
     }
@@ -52,12 +52,12 @@ export class SaveService{
             save.araLevel = 1
             save.araHeath = (await this.charser.getbyid(2)).health
         }else
-        if(charId === 3){
+        if(charId === 4){
             save.hasGimb = true
             save.gimlLevel = 1
             save.gimlHealth = (await this.charser.getbyid(3)).health
         }else
-        if(charId === 4){
+        if(charId === 3){
             save.hasLego = true
             save.legoLevel = 1
             save.legoHealth = (await this.charser.getbyid(4)).health
@@ -78,7 +78,7 @@ export class SaveService{
     }   
     //função para adicionar item
     async addItem(idUser:number,itemNum:number){
-        const user:any = await this.userser.findbyId(idUser)
+        const user = await this.userser.findbyId(idUser)
         const save = await this.repo.findOne({where:{user:user}})
         if(!save){
             throw new Error("Save not found")

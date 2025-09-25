@@ -23,9 +23,6 @@ export class SaveService{
     async getbyid(userId:number){
         const user = await this.userser.findbyId(userId)
         const save = await this.repo.findOne({where:{user:user}})
-        if(!save){
-            throw new Error("Save not found")
-        }
         return save;
     }
     //async listbyUser(userId:number){ //para listar todos os saves de um usuario especifico, utilizado para visualização em uma tela de saves
